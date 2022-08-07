@@ -8,11 +8,14 @@ export default function MenuDrawer() {
 
   return (
     <div>
-      <MenuIcon
-        onClick={() => setOpen((open) => !open)}
-      />
-      <Drawer anchor={"left"} open={open} onClose={() => setOpen(false)}>
-        <Menu/>
+      <MenuIcon onClick={() => setOpen((open) => !open)} />
+      <Drawer
+        anchor={"left"}
+        open={open}
+        onClose={() => setOpen(false)}
+        sx={{ width: "40vw" }}
+      >
+        <Menu />
       </Drawer>
     </div>
   );
