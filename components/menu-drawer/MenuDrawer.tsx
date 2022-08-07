@@ -12,14 +12,12 @@ export default function MenuDrawer() {
     <>
       <div className={styles.menuDrawerContainer}>
         <Logo />
-        <MenuIcon onClick={() => setOpen((open) => !open)} sx={{ cursor: 'pointer'}}/>
+        <MenuIcon
+          onClick={() => setOpen((open) => !open)}
+          sx={{ cursor: "pointer" }}
+        />
       </div>
-      <Drawer
-        anchor={"right"}
-        open={open}
-        onClose={() => setOpen(false)}
-        sx={{ width: "40vw" }}
-      >
+      <Drawer anchor={"right"} open={open} onClose={() => setOpen(false)}>
         <Menu />
       </Drawer>
     </>
