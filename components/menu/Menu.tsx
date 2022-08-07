@@ -11,9 +11,9 @@ import styles from "./Menu.module.scss";
 import { MenuProps } from "./Menu.types";
 
 const LIST_ITEMS = [
-  { name: "Főoldal", route: "fooldal" },
+  { name: "Főoldal", route: "/" },
   { name: "Bejegyzések", route: "bejegyzesek" },
-  { name: "Cikksorozatok", route: "kollekciok" },
+  { name: "Cikksorozatok", route: "cikksorozatok" },
   { name: "Videók", route: "videok" },
   { name: "Szerzőink", route: "szerzoink" },
   { name: "Kapcsolat", route: "kapcsolat" },
@@ -37,9 +37,9 @@ export default function Menu({ showLogo }: MenuProps) {
         <ul className={styles.navigation}>
           {LIST_ITEMS.map((item) => {
             return (
-              <li key={item.route} className={styles.navigationElement}>
-                {item.name}
-              </li>
+              <a href={item.route} key={item.route}>
+                <li className={styles.navigationElement}>{item.name}</li>
+              </a>
             );
           })}
         </ul>
