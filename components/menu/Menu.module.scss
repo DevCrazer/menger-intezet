@@ -29,8 +29,8 @@
       padding-left: 2rem;
       padding-block: 1rem;
       &:hover {
-        background-color: $primary;
-        color: white;
+        background-color: $primary-lighter;
+        color: $primary-darkest;
       }
     }
   }
