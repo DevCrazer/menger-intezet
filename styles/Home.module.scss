@@ -1,5 +1,9 @@
-.bodyContainer {
+.container {
+  background-color: white;
+
+  .bodyContainer {
     display: grid;
     grid-template-columns: 1fr 4fr;
     min-height: 300vh;
+  }
 }
