@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .container {
   display: flex;
 
@@ -22,7 +24,7 @@
       flex-direction: column;
 
       .author {
-        color: gray;
+        color: $primary-darker;
         margin-block: 5px;
         font-size: 1rem;
         font-weight: 400;
@@ -30,6 +32,7 @@
       }
 
       .title {
+        color: $primary-darkest;
         font-size: 1.5rem;
         margin-block: 0;
       }
@@ -41,7 +44,7 @@
     }
 
     .highlightedText {
-      background-color: lightgrey;
+      background-color: $primary-lighter;
     }
   }
 }
