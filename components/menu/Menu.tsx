@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import Logo from "../logo/Logo";
 import styles from "./Menu.module.scss";
+import { MenuProps } from "./Menu.types";
 
 const LIST_ITEMS = [
   { name: "Főoldal", route: "fooldal" },
@@ -24,13 +25,15 @@ const SOCIAL_MEDIA_LINKS = [
   { name: "email", icon: faEnvelope, link: "" },
 ];
 
-export default function Menu() {
+export default function Menu({ showLogo }: MenuProps) {
   return (
     <>
       <div className={styles.menuContainer}>
-        <div className={styles.logoContainer}>
-          <Logo />
-        </div>
+        {showLogo ? (
+          <div className={styles.logoContainer}>
+            <Logo />
+          </div>
+        ) : null}
         <ul className={styles.navigation}>
           {LIST_ITEMS.map((item) => {
             return (

@@ -17,7 +17,7 @@ export default function MenuDrawer() {
           sx={{ cursor: "pointer" }}
         />
         <Drawer anchor={"right"} open={open} onClose={() => setOpen(false)}>
-          <Menu />
+          <Menu showLogo={false} />
         </Drawer>
       </div>
     </>

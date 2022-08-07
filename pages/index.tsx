@@ -23,7 +23,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={mobileUser ? styles.bodyContainerMobile : styles.bodyContainerDesktop}>
-        {mobileUser ? <MenuDrawer /> : <Menu/>}
+        {mobileUser ? <MenuDrawer /> : <Menu showLogo={true}/>}
         <LandingPage />
       </div>
     </div>
