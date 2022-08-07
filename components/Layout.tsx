@@ -16,7 +16,7 @@ export default function Layout({ children }: {children: any}) {
     }
   }
   return (
-    <div className={mobileUser ? styles.bodyContainerMobile : styles.bodyContainerDesktop}>
+  <div className={mobileUser ? styles.bodyContainerMobile : styles.bodyContainerDesktop}>
     {mobileUser ? <MenuDrawer /> : <Menu showLogo={true}/>}
     { children }
   </div>
