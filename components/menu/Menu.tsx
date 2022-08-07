@@ -12,11 +12,11 @@ import { MenuProps } from "./Menu.types";
 
 const LIST_ITEMS = [
   { name: "Főoldal", route: "/" },
-  { name: "Bejegyzések", route: "bejegyzesek" },
-  { name: "Cikksorozatok", route: "cikksorozatok" },
-  { name: "Videók", route: "videok" },
-  { name: "Szerzőink", route: "szerzoink" },
-  { name: "Kapcsolat", route: "kapcsolat" },
+  { name: "Bejegyzések", route: "/bejegyzesek" },
+  { name: "Cikksorozatok", route: "/cikksorozatok" },
+  { name: "Videók", route: "/videok" },
+  { name: "Szerzőink", route: "/szerzoink" },
+  { name: "Kapcsolat", route: "/kapcsolat" },
 ];
 
 const SOCIAL_MEDIA_LINKS = [
