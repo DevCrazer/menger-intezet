@@ -1,7 +1,7 @@
 import { style } from "@mui/system";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import LandingPage from "../components/landing-page/LandingPage";
 import MenuDrawer from "../components/menu-drawer/MenuDrawer";
 import Menu from "../components/menu/Menu";
@@ -10,11 +10,15 @@ import styles from "../styles/Home.module.scss";
 const Home: NextPage = () => {
   const [mobileUser, setMobileUser] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    checkIsVisitorIsMobileUser();
+  }, []);
+
+  function checkIsVisitorIsMobileUser() {
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       setMobileUser(true);
     }
-  }, []);
+  }
 
   return (
     <div className={styles.container} lang="hu">
