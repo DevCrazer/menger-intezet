@@ -4,7 +4,7 @@ import styles from "./Intro.module.scss";
 
 export default function Intro() {
   return (
-    <div className={styles.container}>
+    <div className={styles.introContainer}>
       <img src="/assets/images/menger.png" alt="Carl Menger" />
       <div className={styles.textContainer}>
         <h2>

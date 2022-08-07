@@ -8,7 +8,7 @@ import Menu from "../components/menu/Menu";
 import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
-  const [mobileUser, setMobileUser] = useState(false);
+  const [mobileUser, setMobileUser] = useState(true);
 
   useEffect(() => {
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {

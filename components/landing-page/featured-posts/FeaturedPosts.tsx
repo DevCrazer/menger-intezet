@@ -60,7 +60,7 @@ export default function FeaturedPosts() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.featuredPostsContainer}>
       <img src={posts[currentPost].image} alt={posts[currentPost].title} />
       <div className={styles.textContainer}>
         {posts.map((post, index) => {

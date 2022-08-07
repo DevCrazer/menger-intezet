@@ -8,7 +8,7 @@ export default function PostListElement({
   displayImages,
 }: PostListElementProps) {
   return (
-    <div className={styles.container}>
+    <div className={styles.postListElementContainer}>
       {displayImages ? <img src={post.image} alt={post.title} /> : null}
       <h3 className={styles.author}>{post.author}</h3>
       <h1 className={styles.title}>{post.title}</h1>
