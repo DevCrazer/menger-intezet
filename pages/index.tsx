@@ -8,7 +8,7 @@ import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} lang="hu">
       <Head>
         <title>Menger Intézet</title>
         <link rel="icon" href="/favicon.ico" />

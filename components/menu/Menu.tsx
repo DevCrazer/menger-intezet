@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { IconName, IconPrefix } from "@fortawesome/fontawesome-svg-core";
 import { faFacebookSquare, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import styles from "./Menu.module.scss";
@@ -40,8 +38,8 @@ export default function Menu() {
         })}
       </ul>
       <div className={styles.socials}>
-        {SOCIAL_MEDIA_LINKS.map((link) => {
-          return <FontAwesomeIcon key={link.name} icon={link.icon} />;
+        {SOCIAL_MEDIA_LINKS.map((data) => {
+          return <FontAwesomeIcon key={data.name} icon={data.icon} />;
         })}
       </div>
     </div>
