@@ -1,0 +1,45 @@
+.container {
+  background-color: black;
+  color: white;
+  height: 100vh;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-flow: column;
+
+  .logo {
+    margin-inline: auto;
+    margin-block: 3rem;
+    width: 70%;
+  }
+
+  .navigation {
+    list-style: none;
+    padding-inline: 0;
+
+    .navigationElement {
+      cursor: pointer;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding-left: 2rem;
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+  }
+
+  .socials {
+    display: flex;
+    gap: 1rem;
+    margin-inline: auto;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: 2rem;
+
+    svg {
+      width: 2rem;
+    }
+  }
+}
