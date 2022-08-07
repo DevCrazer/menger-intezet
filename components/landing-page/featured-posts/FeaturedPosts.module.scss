@@ -51,7 +51,7 @@
 }
 
 @media screen and (max-width: 1800px) {
-  .textContainer {
+  .featuredPostsContainer {
     .excerpt {
       font-size: 0.8rem;
     }
@@ -59,7 +59,7 @@
 }
 
 @media screen and (max-width: 1500px) {
-  .container {
+  .featuredPostsContainer {
     img {
       width: 500px;
     }
@@ -76,11 +76,18 @@
 }
 
 @media screen and (max-width: 1275px) {
-  .container {
+  .featuredPostsContainer {
     .textContainer {
       .title {
         font-size: 1rem !important;
       }
     }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .featuredPostsContainer {
+    flex-direction: column;
+    
   }
 }
