@@ -1,9 +1,13 @@
 .container {
   background-color: white;
 
-  .bodyContainer {
+  .bodyContainerDesktop {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    min-height: 300vh;
+  }
+
+  .bodyContainerMobile {
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -27,8 +27,10 @@ const SOCIAL_MEDIA_LINKS = [
 export default function Menu() {
   return (
     <>
-      <div className={styles.containerDesktop}>
-        <Logo />
+      <div className={styles.menuContainer}>
+        <div className={styles.logoContainer}>
+          <Logo />
+        </div>
         <ul className={styles.navigation}>
           {LIST_ITEMS.map((item) => {
             return (

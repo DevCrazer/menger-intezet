@@ -1,0 +1,13 @@
+.menuDrawerContainer {
+  background-color: black;
+  color: white;
+  display: flex;
+  padding-inline: 2rem;
+
+
+  svg {
+    margin-block: auto;
+    margin-left: auto;
+    font-size: 2rem;
+  }
+}

@@ -1,3 +1,4 @@
+import { style } from "@mui/system";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -21,7 +22,7 @@ const Home: NextPage = () => {
         <title>Menger Intézet</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.bodyContainer}>
+      <div className={mobileUser ? styles.bodyContainerMobile : styles.bodyContainerDesktop}>
         {mobileUser ? <MenuDrawer /> : <Menu/>}
         <LandingPage />
       </div>
