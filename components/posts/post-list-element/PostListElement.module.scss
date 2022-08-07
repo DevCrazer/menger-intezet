@@ -1,19 +1,26 @@
 .postListElementContainer {
-    padding-inline: 10rem;
-    padding-block: 3rem;
-    border-bottom: 1px dotted black;
+  padding-inline: 10rem;
+  padding-block: 3rem;
+  border-bottom: 1px dotted black;
 
-    .author {
-        color: gray;
-        margin-block: 0;
-    }
+  .author {
+    color: gray;
+    margin-block: 0;
+  }
 
-    .title {
-        margin: 0;
-    }
+  .title {
+    margin: 0;
+  }
 
-    .excerpt {
-        text-align: justify;
-        font-size: 1.25rem;
-    }
+  .excerpt {
+    text-align: justify;
+    font-size: 1.25rem;
+    hyphens: auto;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .postListElementContainer {
+    padding-inline: 2rem;
+  }
 }
