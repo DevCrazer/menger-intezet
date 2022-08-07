@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { PostsContext } from "../../../pages/_app";
 import PostListElement from "../post-list-element/PostListElement";
-import { Post } from "../post-list-element/PostListElement.types";
-import styles from "./PostList.module.scss";
+import { Post } from "../../../types/PostResponse";
 import { PostListProps } from "./PostList.types";
 
 const SAMPLE_POSTS = [
@@ -80,11 +80,11 @@ const SAMPLE_POSTS = [
 ];
 
 export default function PostList({ displayImages }: PostListProps) {
-  const [posts, setPosts] = useState<Array<Post>>(SAMPLE_POSTS);
+  const posts = useContext(PostsContext);
 
   return (
     <>
-      {posts.map((post, index) => {
+      {posts.map((post: Post, index: number) => {
         return (
           <PostListElement
             post={post}
