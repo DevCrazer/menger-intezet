@@ -1,6 +1,6 @@
 @import '../../styles//variables.scss';
 
-.container {
+.containerDesktop {
   background-color: black;
   color: white;
   height: 100vh;
@@ -11,12 +11,6 @@
   flex-flow: column;
   -webkit-box-shadow: 2px 0px 15px 1px #000000;
   box-shadow: 2px 0px 15px 1px #000000;
-
-  .logo {
-    margin-inline: auto;
-    margin-block: 3rem;
-    width: 70%;
-  }
 
   .navigation {
     list-style: none;

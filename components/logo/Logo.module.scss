@@ -1,0 +1,24 @@
+.logoContainer {
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block: 3rem;
+  text-align: center;
+
+  .firstLine {
+    text-transform: uppercase;
+    font-size: 3rem;
+    letter-spacing: -2px;
+    padding: 0;
+    line-height: 1;
+}
+
+  .secondLine {
+    font-family: "Montserrat";
+    font-weight: 300;
+    font-size: 1.25rem;
+    letter-spacing: 22px;
+    margin-right: -22px;
+  }
+}

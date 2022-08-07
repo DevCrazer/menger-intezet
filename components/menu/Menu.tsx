@@ -1,8 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { faFacebookSquare, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebookSquare,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
+import Logo from "../logo/Logo";
 import styles from "./Menu.module.scss";
 
 const LIST_ITEMS = [
@@ -22,26 +26,24 @@ const SOCIAL_MEDIA_LINKS = [
 
 export default function Menu() {
   return (
-    <div className={styles.container}>
-      <img
-        className={styles.logo}
-        src="/assets/images/logo.png"
-        alt="Menger Intézet"
-      />
-      <ul className={styles.navigation}>
-        {LIST_ITEMS.map((item) => {
-          return (
-            <li key={item.route} className={styles.navigationElement}>
-              {item.name}
-            </li>
-          );
-        })}
-      </ul>
-      <div className={styles.socials}>
-        {SOCIAL_MEDIA_LINKS.map((data) => {
-          return <FontAwesomeIcon key={data.name} icon={data.icon} />;
-        })}
+    <>
+      <div className={styles.containerDesktop}>
+        <Logo />
+        <ul className={styles.navigation}>
+          {LIST_ITEMS.map((item) => {
+            return (
+              <li key={item.route} className={styles.navigationElement}>
+                {item.name}
+              </li>
+            );
+          })}
+        </ul>
+        <div className={styles.socials}>
+          {SOCIAL_MEDIA_LINKS.map((data) => {
+            return <FontAwesomeIcon key={data.name} icon={data.icon} />;
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
