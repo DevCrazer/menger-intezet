@@ -1,0 +1,19 @@
+.container {
+    padding-inline: 10rem;
+    padding-block: 3rem;
+    border-bottom: 1px dotted black;
+
+    .author {
+        color: gray;
+        margin-block: 0;
+    }
+
+    .title {
+        margin: 0;
+    }
+
+    .excerpt {
+        text-align: justify;
+        font-size: 1.25rem;
+    }
+}
