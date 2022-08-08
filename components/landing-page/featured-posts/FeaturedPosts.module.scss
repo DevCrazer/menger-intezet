@@ -1,7 +1,8 @@
 @import "../../../styles/variables.scss";
 
 .featuredPostsContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
   img {
     object-fit: contain;
@@ -47,6 +48,7 @@
         text-align: justify;
         margin-bottom: auto;
         color: $secondary-darkest;
+        hyphens: auto;
       }
     }
 
@@ -64,32 +66,27 @@
   }
 }
 
-@media screen and (max-width: 1500px) {
-  .featuredPostsContainer {
-    img {
-      width: 500px;
-    }
-    .textContainer {
-      .title {
-        font-size: 1.2rem !important;
-      }
-
-      .author {
-        font-size: 0.8rem !important;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1275px) {
+@media screen and (max-width: 1550px) {
   .featuredPostsContainer {
     .textContainer {
       .title {
         font-size: 1rem !important;
       }
+
+      .author {
+        font-size: 0.7rem !important;
+      }
+
+      .excerpt {
+        margin-block: 0;
+        line-height: 1;
+        font-size: 0.75rem;
+      }
     }
   }
 }
+
+
 
 @media screen and (max-width: 900px) {
   .featuredPostsContainer {

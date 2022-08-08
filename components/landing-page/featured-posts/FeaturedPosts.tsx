@@ -1,39 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import useParsePost, { ParsedPosts } from "../../../hooks/useParsePost";
+import { PostsContext } from "../../../pages/_app";
+import { Post } from "../../../types/PostResponse";
 import styles from "./FeaturedPosts.module.scss";
-
-const SAMPLE_POSTS = [
-  {
-    author: "Randall G. Holcombe",
-    image:
-      "https://mengerblogcom.files.wordpress.com/2022/06/menger_kata_dem2.png",
-    title: "A demokrácia és a szabadság bonyolult viszonya (2. rész)",
-    excerpt:
-      "Az amerikai demokrácia felépítése A huszonegyedik századi amerikaiak demokráciának tekintik a kormányzatukat, és emiatt a demokrácia kritikája Amerika-ellenesnek tűnik számukra. Mégis, az USA alkotmányának vizsgálata azt mutatja, hogy az amerikai alapítók olyan kormányzatot terveztek, amely szándékosan el volt szigetelve a közvéleménytől. ",
-  },
-  {
-    author: "Randall G. Holcombe",
-    image:
-      "https://mengerblogcom.files.wordpress.com/2022/05/menger_kata_dem1.png",
-    title: "A demokrácia és a szabadság bonyolult viszonya (1. rész)",
-    excerpt:
-      "A fordító előszava: Randall G. Holcombe ezt a tanulmányt 2021 elején jelentette meg. Egy év múltán különös aktualitást nyert Magyarországon, ahol zsinórban negyedszer nyert alkotmányozó többséget a jelenlegi kormánypárt az országgyűlési választásokon, és ezt sokan „erős demokratikus felhatalmazásként” értékelik. ",
-  },
-  {
-    author: "Tóth István",
-    image:
-      "https://mengerblogcom.files.wordpress.com/2022/05/menger_kalkul_ci_s.png",
-    title: "A kalkulációs vita. Darabok egy kirakóshoz",
-    excerpt:
-      "Kornai János emlékére Miként köztudott, Karl Marx és Friedrich Engels, a tudományos szocializmus német megalapítói nem dolgoztak ki a kommunizmus gazdasági berendezkedésére vonatkozóan működési elveket és módszereket; könyvespolcot betöltő prózai munkásságuk nélkülözi az általuk áhított szebb jövő valamennyire is konkrét leírását.",
-  },
-];
 
 export default function FeaturedPosts() {
   const [pauseAutoHighlight, setPauseAutoHighlight] = useState<boolean>(false);
-  const [posts, setPosts] = useState(SAMPLE_POSTS);
-  const [currentPost, setCurrentPost] = useState<number>(0);
+  const [currentPost, setCurrentPost] = useState<number>(0); 
+  const recentPosts = useContext(PostsContext).slice(0, 3);
+  const post1 = useParsePost(recentPosts[0]);
+  const post2 = useParsePost(recentPosts[1]);
+  const post3 = useParsePost(recentPosts[2]);
+  const posts = [post1, post2, post3];
 
   useEffect(() => {
     displayNextPost();
@@ -63,7 +43,7 @@ export default function FeaturedPosts() {
     <div className={styles.featuredPostsContainer}>
       <img src={posts[currentPost].image} alt={posts[currentPost].title} />
       <div className={styles.textContainer}>
-        {posts.map((post, index) => {
+        {posts.map((post: ParsedPosts, index: number) => {
           return (
             <div
               key={index}
@@ -79,8 +59,8 @@ export default function FeaturedPosts() {
               onMouseLeave={() => setPauseAutoHighlight(false)}
             >
               <h3 className={styles.author}>{post.author}</h3>
-              <h1 className={styles.title}>{post.title}</h1>
-              <p className={styles.excerpt}>{post.excerpt}...</p>
+              <h1 className={styles.title} dangerouslySetInnerHTML={{__html: post.title}}></h1>
+              <p lang="hu" className={styles.excerpt} dangerouslySetInnerHTML={{__html: post.excerpt.substring(0, 400) + '...'}}></p>
             </div>
           );
         })}

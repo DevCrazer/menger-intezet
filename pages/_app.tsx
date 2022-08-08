@@ -5,7 +5,7 @@ import { Post } from "../types/PostResponse";
 import * as _ from "lodash";
 
 export const PostsContext = createContext<any>(null);
-const POSTS_LINK = "https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?per_page=100";
+const POSTS_LINK = "https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?per_page=20";
 
 function MengerApp({ Component, pageProps }: AppProps) {
   const [posts, setPosts] = useState<Array<Post>>([]);
@@ -15,9 +15,9 @@ function MengerApp({ Component, pageProps }: AppProps) {
     fetchBlogposts(`${POSTS_LINK}&page=${page}`);
   }, []);
 
-  function fetchBlogposts(url: string) {
+  async function fetchBlogposts(url: string) {
     let currentPosts: Array<any> = posts;
-    fetch(url)
+    await fetch(url)
       .then((res) => res.json())
       .then((data: Array<Post>) => {
         if (!data || !data.length) {
@@ -25,10 +25,6 @@ function MengerApp({ Component, pageProps }: AppProps) {
         }
         currentPosts.push(data);
         setPosts(_.flatten(currentPosts));
-        if (data.length === 100) {
-          fetchBlogposts(`${POSTS_LINK}&page=${page + 1}`);
-          setPage(page + 1);
-        }
       });
   }
 
