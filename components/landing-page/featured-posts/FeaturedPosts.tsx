@@ -44,7 +44,7 @@ export default function FeaturedPosts() {
 
   return (
     <div className={styles.featuredPostsContainer}>
-      <img src={parsedPostData[currentPost].image} alt={parsedPostData[currentPost].title} />
+      <img src={parsedPostData[currentPost].image} alt={parsedPostData[currentPost].title} onClick={onClick} />
       <div className={styles.textContainer}>
         {parsedPostData.map((post: ParsedPosts, index: number) => {
           return (
@@ -60,7 +60,7 @@ export default function FeaturedPosts() {
                 setCurrentPost(index);
               }}
               onMouseLeave={() => setPauseAutoHighlight(false)}
-              onClick={() => onClick()}
+              onClick={onClick}
             >
               <h3 className={styles.author}>{post.author}</h3>
               <h1 className={styles.title} dangerouslySetInnerHTML={{__html: post.title}}></h1>
