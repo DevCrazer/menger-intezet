@@ -41,6 +41,7 @@ p {
   border-left: 10px solid $secondary;
   text-align: left !important;
   hyphens: none;
+  margin-top: 5rem;
 }
 
 .has-text-align-center {
@@ -49,4 +50,9 @@ p {
 
 .has-text-align-right {
   text-align: right;
+}
+
+.footnote-number {
+  vertical-align: super;
+  text-decoration: none !important;
 }

@@ -11,12 +11,11 @@ const useParsePost = (postID: string | number) => {
   const [image, setImage] = useState<string>("");
 
   useEffect(() => {
-    console.log(postID);
-    const postIDisString: boolean = postID?.toString().includes("-");
-    if (!postIDisString) {
+    const postIdIsString: boolean = postID?.toString().includes("-");
+    if (!postIdIsString) {
       fetchPostByID();
     }
-    if (postIDisString) {
+    if (postIdIsString) {
       fetchPostBySlug();
     }
   }, [postID]);
@@ -53,13 +52,20 @@ const useParsePost = (postID: string | number) => {
     setAuthor(sanitizeHtml(author));
     setTitle(sanitizeHtml(title));
     setExcerpt(sanitizeHtml(excerpt));
-    setContent(
-      sanitizeHtml(content, {
-        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-        allowedAttributes: { ...sanitizeHtml.defaults.allowedAttributes, p: ["class"] },
-      })
-    );
+    setContent(parseContent(content));
     setImage(image);
+  }
+
+  function parseContent(content: string): string{
+    const sanitizeOptions = {
+      allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+      allowedAttributes: { ...sanitizeHtml.defaults.allowedAttributes, p: ["class", "id"], a: ["href", "id"] },
+      
+    }
+    let html = sanitizeHtml(content, sanitizeOptions)
+                .replaceAll('href="#_ftn', 'class="footnote-number" href="#_ftn');
+
+    return html;
   }
 
   return { author, title, excerpt, content, image };

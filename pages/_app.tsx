@@ -15,6 +15,10 @@ function MengerApp({ Component, pageProps }: AppProps) {
     fetchBlogposts(`${POSTS_LINK}&page=${page}`);
   }, []);
 
+  useEffect(() => {
+    setFootnoteSuperscripts()
+  }, [posts])
+
   async function fetchBlogposts(url: string) {
     let currentPosts: Array<any> = posts;
     await fetch(url)
@@ -26,6 +30,13 @@ function MengerApp({ Component, pageProps }: AppProps) {
         currentPosts.push(data);
         setPosts(_.flatten(currentPosts));
       });
+  }
+
+  function setFootnoteSuperscripts() {
+    const footnoteNumbers = document.getElementsByClassName('footnote-number');
+    for (const number of Array.from(footnoteNumbers)) {
+      number.innerHTML = number.innerHTML.replace('[', '').replace(']', '');
+    }
   }
 
   return (
