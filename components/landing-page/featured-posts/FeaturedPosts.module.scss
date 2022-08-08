@@ -90,6 +90,6 @@
 
 @media screen and (max-width: 900px) {
   .featuredPostsContainer {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 }
