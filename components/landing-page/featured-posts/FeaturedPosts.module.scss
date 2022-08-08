@@ -69,18 +69,13 @@
 @media screen and (max-width: 1550px) {
   .featuredPostsContainer {
     .textContainer {
-      .title {
-        font-size: 1rem !important;
-      }
-
       .author {
-        font-size: 0.7rem !important;
+        font-size: 0.85rem !important;
       }
 
       .excerpt {
         margin-block: 0;
-        line-height: 1;
-        font-size: 0.75rem;
+        line-height: 1.1;
       }
     }
   }

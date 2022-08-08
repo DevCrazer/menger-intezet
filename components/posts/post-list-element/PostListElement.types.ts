@@ -1,6 +1,6 @@
 import { Post } from "../../../types/PostResponse";
 
 export interface PostListElementProps {
-  post: Post;
+  postID: number;
   displayImage: boolean;
 }

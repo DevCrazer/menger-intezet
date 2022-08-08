@@ -1,0 +1,43 @@
+@import "../styles/variables.scss";
+
+.singlePostContainer {
+  .metaInfoContainer {
+    width: 100%;
+    background-color: $secondary-lighter;
+    padding: 2rem;
+
+    .author {
+      font-size: 1rem;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+
+  .featuredImage {
+    float: left;
+    width: 40%;
+    margin: 2rem;
+  }
+
+  .content {
+    margin: 1rem;
+    padding: 1rem;
+    text-align: justify;
+    hyphens: auto;
+
+    * {
+      font-family: "Montserrat";
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    em {
+        font-weight: 700;
+    }
+  }
+}

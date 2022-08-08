@@ -5,13 +5,13 @@ import styles from "./PostListElement.module.scss";
 import { PostListElementProps } from "./PostListElement.types";
 
 export default function PostListElement({
-  post,
+  postID,
   displayImage,
 }: PostListElementProps) {
-  const { author, title, excerpt } = useParsePost(post);
+  const { author, title, excerpt, image } = useParsePost(postID);
   return (
     <div className={styles.postListElementContainer}>
-      {displayImage ? <img src={post.jetpack_featured_media_url} alt={title} /> : null}
+      {displayImage ? <img src={image} alt={title} /> : null}
       <h3 className={styles.author}>{author}</h3>
       <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title}}></h1>
       <p className={styles.excerpt} dangerouslySetInnerHTML={{ __html: excerpt}}></p>
