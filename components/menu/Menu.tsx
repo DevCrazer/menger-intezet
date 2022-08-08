@@ -4,6 +4,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import Logo from "../logo/Logo";
 import styles from "./Menu.module.scss";
 import { MenuProps } from "./Menu.types";
@@ -24,11 +25,19 @@ const SOCIAL_MEDIA_LINKS = [
 ];
 
 export default function Menu({ showLogo }: MenuProps) {
+  const [currentItem, setCurrentItem] = useState<string>();
   const router = useRouter();
+  const { pathname } = useRouter();
 
   function onClick(route: string) {
+    setCurrentItem(route);
     router.push(route);
   }
+
+  useEffect(() => {
+    setCurrentItem(pathname);
+  }, []);
+
   return (
     <>
       <div className={styles.menuContainer}>
@@ -40,7 +49,12 @@ export default function Menu({ showLogo }: MenuProps) {
         <ul className={styles.navigation}>
           {LIST_ITEMS.map((item) => {
             return (
-              <li className={styles.navigationElement} key={item.route} onClick={() => onClick(item.route)}>
+              <li
+                className={`${styles.navigationElement} ${
+                  item.route === currentItem ? styles.activeElement : styles.inactiveElement
+                }`}
+                key={item.route}
+                onClick={() => onClick(item.route)}>
                 {item.name}
               </li>
             );
