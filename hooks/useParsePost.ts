@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Post } from "../types/PostResponse";
 import sanitizeHtml from "sanitize-html";
 
-const useParsePost = (postID: string | number) => {
+const useParsePost = (postID: string | number, fetchedData?: Post) => {
   const [postData, setPostData] = useState<Post>();
   const [author, setAuthor] = useState<string>("");
   const [title, setTitle] = useState<string>("");
@@ -11,6 +11,11 @@ const useParsePost = (postID: string | number) => {
   const [image, setImage] = useState<string>("");
 
   useEffect(() => {
+    if (fetchedData) {
+      parsePost(fetchedData);
+      return; 
+    }
+
     const postIdIsString: boolean = postID?.toString().includes("-");
     if (!postIdIsString) {
       fetchPostByID();
@@ -18,7 +23,7 @@ const useParsePost = (postID: string | number) => {
     if (postIdIsString) {
       fetchPostBySlug();
     }
-  }, [postID]);
+  }, [postID, fetchedData]);
 
   async function fetchPostByID() {
     await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts/${postID}`)
