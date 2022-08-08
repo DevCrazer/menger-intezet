@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  faFacebookSquare,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebookSquare, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Logo from "../logo/Logo";
 import styles from "./Menu.module.scss";
@@ -26,6 +24,11 @@ const SOCIAL_MEDIA_LINKS = [
 ];
 
 export default function Menu({ showLogo }: MenuProps) {
+  const router = useRouter();
+
+  function onClick(route: string) {
+    router.push(route);
+  }
   return (
     <>
       <div className={styles.menuContainer}>
@@ -37,9 +40,9 @@ export default function Menu({ showLogo }: MenuProps) {
         <ul className={styles.navigation}>
           {LIST_ITEMS.map((item) => {
             return (
-              <a href={item.route} key={item.route}>
-                <li className={styles.navigationElement}>{item.name}</li>
-              </a>
+              <li className={styles.navigationElement} key={item.route} onClick={() => onClick(item.route)}>
+                {item.name}
+              </li>
             );
           })}
         </ul>
