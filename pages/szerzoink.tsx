@@ -3,6 +3,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import styles from "../styles/Authors.module.scss";
 import sanitizeHtml from "sanitize-html";
+import parse from "html-react-parser";
 
 const AUTHORS_DATA = [
   {
@@ -41,7 +42,7 @@ export default function Authors() {
               <img src={author.image} alt={author.name} />
               <div className={styles.authorText}>
                 <div className={styles.authorName}>{author.name}</div>
-                <div className={styles.authorDescription} dangerouslySetInnerHTML={{ __html: sanitizeHtml(author.description) }}></div>
+                <div className={styles.authorDescription}>{parse(sanitizeHtml(author.description))}</div>
               </div>
             </div>
           );

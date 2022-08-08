@@ -53,7 +53,12 @@ const useParsePost = (postID: string | number) => {
     setAuthor(sanitizeHtml(author));
     setTitle(sanitizeHtml(title));
     setExcerpt(sanitizeHtml(excerpt));
-    setContent(sanitizeHtml(content));
+    setContent(
+      sanitizeHtml(content, {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+        allowedAttributes: { ...sanitizeHtml.defaults.allowedAttributes, p: ["class"] },
+      })
+    );
     setImage(image);
   }
 

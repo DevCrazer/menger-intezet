@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import useParsePost from "../../hooks/useParsePost";
 import styles from "../../styles/Post.module.scss";
+import parse from 'html-react-parser';
 
 export default function SinglePost() {
   const router = useRouter();
@@ -28,7 +29,9 @@ export default function SinglePost() {
           <div className={styles.title}>{title}</div>
         </div>
         <img className={styles.featuredImage} src={image} alt={title} />
-        <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }} lang="hu"></div>
+        <div className={styles.content} lang="hu">
+          {parse(content)}
+        </div>
       </div>
     </Layout>
     </>

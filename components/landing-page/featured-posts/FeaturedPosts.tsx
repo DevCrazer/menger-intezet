@@ -6,6 +6,7 @@ import useParsePost, { ParsedPosts } from "../../../hooks/useParsePost";
 import { PostsContext } from "../../../pages/_app";
 import { Post } from "../../../types/PostResponse";
 import styles from "./FeaturedPosts.module.scss";
+import parse from 'html-react-parser';
 
 export default function FeaturedPosts() {
   const [pauseAutoHighlight, setPauseAutoHighlight] = useState<boolean>(false);
@@ -63,8 +64,8 @@ export default function FeaturedPosts() {
               onClick={onClick}
             >
               <h3 className={styles.author}>{post.author}</h3>
-              <h1 className={styles.title} dangerouslySetInnerHTML={{__html: post.title}}></h1>
-              <p lang="hu" className={styles.excerpt} dangerouslySetInnerHTML={{__html: post.excerpt.substring(0, 400) + '...'}}></p>
+              <h1 className={styles.title} >{parse(post.title)}</h1>
+              <p lang="hu" className={styles.excerpt}>{parse(post.excerpt.substring(0, 400).concat('...'))}</p>
             </div>
           );
         })}
