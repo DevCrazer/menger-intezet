@@ -39,13 +39,13 @@ export default function FeaturedPosts() {
     return timeout;
   };
 
-  function onClick() {
-    router.push(`/posts/${recentPosts[currentPost].id}`);
+  function onClick(index: number) {
+    router.push(`/posts/${recentPosts[index].id}`);
   }
 
   return (
     <div className={styles.featuredPostsContainer}>
-      <img src={parsedPostData[currentPost].image} alt={parsedPostData[currentPost].title} onClick={onClick} />
+      <img src={parsedPostData[currentPost].image} alt={parsedPostData[currentPost].title} onClick={() => onClick(currentPost)} />
       <div className={styles.textContainer}>
         {parsedPostData.map((post: ParsedPosts, index: number) => {
           return (
@@ -61,7 +61,7 @@ export default function FeaturedPosts() {
                 setCurrentPost(index);
               }}
               onMouseLeave={() => setPauseAutoHighlight(false)}
-              onClick={onClick}
+              onClick={() => onClick(index)}
             >
               <h3 className={styles.author}>{post.author}</h3>
               <h1 className={styles.title} >{parse(post.title)}</h1>
