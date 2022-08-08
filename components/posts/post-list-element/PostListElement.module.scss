@@ -1,7 +1,8 @@
+@import "../../../styles/variables.scss";
+
 .postListElementContainer {
   padding-inline: 10rem;
   padding-block: 3rem;
-  border-bottom: 1px dotted black;
 
   .author {
     color: gray;
@@ -11,12 +12,34 @@
   .title {
     margin: 0;
     line-height: 1.1;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
   }
 
   .excerpt {
     text-align: justify;
     font-size: 1.25rem;
     hyphens: auto;
+  }
+
+  .readMoreContainer {
+    display: flex;
+    .readMore {
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      text-decoration-style: dashed;
+      margin-left: auto;
+      background-color: $secondary-lighter;
+      color: $secondary-darkest;
+      padding-inline: 2rem;
+      padding-block: 5px;
+      border-radius: 50px;
+    }
   }
 }
 
