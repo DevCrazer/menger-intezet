@@ -1,0 +1,70 @@
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  justify-content: center;
+
+  .postCardsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-inline: auto;
+    gap: 2rem;
+
+    .postCard {
+      cursor: pointer;
+      min-width: 300px;
+      max-width: 400px;
+
+      .postName {
+        font-size: 1.75rem;
+        line-height: 1.1;
+      }
+
+      .excerptContainer {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        .postExcerpt {
+          text-align: justify;
+          hyphens: auto;
+
+          p {
+            margin-bottom: 0;
+            &::after {
+              content: "...";
+            }
+          }
+
+          a {
+            display: none;
+          }
+        }
+        .readMoreButton {
+          margin-left: auto;
+        }
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .paginationContainer {
+    margin-inline: auto;
+    margin-top: auto;
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .postCardsContainer {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .postCardsContainer {
+    grid-template-columns: 1fr !important;
+  }
+}
