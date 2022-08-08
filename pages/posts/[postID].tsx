@@ -11,7 +11,7 @@ export default function SinglePost() {
   const router = useRouter();
   const { postID } = router.query;
   const { author, title, content, image } = useParsePost(Array.isArray(postID) ? postID![0] : postID!);
-
+  const pageTitle = `${title} | Menger Intézet`
   useEffect(() => {
     //
   }, [postID]);
@@ -19,7 +19,7 @@ export default function SinglePost() {
   return (
     <>
     <Head>
-      <title>{title} | Menger Intézet</title>
+      <title>{pageTitle}</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Layout>

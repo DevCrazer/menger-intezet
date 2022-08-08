@@ -27,6 +27,7 @@
     padding: 1rem;
     text-align: justify;
     hyphens: auto;
+    font-size: 1rem;
 
     * {
       font-family: "Montserrat";
@@ -45,4 +46,15 @@
       margin-left: 10%;
     }
   }
+}
+
+@media screen and (max-width: 900px) {
+  .singlePostContainer {
+    .featuredImage {
+      width: 100%;
+      float: none;
+      margin: 0;
+    }
+  }
+  
 }

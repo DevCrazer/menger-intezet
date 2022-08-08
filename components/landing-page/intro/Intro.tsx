@@ -7,22 +7,14 @@ export default function Intro() {
     <div className={styles.introContainer}>
       <img src="/assets/images/menger.png" alt="Carl Menger" />
       <div className={styles.textContainer}>
-        <h2>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-          natus aspernatur quam voluptatibus, mollitia ad sequi culpa! Sed,
-          voluptate esse.
-        </h2>
+        <h2>Carl Menger Intézet</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Necessitatibus ut tenetur sint maiores voluptatem. Iure dolore
-          molestias reiciendis? Enim sapiente soluta, adipisci, obcaecati, ipsum
-          fuga praesentium quis officiis sequi eos minus alias repellendus
-          accusamus eligendi? Perferendis quidem dicta maxime iure, nobis
-          voluptatum ad ullam aliquid voluptas quas odit, reiciendis assumenda
-          recusandae. Ullam corrupti reiciendis quos rem dolores quis eveniet
-          enim veritatis nesciunt vero itaque ea repellendus, doloremque
-          consequatur, harum, expedita dignissimos qui officiis minus iste
-          autem?
+          A Carl Menger Intézet legfőbb célja, hogy névadója szellemében
+          elősegítse a polgári értékek terjedését Magyarországon: a személyes
+          szabadságét, a politikától nem függő szabad vállalkozásét, a
+          tulajdonjog védelméét. Fontosnak tartjuk az állami jelenlét
+          csökkentését a szabadon szerveződő társadalom életében és a
+          gazdaságban.
         </p>
       </div>
     </div>
