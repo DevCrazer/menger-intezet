@@ -1,25 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Layout from "../../components/Layout";
 import useParsePost from "../../hooks/useParsePost";
 import styles from "../../styles/Post.module.scss";
 import parse from "html-react-parser";
 import LoadingBackdrop from "../../components/LoadingBackdrop";
-import { GetStaticPropsContext } from "next";
 import { Post } from "../../types/PostResponse";
+import { getAllPosts, getPost } from "../../helpers/getPosts";
+import * as _ from "lodash";
 
-export default function SinglePost() {
-  const router = useRouter();
-  const { postID } = router.query;
-  const { author, title, content, image, loading } = useParsePost(Array.isArray(postID) ? postID![0] : postID!);
+export default function SinglePost({ postID, post }: { postID: string, post: Post }) {
+  const { author, title, content, image, loading } = useParsePost(postID, post);
   const pageTitle = `${title} | ${author}`;
   
-  useEffect(() => {
-    //
-  }, [postID]);
-
   return (
     <>
       <Head>
@@ -48,11 +42,20 @@ export default function SinglePost() {
   );
 }
 
-// export async function getStaticProps(context: GetStaticPropsContext) {
+export async function getStaticProps({params} : { params: { postID: string } }) {
+  const post = await getPost(params.postID);
+  return { props: { post } }
+}
 
-//   return {
-//     props: {
-//       posts
-//     },
-//   }
-// }
+export async function getStaticPaths() {
+  const posts: Array<Post> = await getAllPosts().then(posts =>{ return posts });
+  const postIDs = _.map(posts, 'id');
+  const paths = _.map(postIDs, (id) => {
+    return { params: { postID: id.toString() } }
+  })
+
+  return {
+    paths: paths,
+    fallback: false
+  }
+}

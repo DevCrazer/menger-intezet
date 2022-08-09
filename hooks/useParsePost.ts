@@ -17,10 +17,10 @@ const useParsePost = (postID?: string | number, fetchedData?: Post) => {
     }
 
     const postIdIsString: boolean = postID ? postID.toString().includes("-") : false;
-    if (!postIdIsString) {
+    if (!postIdIsString && !fetchedData) {
       fetchPostByID();
     }
-    if (postIdIsString) {
+    if (postIdIsString && !fetchedData) {
       fetchPostBySlug();
     }
   }, [postID, fetchedData]);

@@ -34,3 +34,23 @@ async function getNumberOfPages(): Promise<number> {
   });
   return numberOfPages;
 }
+
+export async function getPost(param: string) {
+  const postIdIsSlug: boolean = param.toString().includes("-");
+
+  if (postIdIsSlug) return getPostBySlug(param).then(data => {return data });
+  return getPostById(param).then(data => {return data });
+}
+
+async function getPostById(postID: string | number) {
+    return await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts/${postID}`)
+    .then((res) => res.json())
+    .then((data: Post) => { return data });
+
+}
+
+async function getPostBySlug(slug: string) {
+  await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?slug=${slug}`)
+    .then((res) => res.json())
+    .then((data: Array<Post>) => { return data[0] });
+}
