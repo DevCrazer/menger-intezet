@@ -18,7 +18,6 @@ export default function SinglePost({ post, metaTags }: { post: Post, metaTags: a
   
   return (
     <>
-      {/* <PWAHead title={metaTags.title} image={metaTags.image} url={metaTags.url} /> */}
       <NextSeo 
         title={pageTitle}
         openGraph={{
@@ -28,6 +27,8 @@ export default function SinglePost({ post, metaTags }: { post: Post, metaTags: a
           type: 'article',
           images: [{
             url: metaTags.image,
+            width: 1000,
+            height: 1000,
             type: 'image/jpeg'
           }]
         }}
