@@ -14,6 +14,19 @@ export default function PWAHead({
     <>
       <title>{title}</title>
 
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content="Menger Intézet" />
+      <meta property="og:site_name" content="Menger Intézet" />
+      <meta property="og:url" content="https://mengerblog.com" />
+
+      <meta name="type" content="website" />
+      <meta name="title" content={title} />
+      <meta name="description" content="Menger Intézet" />
+      <meta name="site_name" content="Menger Intézet" />
+      <meta name="url" content="https://mengerblog.com" />
+      <meta name="image" content={image} />
+
       <meta name="application-name" content="Menger Intézet" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -71,19 +84,6 @@ export default function PWAHead({
       <meta name="twitter:description" content="Menger Intézet" />
       <meta name="twitter:image" content={image} />
       {/* <meta name="twitter:creator" content="@ValPasch" /> */}
-
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content="Menger Intézet" />
-      <meta property="og:site_name" content="Menger Intézet" />
-      <meta property="og:url" content="https://mengerblog.com" />
-
-      <meta name="type" content="website" />
-      <meta name="title" content={title} />
-      <meta name="description" content="Menger Intézet" />
-      <meta name="site_name" content="Menger Intézet" />
-      <meta name="url" content="https://mengerblog.com" />
-      <meta name="image" content={image} />
 
       <link
         rel="apple-touch-startup-image"
