@@ -42,7 +42,7 @@ export default function Authors() {
               <img src={author.image} alt={author.name} />
               <div className={styles.authorText}>
                 <div className={styles.authorName}>{author.name}</div>
-                <div className={styles.authorDescription}>{parse(sanitizeHtml(author.description))}</div>
+                <div className={styles.authorDescription} lang='hu'>{parse(sanitizeHtml(author.description))}</div>
               </div>
             </div>
           );

@@ -33,3 +33,29 @@
     }
   }
 }
+
+@media screen and (max-width: 900px) {
+  .authorsContainer {
+    .singleAuthor {
+      grid-template-columns: 1fr;
+      margin-bottom: 5rem;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      img {
+        width: 100%;
+      }
+      
+      .authorName {
+        text-align: center;
+      }
+    
+      .authorDescription {
+        text-align: left !important;
+      }
+    }
+  }
+  
+}
