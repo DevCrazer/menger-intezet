@@ -10,7 +10,7 @@ import { Post } from "../../types/PostResponse";
 import { getAllPosts, getPost } from "../../helpers/getPosts";
 import * as _ from "lodash";
 
-export default function SinglePost({ post }: { postID: string, post: Post }) {
+export default function SinglePost({ post }: { post: Post }) {
   const { author, title, content, image, loading } = useParsePost(post.id, post);
   const pageTitle = `${title} | ${author}`;
   
