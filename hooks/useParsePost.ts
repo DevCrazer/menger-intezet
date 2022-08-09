@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Post } from "../types/PostResponse";
 import sanitizeHtml from "sanitize-html";
 
-const useParsePost = (postID?: string | number, fetchedData?: Post) => {
+const useParsePost = (postSlug?: string, fetchedData?: Post) => {
   const [author, setAuthor] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [excerpt, setExcerpt] = useState<string>("");
@@ -15,31 +15,16 @@ const useParsePost = (postID?: string | number, fetchedData?: Post) => {
       parsePost(fetchedData);
       return;
     }
-
-    const postIdIsString: boolean = postID ? postID.toString().includes("-") : false;
-    if (!postIdIsString && !fetchedData) {
-      fetchPostByID();
-    }
-    if (postIdIsString && !fetchedData) {
+ 
+    if (postSlug && !fetchedData) {
       fetchPostBySlug();
     }
-  }, [postID, fetchedData]);
+  }, [postSlug, fetchedData]);
 
-  async function fetchPostByID() {
-    setLoading(true);
-    await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts/${postID}`)
-      .then((res) => res.json())
-      .then((data: Post) => {
-        if (data.title) {
-          parsePost(data);
-          setLoading(false);
-        }
-      });
-  }
 
   async function fetchPostBySlug() {
     setLoading(true);
-    await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?slug=${postID}`)
+    await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?slug=${postSlug}`)
       .then((res) => res.json())
       .then((data: Array<Post>) => {
         if (data[0].title) {

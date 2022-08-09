@@ -11,10 +11,9 @@ import parse from "html-react-parser";
 import LoadingBackdrop from "../components/LoadingBackdrop";
 import { NextSeo } from "next-seo";
 import { getAllPosts } from "../helpers/getPosts";
-import * as _ from "lodash"
+import * as _ from "lodash";
 
 const POSTS_PER_PAGE = 9;
-const BASE_URL = "https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts";
 
 export default function Posts({ posts }: { posts: Array<Post> }) {
   const [page, setPage] = useState<number>(1);
@@ -36,54 +35,77 @@ export default function Posts({ posts }: { posts: Array<Post> }) {
     setPostsOfCurrentPage(postChunks[currentPage]);
   }
 
-  function navigateToPost(postID: number) {
+  function navigateToPost(slug: string) {
     setLoading(true);
-    router.push(`/posts/${postID}`).then(() => setLoading(false));
+    router.push(`/posts/${slug}`).then(() => setLoading(false));
   }
 
   return (
     <>
-    <NextSeo title={'Bejegyzések | Menger Intézet'} />
-    <Layout>
-      <div className={styles.postsContainer}>
-        <div className={styles.postCardsContainer}>
-          {postsOfCurrentPage?.map((post, index) => {
-            return (
-              <div className={styles.postCard} key={index}>
-                <img
-                  src={post.jetpack_featured_media_url}
-                  alt={post.title.rendered}
-                  onClick={() => navigateToPost(post.id)}
-                />
-                <div className={styles.postAuthor}>
-                  {parse(sanitize(post.title.rendered.split(":", 1)[0]))}
-                </div>
-                <div className={styles.postName} onClick={() => navigateToPost(post.id)}>
-                  {parse(sanitize(post.title.rendered.split(":", 2)[1]))}
-                </div>
-                <div className={styles.excerptContainer}>
-                  <div className={styles.postExcerpt} lang="hu">
-                    {parse(sanitize(post.excerpt.rendered.split('<a class="more-link"', 1)[0] + "..."))}
+      <NextSeo title={"Bejegyzések | Menger Intézet"} />
+      <Layout>
+        <div className={styles.postsContainer}>
+          <div className={styles.postCardsContainer}>
+            {postsOfCurrentPage?.map((post, index) => {
+              return (
+                <div className={styles.postCard} key={index}>
+                  <img
+                    src={post.jetpack_featured_media_url}
+                    alt={post.title.rendered}
+                    onClick={() => navigateToPost(post.slug)}
+                  />
+                  <div className={styles.postAuthor}>
+                    {parse(sanitize(post.title.rendered.split(":", 1)[0]))}
                   </div>
-                  <div className={styles.readMoreButton} onClick={() => navigateToPost(post.id)}>
-                    Tovább »
+                  <div
+                    className={styles.postName}
+                    onClick={() => navigateToPost(post.slug)}
+                  >
+                    {parse(sanitize(post.title.rendered.split(":", 2)[1]))}
+                  </div>
+                  <div className={styles.excerptContainer}>
+                    <div className={styles.postExcerpt} lang="hu">
+                      {parse(
+                        sanitize(
+                          post.excerpt.rendered.split(
+                            '<a class="more-link"',
+                            1
+                          )[0] + "..."
+                        )
+                      )}
+                    </div>
+                    <div
+                      className={styles.readMoreButton}
+                      onClick={() => navigateToPost(post.slug)}
+                    >
+                      Tovább »
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+          <div className={styles.paginationContainer}>
+            <Pagination
+              onChange={(event, page) => setPage(page)}
+              count={Math.ceil(posts.length / 9)}
+              shape="rounded"
+            />
+          </div>
         </div>
-        <div className={styles.paginationContainer}>
-          <Pagination onChange={(event, page) => setPage(page)} count={Math.ceil(posts.length / 9)} shape="rounded" />
-        </div>
-      </div>
-      <LoadingBackdrop open={loading} />
-    </Layout>
+        <LoadingBackdrop open={loading} />
+      </Layout>
     </>
   );
 }
 
-export async function getStaticProps({params} : { params: { postID: string } }) {
-  const posts: Array<Post> = await getAllPosts().then(posts => { return posts });
-  return { props: { posts } }
+export async function getStaticProps({
+  params,
+}: {
+  params: { postID: string };
+}) {
+  const posts: Array<Post> = await getAllPosts().then((posts) => {
+    return posts;
+  });
+  return { props: { posts } };
 }

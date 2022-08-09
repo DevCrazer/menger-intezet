@@ -7,13 +7,12 @@ import styles from "../../styles/Post.module.scss";
 import parse from "html-react-parser";
 import LoadingBackdrop from "../../components/LoadingBackdrop";
 import { Post } from "../../types/PostResponse";
-import { getAllPosts, getPost } from "../../helpers/getPosts";
+import { getAllPosts, getPostBySlug } from "../../helpers/getPosts";
 import * as _ from "lodash";
-import PWAHead from "../../components/PWAHead";
 import { NextSeo } from 'next-seo';
 
 export default function SinglePost({ post, metaTags }: { post: Post, metaTags: any }) {
-  const { author, title, content, image, loading } = useParsePost(post.id, post);
+  const { author, title, content, image, loading } = useParsePost(post.slug, post);
   const pageTitle = `${title} | ${author}`;
   
   return (
@@ -50,8 +49,8 @@ export default function SinglePost({ post, metaTags }: { post: Post, metaTags: a
   );
 }
 
-export async function getStaticProps({params} : { params: { postID: string } }) {
-  const post: void | Post = await getPost(params.postID).then(post => { return post });
+export async function getStaticProps({params} : { params: { postSlug: string } }) {
+  const post: void | Post = await getPostBySlug(params.postSlug).then(post => { return post });
   const metaTags = {
     title: `${post?.title.rendered}`,
     image: post?.jetpack_featured_media_url,
@@ -64,9 +63,9 @@ export async function getStaticProps({params} : { params: { postID: string } }) 
 
 export async function getStaticPaths() {
   const posts: Array<Post> = await getAllPosts().then(posts =>{ return posts });
-  const postIDs = _.map(posts, 'id');
-  const paths = _.map(postIDs, (id) => {
-    return { params: { postID: id.toString() } }
+  const postSlugs = _.map(posts, 'slug');
+  const paths = _.map(postSlugs, (slug) => {
+    return { params: { postSlug: slug } }
   })
 
   return {

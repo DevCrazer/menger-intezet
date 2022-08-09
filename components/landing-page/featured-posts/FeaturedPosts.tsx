@@ -15,9 +15,9 @@ export default function FeaturedPosts() {
   const [loading, setLoading] = useState<boolean>(false);
   const recentPosts: Array<Post> = useContext(PostsContext).slice(0, 3);
   const parsedPostData = [
-    useParsePost(recentPosts[0]?.id),
-    useParsePost(recentPosts[1]?.id),
-    useParsePost(recentPosts[2]?.id),
+    useParsePost(recentPosts[0]?.slug),
+    useParsePost(recentPosts[1]?.slug),
+    useParsePost(recentPosts[2]?.slug),
   ];
   const router = useRouter();
 
@@ -48,7 +48,7 @@ export default function FeaturedPosts() {
   function onClick(index: number) {
     setLoading(true);
     router
-      .push(`/posts/${recentPosts[index].id}`)
+      .push(`/posts/${recentPosts[index].slug}`)
       .then(() => setLoading(false));
   }
 
