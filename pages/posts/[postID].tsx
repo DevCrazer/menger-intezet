@@ -20,7 +20,6 @@ export default function SinglePost() {
     <>
     <Head>
       <title>{pageTitle}</title>
-      <link rel="icon" href="/favicon.ico" />
     </Head>
     <Layout>
       <div className={styles.singlePostContainer}>

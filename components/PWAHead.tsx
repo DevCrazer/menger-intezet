@@ -1,9 +1,8 @@
 import React from "react";
-import Head from "next/head";
 
-export default function CustomHead() {
+export default function PWAHead() {
   return (
-    <Head>
+    <>
       <meta name="application-name" content="Menger Intézet" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -26,7 +25,10 @@ export default function CustomHead() {
       <link rel="manifest" href="/manifest.json" />
       <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5" />
       <link rel="shortcut icon" href="/favicon.ico" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Oswald:wght@200;300;400;500;600;700&display=swap" />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Oswald:wght@200;300;400;500;600;700&display=swap"
+      />
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:url" content="https://yourdomain.com" />
@@ -48,6 +50,6 @@ export default function CustomHead() {
       <link rel="apple-touch-startup-image" href="/images/apple_splash_1242.png" sizes="1242x2208" />
       <link rel="apple-touch-startup-image" href="/images/apple_splash_750.png" sizes="750x1334" />
       <link rel="apple-touch-startup-image" href="/images/apple_splash_640.png" sizes="640x1136" />
-    </Head>
+    </>
   );
 }
