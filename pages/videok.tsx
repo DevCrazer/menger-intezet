@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unknown-property */
 import React from "react";
 import Layout from "../components/Layout";
+import styles from "../styles/Videos.module.scss";
 
 export default function Videos() {
   return (
     <Layout>
-      <div>
+      <div className={styles.videosContainer}>
         <iframe
           width="100%"
           height="100%"

@@ -1,0 +1,10 @@
+.videosContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+
+  iframe {
+    height: 100vh;
+  }
+}

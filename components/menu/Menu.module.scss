@@ -40,14 +40,20 @@
 
   .socials {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     margin-inline: auto;
+    align-items: center;
     cursor: pointer;
     margin-top: auto;
     margin-bottom: 2rem;
+    
 
     svg {
       width: 2rem;
+
+      &:hover {
+        color: $secondary;
+      }
     }
   }
 }

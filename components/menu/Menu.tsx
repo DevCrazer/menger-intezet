@@ -19,9 +19,9 @@ const LIST_ITEMS = [
 ];
 
 const SOCIAL_MEDIA_LINKS = [
-  { name: "facebook", icon: faFacebookSquare, link: "" },
-  { name: "youtube", icon: faYoutube, link: "" },
-  { name: "email", icon: faEnvelope, link: "" },
+  { name: "facebook", icon: faFacebookSquare, link: "https://www.facebook.com/mengerhun/" },
+  { name: "youtube", icon: faYoutube, link: "https://www.youtube.com/channel/UCR9ZpmR-YA-XRjhx2NRTJVw" },
+  { name: "email", icon: faEnvelope, link: "mailto:carlmengerintezet@gmail.com" },
 ];
 
 export default function Menu({ showLogo }: MenuProps) {
@@ -62,7 +62,11 @@ export default function Menu({ showLogo }: MenuProps) {
         </ul>
         <div className={styles.socials}>
           {SOCIAL_MEDIA_LINKS.map((data) => {
-            return <FontAwesomeIcon key={data.name} icon={data.icon} />;
+            return (
+              <a href={data.link} target="_blank" rel="noopener noreferrer" key={data.name}>
+                <FontAwesomeIcon icon={data.icon} />
+              </a>
+            );
           })}
         </div>
       </div>
