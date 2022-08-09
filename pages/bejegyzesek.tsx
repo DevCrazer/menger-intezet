@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-import { Pagination, useScrollTrigger } from "@mui/material";
+import { Pagination } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
@@ -9,39 +10,30 @@ import sanitize from "sanitize-html";
 import parse from "html-react-parser";
 import LoadingBackdrop from "../components/LoadingBackdrop";
 import { NextSeo } from "next-seo";
+import { getAllPosts } from "../helpers/getPosts";
+import * as _ from "lodash"
 
 const POSTS_PER_PAGE = 9;
 const BASE_URL = "https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts";
 
-export default function Posts() {
+export default function Posts({ posts }: { posts: Array<Post> }) {
   const [page, setPage] = useState<number>(1);
-  const [posts, setPosts] = useState<Array<Post>>();
-  const [pageCount, setPageCount] = useState<number>(1);
+  const [postsOfCurrentPage, setPostsOfCurrentPage] = useState<Array<Post>>();
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
-    fetchPostsByOffset(0);
+    findPostsOfCurrentPage(1);
   }, []);
 
   useEffect(() => {
-    fetchPostsByOffset((page - 1) * POSTS_PER_PAGE);
+    findPostsOfCurrentPage(page);
   }, [page]);
 
-  async function fetchPostsByOffset(offset: number) {
-    setLoading(true);
-    fetch(`${BASE_URL}?per_page=${POSTS_PER_PAGE}&offset=${offset}`).then((response) => {
-      for (let header of response.headers.entries()) {
-        if (header[0] === "x-wp-totalpages") {
-          setPageCount(parseInt(header[1]));
-        }
-      }
-      response.json().then((data) => {
-        setPosts(data);
-        setLoading(false);
-        window.scrollTo(0, 0);
-      });
-    });
+  function findPostsOfCurrentPage(page: number) {
+    const postChunks = _.chunk(posts, POSTS_PER_PAGE);
+    const currentPage = page - 1;
+    setPostsOfCurrentPage(postChunks[currentPage]);
   }
 
   function navigateToPost(postID: number) {
@@ -55,7 +47,7 @@ export default function Posts() {
     <Layout>
       <div className={styles.postsContainer}>
         <div className={styles.postCardsContainer}>
-          {posts?.map((post, index) => {
+          {postsOfCurrentPage?.map((post, index) => {
             return (
               <div className={styles.postCard} key={index}>
                 <img
@@ -82,11 +74,16 @@ export default function Posts() {
           })}
         </div>
         <div className={styles.paginationContainer}>
-          <Pagination onChange={(event, page) => setPage(page)} count={pageCount} shape="rounded" />
+          <Pagination onChange={(event, page) => setPage(page)} count={Math.ceil(posts.length / 9)} shape="rounded" />
         </div>
       </div>
       <LoadingBackdrop open={loading} />
     </Layout>
     </>
   );
+}
+
+export async function getStaticProps({params} : { params: { postID: string } }) {
+  const posts: Array<Post> = await getAllPosts().then(posts => { return posts });
+  return { props: { posts } }
 }
