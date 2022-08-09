@@ -1,5 +1,7 @@
 - Refactor useParsePost to accomodate for arrays
 - Add meta tags for all pages
+- Implement getStaticProps and getStaticPaths
+- Fix metatags so facebook debugger can detect image and title
 - Create logo images
 - Create favicons
 - Fix manifest.json
