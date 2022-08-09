@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Pagination } from "@mui/material";
+import { Pagination, useScrollTrigger } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
@@ -23,7 +23,7 @@ export default function Posts() {
   }, []);
 
   useEffect(() => {
-    fetchPostsByOffset((page - 1) * POSTS_PER_PAGE);
+    fetchPostsByOffset((page - 1) * POSTS_PER_PAGE);    
   }, [page]);
 
   async function fetchPostsByOffset(offset: number) {
@@ -39,12 +39,15 @@ export default function Posts() {
       response.json().then((data) => {
         setPosts(data);
         setLoading(false);
+        window.scrollTo(0, 0);
       });
     });
   }
 
   function navigateToPost(postID: number) {
-    router.push(`/posts/${postID}`);
+    setLoading(true);
+    router.push(`/posts/${postID}`)
+      .then(() => setLoading(false));
   }
 
   return (

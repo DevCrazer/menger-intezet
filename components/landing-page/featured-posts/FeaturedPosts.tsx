@@ -11,6 +11,7 @@ import parse from 'html-react-parser';
 export default function FeaturedPosts() {
   const [pauseAutoHighlight, setPauseAutoHighlight] = useState<boolean>(false);
   const [currentPost, setCurrentPost] = useState<number>(0); 
+  const [loading, setLoading] = useState<boolean>(false);
   const recentPosts: Array<Post> = useContext(PostsContext).slice(0, 3);
   const parsedPostData = [useParsePost(recentPosts[0]?.id), useParsePost(recentPosts[1]?.id), useParsePost(recentPosts[2]?.id)];
   const router = useRouter();
@@ -65,7 +66,7 @@ export default function FeaturedPosts() {
             >
               <h3 className={styles.author}>{post.author}</h3>
               <h1 className={styles.title} >{parse(post.title)}</h1>
-              <p lang="hu" className={styles.excerpt}>{parse(post.excerpt.substring(0, 400).concat('...'))}</p>
+              <span lang="hu" className={styles.excerpt}>{parse(post.excerpt.substring(0, 400).concat('...'))}</span>
             </div>
           );
         })}

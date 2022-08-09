@@ -21,7 +21,7 @@ export default function PostListElement({ postID, displayImage }: PostListElemen
       <h1 className={styles.title} onClick={onClick}>
         {parse(title)}
       </h1>
-      <p className={styles.excerpt}>{parse(excerpt)}</p>
+      <span className={styles.excerpt}>{parse(excerpt)}</span>
       <div className={styles.readMoreContainer}>
         <div className={styles.readMore} onClick={onClick}>
           Tovább »

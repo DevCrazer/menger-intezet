@@ -8,6 +8,7 @@ const useParsePost = (postID?: string | number, fetchedData?: Post) => {
   const [excerpt, setExcerpt] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [image, setImage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (fetchedData) {
@@ -25,21 +26,25 @@ const useParsePost = (postID?: string | number, fetchedData?: Post) => {
   }, [postID, fetchedData]);
 
   async function fetchPostByID() {
+    setLoading(true);
     await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts/${postID}`)
       .then((res) => res.json())
       .then((data: Post) => {
         if (data.title) {
           parsePost(data);
+          setLoading(false);
         }
       });
   }
 
   async function fetchPostBySlug() {
+    setLoading(true);
     await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?slug=${postID}`)
       .then((res) => res.json())
       .then((data: Array<Post>) => {
         if (data[0].title) {
           parsePost(data[0]);
+          setLoading(false);
         }
       });
   }
@@ -79,7 +84,7 @@ const useParsePost = (postID?: string | number, fetchedData?: Post) => {
         a: ["href", "id"],
       },
     };
-    
+
     let html = sanitizeHtml(content, sanitizeOptions).replaceAll(
       'href="#_ftn',
       'class="footnote-number" href="#_ftn'
@@ -88,7 +93,7 @@ const useParsePost = (postID?: string | number, fetchedData?: Post) => {
     return html;
   }
 
-  return { author, title, excerpt, content, image };
+  return { loading, author, title, excerpt, content, image };
 };
 
 export default useParsePost;

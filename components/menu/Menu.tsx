@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import LoadingBackdrop from "../LoadingBackdrop";
 import Logo from "../logo/Logo";
 import styles from "./Menu.module.scss";
 import { MenuProps } from "./Menu.types";
@@ -26,12 +27,15 @@ const SOCIAL_MEDIA_LINKS = [
 
 export default function Menu({ showLogo }: MenuProps) {
   const [currentItem, setCurrentItem] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const { pathname } = useRouter();
 
   function onClick(route: string) {
     setCurrentItem(route);
-    router.push(route);
+    setLoading(true);
+    router.push(route)
+      .then(() => setLoading(false));
   }
 
   useEffect(() => {
@@ -70,6 +74,7 @@ export default function Menu({ showLogo }: MenuProps) {
           })}
         </div>
       </div>
+      <LoadingBackdrop open={loading} />
     </>
   );
 }
