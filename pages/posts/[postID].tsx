@@ -19,15 +19,18 @@ export default function SinglePost({ post, metaTags }: { post: Post, metaTags: a
   return (
     <>
       {/* <PWAHead title={metaTags.title} image={metaTags.image} url={metaTags.url} /> */}
-      <NextSeo title={pageTitle}
-      openGraph={{
-        url: metaTags.url,
-        title: metaTags.title,
-        images: [{
-          url: metaTags.image,
-          type: 'image/jpeg'
-        }]
-      }}
+      <NextSeo 
+        title={pageTitle}
+        openGraph={{
+          url: metaTags.url,
+          title: metaTags.title,
+          description: metaTags.excerpt,
+          type: 'article',
+          images: [{
+            url: metaTags.image,
+            type: 'image/jpeg'
+          }]
+        }}
       />
       <Layout>
         <div className={styles.singlePostContainer}>
@@ -51,7 +54,9 @@ export async function getStaticProps({params} : { params: { postID: string } }) 
   const metaTags = {
     title: `${post?.title.rendered}`,
     image: post?.jetpack_featured_media_url,
-    url: `https://menger.vercel.app/posts/${post?.id}`
+    url: `https://menger.vercel.app/posts/${post?.id}`,
+    excerpt: post?.excerpt.rendered,
+    site_name: 'Menger Intézet'
   }
   return { props: { post, metaTags } }
 }
