@@ -77,7 +77,13 @@ export default function PWAHead({
       <meta property="og:description" content="Menger Intézet" />
       <meta property="og:site_name" content="Menger Intézet" />
       <meta property="og:url" content="https://mengerblog.com" />
-      <meta name="image" property="og:image" content={image} />
+
+      <meta name="type" content="website" />
+      <meta name="title" content={title} />
+      <meta name="description" content="Menger Intézet" />
+      <meta name="site_name" content="Menger Intézet" />
+      <meta name="url" content="https://mengerblog.com" />
+      <meta name="image" content={image} />
 
       <link
         rel="apple-touch-startup-image"

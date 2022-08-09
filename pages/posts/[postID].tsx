@@ -11,13 +11,13 @@ import { getAllPosts, getPost } from "../../helpers/getPosts";
 import * as _ from "lodash";
 import PWAHead from "../../components/PWAHead";
 
-export default function SinglePost({ post }: { post: Post }) {
+export default function SinglePost({ post, metaTags }: { post: Post, metaTags: any }) {
   const { author, title, content, image, loading } = useParsePost(post.id, post);
   const pageTitle = `${title} | ${author}`;
   
   return (
     <>
-      <PWAHead title={pageTitle} image={image} url={''} />
+      <PWAHead title={metaTags.title} image={metaTags.image} url={metaTags.url} />
       <Layout>
         <div className={styles.singlePostContainer}>
           <div className={styles.metaInfoContainer}>
@@ -36,8 +36,14 @@ export default function SinglePost({ post }: { post: Post }) {
 }
 
 export async function getStaticProps({params} : { params: { postID: string } }) {
-  const post = await getPost(params.postID).then(post => { return post });
-  return { props: { post } }
+  const post: void | Post = await getPost(params.postID).then(post => { return post });
+  const metaTags = {
+    title: `${post?.title} | ${post?.author}`,
+    description: parse(post ? post.excerpt.rendered : ''),
+    image: post?.jetpack_featured_media_url,
+    url: `https://menger.vercel.app/posts/${post?.id}`
+  }
+  return { props: { post, metaTags } }
 }
 
 export async function getStaticPaths() {
