@@ -9,6 +9,7 @@ import LoadingBackdrop from "../../components/LoadingBackdrop";
 import { Post } from "../../types/PostResponse";
 import { getAllPosts, getPost } from "../../helpers/getPosts";
 import * as _ from "lodash";
+import PWAHead from "../../components/PWAHead";
 
 export default function SinglePost({ post }: { post: Post }) {
   const { author, title, content, image, loading } = useParsePost(post.id, post);
@@ -16,15 +17,7 @@ export default function SinglePost({ post }: { post: Post }) {
   
   return (
     <>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta property="og:title" content={title}/>
-        <meta property="og:type" content="article" />
-        <meta property="og:description" content={title}/>
-        <meta property="og:image" content={image}/>
-        <meta property="og:url" content={`https://menger.vercel.app/pages/${post.id}`}/>
-        <meta name="twitter:card" content={image}/>
-      </Head>
+      <PWAHead title={pageTitle} image={image} url={''} />
       <Layout>
         <div className={styles.singlePostContainer}>
           <div className={styles.metaInfoContainer}>

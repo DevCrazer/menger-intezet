@@ -3,9 +3,6 @@ import type { AppProps } from "next/app";
 import { createContext, useEffect, useState } from "react";
 import { Post } from "../types/PostResponse";
 import * as _ from "lodash";
-import PWAHead from "../components/PWAHead";
-import Head from "next/head";
-import { getAllPosts } from "../helpers/getPosts";
 
 export const PostsContext = createContext<any>(null);
 const POSTS_LINK = "https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?per_page=20";
@@ -33,9 +30,6 @@ function MengerApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Head>
-        <PWAHead />
-      </Head>
       <PostsContext.Provider value={posts}>
         <Component {...pageProps} />
       </PostsContext.Provider>
