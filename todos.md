@@ -1,0 +1,13 @@
+- Refactor useParsePost to accomodate for arrays
+- Add meta tags for all pages
+- Create logo images
+- Create favicons
+- Fix manifest.json
+- Connect with a supabase / firebase db
+- Refactor to fetch static content from db
+  - Intro text
+  - Collections
+  - Authors
+- Create admin interface for changing db content
+- Write documentation
+  - How to write titles
