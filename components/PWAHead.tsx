@@ -19,6 +19,8 @@ export default function PWAHead({
       <meta property="og:description" content="Menger Intézet" />
       <meta property="og:site_name" content="Menger Intézet" />
       <meta property="og:url" content="https://mengerblog.com" />
+      <meta property="og:image" content={image} />
+
 
       <meta name="type" content="website" />
       <meta name="title" content={title} />
