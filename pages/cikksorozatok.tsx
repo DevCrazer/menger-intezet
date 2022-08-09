@@ -1,3 +1,4 @@
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../components/Layout";
@@ -104,7 +105,9 @@ export default function Collections() {
   const router = useRouter();
 
   function onClick(article: string) {
-    fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?search=${article}`)
+    fetch(
+      `https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?search=${article}`
+    )
       .then((response) => response.json())
       .then((data: Array<Post>) => {
         console.log(data);
@@ -113,23 +116,30 @@ export default function Collections() {
   }
 
   return (
-    <Layout>
-      <div className={styles.collectionsContainer}>
-        {COLLECTIONS.map((collection, index) => {
-          return (
-            <div key={index} className={styles.collection}>
-              <div className={styles.collectionName}>#{collection.name}</div>
-              {collection.articles.map((article, index) => {
-                return (
-                  <p className={styles.collectionArticle} key={index} onClick={() => onClick(article)}>
-                    {article}
-                  </p>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
-    </Layout>
+    <>
+      <NextSeo title={"Cikksorozatok | Menger Intézet"} />
+      <Layout>
+        <div className={styles.collectionsContainer}>
+          {COLLECTIONS.map((collection, index) => {
+            return (
+              <div key={index} className={styles.collection}>
+                <div className={styles.collectionName}>#{collection.name}</div>
+                {collection.articles.map((article, index) => {
+                  return (
+                    <p
+                      className={styles.collectionArticle}
+                      key={index}
+                      onClick={() => onClick(article)}
+                    >
+                      {article}
+                    </p>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </Layout>
+    </>
   );
 }
