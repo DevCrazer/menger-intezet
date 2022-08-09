@@ -29,7 +29,7 @@ export default function SinglePost() {
           <div className={styles.title}>{title}</div>
         </div>
         <img className={styles.featuredImage} src={image} alt={title} />
-        <div className={styles.content} lang="hu">
+        <div className={`${styles.content} singlePostContent`} lang="hu">
           {parse(content)}
         </div>
       </div>

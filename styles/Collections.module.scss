@@ -1,3 +1,5 @@
+@import "../styles/variables.scss";
+
 .collectionsContainer {
   padding-inline: 3rem;
   padding-block: 0.5rem;
@@ -11,7 +13,7 @@
 
     .collectionArticle {
       margin-left: 1rem;
-      margin-block: 2px;
+      margin-block: 12px;
       cursor: pointer;
 
       &:hover {

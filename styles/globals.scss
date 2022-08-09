@@ -55,7 +55,28 @@ p {
 .footnote-number {
   vertical-align: super;
   text-decoration: none !important;
-  font-family: 'Oswald' !important;
+  font-family: "Oswald" !important;
   font-weight: bold;
   font-size: 0.75rem;
+}
+
+.singlePostContent {
+  .has-large-font-size {
+    &:first-child {
+      strong {
+        margin-top: 1rem !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .has-large-font-size {
+    font-size: 1.1rem;
+    line-height: 1.2;
+
+    strong {
+      font-size: 1.5rem;
+    }
+  }
 }

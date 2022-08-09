@@ -118,7 +118,7 @@ export default function Collections() {
         {COLLECTIONS.map((collection, index) => {
           return (
             <div key={index} className={styles.collection}>
-              <div className={styles.collectionName}>{collection.name}</div>
+              <div className={styles.collectionName}>#{collection.name}</div>
               {collection.articles.map((article, index) => {
                 return (
                   <p className={styles.collectionArticle} key={index} onClick={() => onClick(article)}>
