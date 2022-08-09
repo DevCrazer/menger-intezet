@@ -11,7 +11,7 @@
   .firstLine {
     text-transform: uppercase;
     font-size: 2.5rem;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     padding: 0;
     line-height: 1;
     color: $secondary;
@@ -20,9 +20,9 @@
   .secondLine {
     font-family: "Montserrat";
     font-weight: 300;
-    font-size: 0.8rem;
-    letter-spacing: 22px;
-    margin-right: -22px;
+    font-size: 1rem;
+    letter-spacing: 20px;
+    margin-right: -20px;
   }
 
   -webkit-touch-callout: none; /* iOS Safari */

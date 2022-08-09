@@ -1,11 +1,11 @@
-$primary: #8ac926;
+$primary: #3393d0;
 $primary-lighter: lighten($primary, 25%);
 $primary-lightest: lighten($primary, 50%);
 $primary-darker: darken($primary, 10%);
 $primary-darkest: darken($primary, 25%);
 
-$secondary: #3393d0;
+$secondary: #09C778;
 $secondary-lighter: lighten($secondary, 25%);
-$secondary-lightest: lighten($secondary, 50%);
-$secondary-darker: darken($secondary, 12%);
-$secondary-darkest: darken($secondary, 25%);
+$secondary-lightest: lighten($secondary, 30%);
+$secondary-darker: darken($secondary, 10%);
+$secondary-darkest: darken($secondary, 20%);
