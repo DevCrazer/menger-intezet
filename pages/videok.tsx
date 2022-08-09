@@ -1,10 +1,13 @@
 /* eslint-disable react/no-unknown-property */
+import { NextSeo } from "next-seo";
 import React from "react";
 import Layout from "../components/Layout";
 import styles from "../styles/Videos.module.scss";
 
 export default function Videos() {
   return (
+    <>
+    <NextSeo title={'Videók | Menger Intézet'} />
     <Layout>
       <div className={styles.videosContainer}>
         <iframe
@@ -18,5 +21,6 @@ export default function Videos() {
         ></iframe>
       </div>
     </Layout>
+    </>
   );
 }

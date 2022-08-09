@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import styles from "../styles/Authors.module.scss";
 import sanitizeHtml from "sanitize-html";
 import parse from "html-react-parser";
+import { NextSeo } from "next-seo";
 
 const AUTHORS_DATA = [
   {
@@ -34,20 +35,25 @@ const AUTHORS_DATA = [
 
 export default function Authors() {
   return (
-    <Layout>
-      <div className={styles.authorsContainer}>
-        {AUTHORS_DATA.map((author, index) => {
-          return (
-            <div key={index} className={styles.singleAuthor}>
-              <img src={author.image} alt={author.name} />
-              <div className={styles.authorText}>
-                <div className={styles.authorName}>{author.name}</div>
-                <div className={styles.authorDescription} lang='hu'>{parse(sanitizeHtml(author.description))}</div>
+    <>
+      <NextSeo title={'Szerzőink | Menger Intézet'} />
+      <Layout>
+        <div className={styles.authorsContainer}>
+          {AUTHORS_DATA.map((author, index) => {
+            return (
+              <div key={index} className={styles.singleAuthor}>
+                <img src={author.image} alt={author.name} />
+                <div className={styles.authorText}>
+                  <div className={styles.authorName}>{author.name}</div>
+                  <div className={styles.authorDescription} lang="hu">
+                    {parse(sanitizeHtml(author.description))}
+                  </div>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
-    </Layout>
+            );
+          })}
+        </div>
+      </Layout>
+    </>
   );
 }

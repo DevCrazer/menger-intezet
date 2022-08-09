@@ -10,4 +10,8 @@ module.exports = withPWA({
   pwa: {
     dest: "public",
   },
+  i18n: {
+    locales: ['hu'],
+    defaultLocale: 'hu'
+  }
 });

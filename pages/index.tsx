@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { NextSeo } from "next-seo";
 import Head from "next/head";
 import LandingPage from "../components/landing-page/LandingPage";
 import Layout from "../components/Layout";
@@ -8,8 +9,8 @@ import styles from "../styles/Home.module.scss";
 const Home: NextPage = () => {
   return (
     <div lang="hu">
-      <Head>
-        <PWAHead title={'Menger Intézet'} image={''} url={'https://mengerblog.com'} />
+      <NextSeo title={'Menger Intézet'} />
+      <Head>        
       </Head>
       <Layout>
         <LandingPage />

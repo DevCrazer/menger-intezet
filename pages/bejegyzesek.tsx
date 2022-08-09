@@ -8,6 +8,7 @@ import { Post } from "../types/PostResponse";
 import sanitize from "sanitize-html";
 import parse from "html-react-parser";
 import LoadingBackdrop from "../components/LoadingBackdrop";
+import { NextSeo } from "next-seo";
 
 const POSTS_PER_PAGE = 9;
 const BASE_URL = "https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts";
@@ -49,6 +50,8 @@ export default function Posts() {
   }
 
   return (
+    <>
+    <NextSeo title={'Bejegyzések | Menger Intézet'} />
     <Layout>
       <div className={styles.postsContainer}>
         <div className={styles.postCardsContainer}>
@@ -84,5 +87,6 @@ export default function Posts() {
       </div>
       <LoadingBackdrop open={loading} />
     </Layout>
+    </>
   );
 }

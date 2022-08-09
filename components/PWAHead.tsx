@@ -1,15 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import React from "react";
 
-export default function PWAHead({
-  title,
-  image,
-  url,
-}: {
-  title: string;
-  image: string;
-  url: string;
-}) {
+export default function PWAHead() {
   return (
     <>
       <meta name="application-name" content="Menger Intézet" />
