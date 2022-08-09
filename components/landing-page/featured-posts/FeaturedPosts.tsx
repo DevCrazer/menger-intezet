@@ -6,14 +6,19 @@ import useParsePost, { ParsedPosts } from "../../../hooks/useParsePost";
 import { PostsContext } from "../../../pages/_app";
 import { Post } from "../../../types/PostResponse";
 import styles from "./FeaturedPosts.module.scss";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
+import LoadingBackdrop from "../../LoadingBackdrop";
 
 export default function FeaturedPosts() {
   const [pauseAutoHighlight, setPauseAutoHighlight] = useState<boolean>(false);
-  const [currentPost, setCurrentPost] = useState<number>(0); 
+  const [currentPost, setCurrentPost] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const recentPosts: Array<Post> = useContext(PostsContext).slice(0, 3);
-  const parsedPostData = [useParsePost(recentPosts[0]?.id), useParsePost(recentPosts[1]?.id), useParsePost(recentPosts[2]?.id)];
+  const parsedPostData = [
+    useParsePost(recentPosts[0]?.id),
+    useParsePost(recentPosts[1]?.id),
+    useParsePost(recentPosts[2]?.id),
+  ];
   const router = useRouter();
 
   useEffect(() => {
@@ -41,36 +46,48 @@ export default function FeaturedPosts() {
   };
 
   function onClick(index: number) {
-    router.push(`/posts/${recentPosts[index].id}`);
+    setLoading(true);
+    router
+      .push(`/posts/${recentPosts[index].id}`)
+      .then(() => setLoading(false));
   }
 
   return (
-    <div className={styles.featuredPostsContainer}>
-      <img src={parsedPostData[currentPost].image} alt={parsedPostData[currentPost].title} onClick={() => onClick(currentPost)} />
-      <div className={styles.textContainer}>
-        {parsedPostData.map((post: ParsedPosts, index: number) => {
-          return (
-            <div
-              key={index}
-              className={
-                currentPost === index
-                  ? styles.highlightedText
-                  : styles.regularText
-              }
-              onMouseOver={() => {
-                setPauseAutoHighlight(true);
-                setCurrentPost(index);
-              }}
-              onMouseLeave={() => setPauseAutoHighlight(false)}
-              onClick={() => onClick(index)}
-            >
-              <h3 className={styles.author}>{post.author}</h3>
-              <h1 className={styles.title} >{parse(post.title)}</h1>
-              <span lang="hu" className={styles.excerpt}>{parse(post.excerpt.substring(0, 400).concat('...'))}</span>
-            </div>
-          );
-        })}
+    <>
+      <div className={styles.featuredPostsContainer}>
+        <img
+          src={parsedPostData[currentPost].image}
+          alt={parsedPostData[currentPost].title}
+          onClick={() => onClick(currentPost)}
+        />
+        <div className={styles.textContainer}>
+          {parsedPostData.map((post: ParsedPosts, index: number) => {
+            return (
+              <div
+                key={index}
+                className={
+                  currentPost === index
+                    ? styles.highlightedText
+                    : styles.regularText
+                }
+                onMouseOver={() => {
+                  setPauseAutoHighlight(true);
+                  setCurrentPost(index);
+                }}
+                onMouseLeave={() => setPauseAutoHighlight(false)}
+                onClick={() => onClick(index)}
+              >
+                <h3 className={styles.author}>{post.author}</h3>
+                <h1 className={styles.title}>{parse(post.title)}</h1>
+                <span lang="hu" className={styles.excerpt}>
+                  {parse(post.excerpt.substring(0, 400).concat("..."))}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+      <LoadingBackdrop open={loading} />
+    </>
   );
 }
