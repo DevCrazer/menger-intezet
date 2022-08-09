@@ -43,7 +43,7 @@ export default function SinglePost({ postID, post }: { postID: string, post: Pos
 }
 
 export async function getStaticProps({params} : { params: { postID: string } }) {
-  const post = await getPost(params.postID);
+  const post = await getPost(params.postID).then(post => { return post });
   return { props: { post } }
 }
 
