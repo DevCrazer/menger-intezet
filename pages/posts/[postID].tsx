@@ -24,6 +24,12 @@ export default function SinglePost() {
     <>
       <Head>
         <title>{pageTitle}</title>
+        <meta property="og:title" content={title}/>
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content={title}/>
+        <meta property="og:image" content={image}/>
+        <meta property="og:url" content={`https://menger.vercel.app/pages/${postID}`}/>
+        <meta name="twitter:card" content={image}/>
       </Head>
       <Layout>
         <div className={styles.singlePostContainer}>
