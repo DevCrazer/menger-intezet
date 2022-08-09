@@ -10,8 +10,8 @@ import { Post } from "../../types/PostResponse";
 import { getAllPosts, getPost } from "../../helpers/getPosts";
 import * as _ from "lodash";
 
-export default function SinglePost({ postID, post }: { postID: string, post: Post }) {
-  const { author, title, content, image, loading } = useParsePost(postID, post);
+export default function SinglePost({ post }: { postID: string, post: Post }) {
+  const { author, title, content, image, loading } = useParsePost(post.id, post);
   const pageTitle = `${title} | ${author}`;
   
   return (
@@ -22,7 +22,7 @@ export default function SinglePost({ postID, post }: { postID: string, post: Pos
         <meta property="og:type" content="article" />
         <meta property="og:description" content={title}/>
         <meta property="og:image" content={image}/>
-        <meta property="og:url" content={`https://menger.vercel.app/pages/${postID}`}/>
+        <meta property="og:url" content={`https://menger.vercel.app/pages/${post.id}`}/>
         <meta name="twitter:card" content={image}/>
       </Head>
       <Layout>
