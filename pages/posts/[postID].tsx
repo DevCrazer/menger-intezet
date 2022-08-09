@@ -38,7 +38,7 @@ export default function SinglePost({ post, metaTags }: { post: Post, metaTags: a
 export async function getStaticProps({params} : { params: { postID: string } }) {
   const post: void | Post = await getPost(params.postID).then(post => { return post });
   const metaTags = {
-    title: `${post?.title} | ${post?.author}`,
+    title: `${post?.title.rendered}`,
     image: post?.jetpack_featured_media_url,
     url: `https://menger.vercel.app/posts/${post?.id}`
   }
