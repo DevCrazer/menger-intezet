@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { Post } from "../types/PostResponse";
 import sanitizeHtml from "sanitize-html";
 
-const useParsePost = (postID: string | number, fetchedData?: Post) => {
-  const [postData, setPostData] = useState<Post>();
+const useParsePost = (postID?: string | number, fetchedData?: Post) => {
   const [author, setAuthor] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [excerpt, setExcerpt] = useState<string>("");
@@ -16,7 +15,7 @@ const useParsePost = (postID: string | number, fetchedData?: Post) => {
       return;
     }
 
-    const postIdIsString: boolean = postID?.toString().includes("-");
+    const postIdIsString: boolean = postID ? postID.toString().includes("-") : false;
     if (!postIdIsString) {
       fetchPostByID();
     }
@@ -30,7 +29,6 @@ const useParsePost = (postID: string | number, fetchedData?: Post) => {
       .then((res) => res.json())
       .then((data: Post) => {
         if (data.title) {
-          setPostData(data);
           parsePost(data);
         }
       });
@@ -41,7 +39,6 @@ const useParsePost = (postID: string | number, fetchedData?: Post) => {
       .then((res) => res.json())
       .then((data: Array<Post>) => {
         if (data[0].title) {
-          setPostData(data[0]);
           parsePost(data[0]);
         }
       });
