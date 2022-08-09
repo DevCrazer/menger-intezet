@@ -49,35 +49,10 @@ export default function SinglePost() {
 }
 
 // export async function getStaticProps(context: GetStaticPropsContext) {
-//   let numberOfApiPages = 0;
-//   let page = 0;
-//   let posts: Array<Post> = [];
-//   fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?per_page=$100&page=${page + 1}`)
-//     .then((response) => {
-//       for (let header of response.headers.entries()) {
-//         if (header[0] === "x-wp-totalpages") {
-//           numberOfApiPages = parseInt(header[1]);
-//         }
-//     }
-//   });
-
-//   for (let i = 0; i > page; i++) {
-//     fetchPostsByPage(i)
-//       .then((data: Array<Post>) => posts = [...posts, ...data]);
-//   }
 
 //   return {
 //     props: {
 //       posts
 //     },
 //   }
-// }
-
-// async function fetchPostsByPage(page: number) {
-//   let fetchedPosts: Array<Post> = [];
-//   await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?per_page=$100&page=${page + 1}`)
-//     .then((response) => response.json())
-//     .then(data => fetchedPosts = data);
-
-//   return fetchedPosts;
 // }
