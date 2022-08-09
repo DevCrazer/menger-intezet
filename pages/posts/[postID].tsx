@@ -10,6 +10,7 @@ import { Post } from "../../types/PostResponse";
 import { getAllPosts, getPost } from "../../helpers/getPosts";
 import * as _ from "lodash";
 import PWAHead from "../../components/PWAHead";
+import { NextSeo } from 'next-seo';
 
 export default function SinglePost({ post, metaTags }: { post: Post, metaTags: any }) {
   const { author, title, content, image, loading } = useParsePost(post.id, post);
@@ -17,7 +18,17 @@ export default function SinglePost({ post, metaTags }: { post: Post, metaTags: a
   
   return (
     <>
-      <PWAHead title={metaTags.title} image={metaTags.image} url={metaTags.url} />
+      {/* <PWAHead title={metaTags.title} image={metaTags.image} url={metaTags.url} /> */}
+      <NextSeo title={pageTitle}
+      openGraph={{
+        url: metaTags.url,
+        title: metaTags.title,
+        images: [{
+          url: metaTags.image,
+          type: 'image/jpeg'
+        }]
+      }}
+      />
       <Layout>
         <div className={styles.singlePostContainer}>
           <div className={styles.metaInfoContainer}>
