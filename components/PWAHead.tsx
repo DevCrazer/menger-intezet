@@ -12,6 +12,7 @@ export default function PWAHead() {
       <meta name="format-detection" content="telephone=no" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="theme-color" content="#000000" />
+      
       <link rel="manifest" href="/manifest.json" />
 
       <link rel='apple-touch-icon' href='/icons/touch-icon-iphone.png' />
