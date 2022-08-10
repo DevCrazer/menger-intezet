@@ -51,7 +51,7 @@ export default function FeaturedPosts() {
     <>
       <div className={styles.featuredPostsContainer}>
         <Link href={`/posts/${recentPosts[currentPost].slug}`}>
-          <a>
+          <a className={styles.imageAnchor}>
             <Image
               src={parsedPostData[currentPost]?.image}
               alt={parsedPostData[currentPost].title}

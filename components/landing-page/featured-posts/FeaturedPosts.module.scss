@@ -11,7 +11,7 @@
   .textContainer {
     display: flex;
     flex-direction: column;
-
+    
     div {
       flex: 1;
       padding-inline: 2rem;
@@ -39,7 +39,7 @@
         text-align: justify;
         margin-bottom: auto;
         color: $secondary-darkest;
-        hyphens: auto;
+        hyphens: auto; 
       }
     }
 
@@ -47,6 +47,11 @@
       background-color: $secondary-lighter;
     }
   }
+}
+
+.imageAnchor {
+  display: flex;
+  
 }
 
 @media screen and (max-width: 1800px) {
