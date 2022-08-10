@@ -26,13 +26,16 @@ export default function Posts({ posts }: { posts: Array<Post> }) {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     findPostsOfCurrentPage(page);
   }, [page]);
 
-  function findPostsOfCurrentPage(page: number) {
+  function findPostsOfCurrentPage(page: number) {    
     const postChunks = _.chunk(posts, POSTS_PER_PAGE);
     const currentPage = page - 1;
     setPostsOfCurrentPage(postChunks[currentPage]);
+    window.scrollTo(0, 0);
+    setLoading(false);
   }
 
   function navigateToPost(slug: string) {
