@@ -8,6 +8,7 @@ import styles from "./FeaturedPosts.module.scss";
 import parse from "html-react-parser";
 import LoadingBackdrop from "../../LoadingBackdrop";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function FeaturedPosts() {
   const [pauseAutoHighlight, setPauseAutoHighlight] = useState<boolean>(false);
@@ -50,7 +51,7 @@ export default function FeaturedPosts() {
     <>
       <div className={styles.featuredPostsContainer}>
         <Link href={`/posts/${recentPosts[currentPost].slug}`}>
-          <img src={parsedPostData[currentPost].image} alt={parsedPostData[currentPost].title} />
+          <Image src={parsedPostData[currentPost].image} alt={parsedPostData[currentPost].title} width={1000} height={1000} objectFit={'contain'} />
         </Link>
         <div className={styles.textContainer}>
           {parsedPostData.map((post: ParsedPosts, index: number) => {

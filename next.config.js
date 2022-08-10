@@ -22,4 +22,7 @@ module.exports = withPWA({
       },
     ]
   },
+  images: {
+    domains: ['mengerblogcom.files.wordpress.com']
+  }
 });
