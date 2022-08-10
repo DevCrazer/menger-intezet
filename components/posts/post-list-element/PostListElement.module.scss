@@ -7,12 +7,14 @@
   .author {
     color: gray;
     margin-block: 0;
+    color: $secondary-darker;
   }
 
   .title {
     margin: 0;
     line-height: 1.1;
     cursor: pointer;
+    color: $secondary-darkest;
 
     &:hover {
       text-decoration: underline;
