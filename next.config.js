@@ -13,5 +13,13 @@ module.exports = withPWA({
   i18n: {
     locales: ['hu'],
     defaultLocale: 'hu'
-  }
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/bejegyzesek',
+        destination: '/bejegyzesek/1',
+      },
+    ]
+  },
 });
