@@ -51,16 +51,20 @@ export default function FeaturedPosts() {
     <>
       <div className={styles.featuredPostsContainer}>
         <Link href={`/posts/${recentPosts[currentPost].slug}`}>
-          <Image
-            src={parsedPostData[currentPost]?.image}
-            alt={parsedPostData[currentPost].title}
-            width={1000}
-            height={1000}
-            objectFit={"contain"}
-          />
+          <a>
+            <Image
+              src={parsedPostData[currentPost]?.image}
+              alt={parsedPostData[currentPost].title}
+              width={1000}
+              height={1000}
+              objectFit={"contain"}
+            />
+          </a>
         </Link>
         <div className={styles.textContainer}>
           {parsedPostData.map((post: ParsedPosts, index: number) => {
+            const parsedTitle = parse(post.title);
+            const parsedExcerpt = parse(post.excerpt.substring(0, 400).concat("..."));
             return (
               <Link href={`/posts/${recentPosts[index].slug}`} key={index}>
                 <div
@@ -71,9 +75,9 @@ export default function FeaturedPosts() {
                   }}
                   onMouseLeave={() => setPauseAutoHighlight(false)}>
                   <h3 className={styles.author}>{post.author}</h3>
-                  <h1 className={styles.title}>{parse(post.title)}</h1>
+                  <h1 className={styles.title}>{parsedTitle}</h1>
                   <span lang="hu" className={styles.excerpt}>
-                    {parse(post.excerpt.substring(0, 400).concat("..."))}
+                    {parsedExcerpt}
                   </span>
                 </div>
               </Link>
