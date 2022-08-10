@@ -31,8 +31,8 @@ function MengerApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <PWAHead />
       <PostsContext.Provider value={posts}>
+        <PWAHead />
         <Component {...pageProps} />
       </PostsContext.Provider>
     </>

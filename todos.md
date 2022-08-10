@@ -1,11 +1,8 @@
-- Refactor useParsePost to accomodate for arrays
-- Add meta tags for all pages
-- Implement getStaticProps and getStaticPaths
+- Expand meta tags for all pages
 - Implement On-Demand Revalidation
-- Fix metatags so facebook debugger can detect image and title
+- Add next-sitemap
 - Create logo images
 - Create favicons
-- Fix manifest.json
 - Connect with a supabase / firebase db
 - Refactor to fetch static content from db
   - Intro text

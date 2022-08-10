@@ -12,6 +12,7 @@ export default function PWAHead() {
       <meta name="format-detection" content="telephone=no" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="theme-color" content="#000000" />
+      <link rel="manifest" href="/manifest.json" />
 
       <link
         rel="icon"
@@ -32,7 +33,6 @@ export default function PWAHead() {
       />
       <link rel="shortcut icon" href="/favicon.ico" />
 
-      <link rel="manifest" href="/manifest.json" />
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Oswald:wght@200;300;400;500;600;700&display=swap"
