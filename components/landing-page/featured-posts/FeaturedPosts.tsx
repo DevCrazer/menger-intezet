@@ -58,6 +58,7 @@ export default function FeaturedPosts() {
               width={1000}
               height={1000}
               objectFit={"contain"}
+              priority
             />
           </a>
         </Link>

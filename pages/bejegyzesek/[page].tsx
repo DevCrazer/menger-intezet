@@ -14,6 +14,7 @@ import { getAllPosts } from "../../helpers/getPosts";
 import * as _ from "lodash";
 import { PostsProps } from "../../types/PostList";
 import Link from "next/link";
+import Image from "next/image";
 
 const POSTS_PER_PAGE = 9;
 
@@ -39,7 +40,15 @@ export default function Posts({ posts, pageCount, page }: PostsProps) {
               return (
                 <div className={styles.postCard} key={index}>
                   <Link href={`/posts/${post.slug}`}>
-                    <img src={post.jetpack_featured_media_url} alt={post.title.rendered} />
+                    <a>
+                      <Image
+                        src={post.jetpack_featured_media_url}
+                        alt={post.title.rendered}
+                        width={500}
+                        height={500}
+                        objectFit={"contain"}
+                      />
+                    </a>
                   </Link>
                   <div className={styles.postAuthor}>
                     {parse(sanitize(post.title.rendered.split(":", 1)[0]))}
