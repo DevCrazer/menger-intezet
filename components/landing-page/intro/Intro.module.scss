@@ -37,5 +37,11 @@
 @media screen and (max-width: 900px) {
   .introContainer {
     flex-direction: column;
+
+    .textContainer {
+      p {
+        font-size: 0.9rem;
+      }
+    }
   }
 }
