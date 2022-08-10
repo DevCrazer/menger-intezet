@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Post } from "../types/PostResponse";
+import { FilteredPost, Post } from "../types/PostResponse";
 import sanitizeHtml from "sanitize-html";
 
-const useParsePost = (fetchedData?: Post) => {
+const useParsePost = (fetchedData?: Post | FilteredPost) => {
   const [author, setAuthor] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [excerpt, setExcerpt] = useState<string>("");
@@ -17,7 +17,7 @@ const useParsePost = (fetchedData?: Post) => {
     }
   }, [fetchedData]);
 
-  function parsePost(post: Post) {
+  function parsePost(post: Post | FilteredPost) {
     if (!post) return;
     const author = parseAuthor(post?.title?.rendered);
     const title = parseTitle(post?.title?.rendered);

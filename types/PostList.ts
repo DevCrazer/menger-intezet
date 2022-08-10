@@ -1,7 +1,7 @@
-import { Post } from "./PostResponse";
+import { FilteredPost } from "./PostResponse";
 
 export interface PostsProps {
-  posts: Array<Post>;
+  posts: Array<FilteredPost>;
   pageCount: number;
   page: number;
 }

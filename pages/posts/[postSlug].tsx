@@ -1,12 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import Head from "next/head";
 import React from "react";
 import Layout from "../../components/Layout";
 import useParsePost from "../../hooks/useParsePost";
 import styles from "../../styles/Post.module.scss";
 import parse from "html-react-parser";
 import LoadingBackdrop from "../../components/LoadingBackdrop";
-import { Post } from "../../types/PostResponse";
+import { FilteredPost, Post } from "../../types/PostResponse";
 import { getAllPosts, getPostBySlug } from "../../helpers/getPosts";
 import * as _ from "lodash";
 import { NextSeo } from "next-seo";
@@ -63,7 +62,15 @@ export async function getStaticProps({ params }: SinglePostParams) {
     excerpt: post.excerpt.rendered,
     site_name: "Menger Intézet",
   };
-  return { props: { post, metaTags } };
+  const filteredPost: FilteredPost = {
+    id: post.id,
+    slug: post.slug,
+    title: post.title,
+    content: post.content,
+    excerpt: post.excerpt,
+    jetpack_featured_media_url: post.jetpack_featured_media_url,
+  };
+  return { props: { filteredPost, metaTags } };
 }
 
 export async function getStaticPaths() {

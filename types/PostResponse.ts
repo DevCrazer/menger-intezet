@@ -31,6 +31,16 @@ export interface Post {
   _links:                        Links;
 }
 
+export interface FilteredPost {
+  id:                            number;
+  slug:                          string;
+  title:                         GUID;
+  content:                       Content;
+  excerpt:                       Content;
+  jetpack_featured_media_url:    string;
+
+}
+
 export interface Links {
   self:                  About[];
   collection:            About[];

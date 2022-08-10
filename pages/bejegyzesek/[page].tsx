@@ -81,7 +81,17 @@ export async function getStaticProps({ params }: { params: { page: string } }) {
   const posts: Array<Post> = await getAllPosts().then((posts) => {
     return posts;
   });
-  const postChunks = _.chunk(posts, POSTS_PER_PAGE);
+  const filteredPosts = _.map(posts, (post) => {
+    return {
+      id: post.id,
+      slug: post.slug,
+      title: post.title,
+      content: post.content,
+      excerpt: post.excerpt,
+      jetpack_featured_media_url: post.jetpack_featured_media_url,
+    };
+  });
+  const postChunks = _.chunk(filteredPosts, POSTS_PER_PAGE);
   const props: PostsProps = {
     posts: postChunks[parseInt(params.page) - 1],
     pageCount: Math.ceil(posts.length / 9),

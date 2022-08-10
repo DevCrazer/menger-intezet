@@ -1,7 +1,7 @@
-import { Post } from "./PostResponse";
+import { FilteredPost, Post } from "./PostResponse";
 
 export interface SinglePostProps {
-    post: Post,
+    post: FilteredPost,
     metaTags: MetaTags
 }
 
