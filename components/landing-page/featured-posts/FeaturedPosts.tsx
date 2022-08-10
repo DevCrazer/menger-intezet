@@ -45,7 +45,7 @@ export default function FeaturedPosts() {
     return timeout;
   };
 
-  if (!recentPosts.length) return;
+  if (!recentPosts.length) return <></>;
 
   return (
     <>
