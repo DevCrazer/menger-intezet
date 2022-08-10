@@ -1,7 +1,5 @@
 - Expand meta tags for all pages
 - Add next-sitemap
-- Create logo images
-- Create favicons
 - Connect with a supabase / firebase db
 - Refactor to fetch static content from db
   - Intro text
