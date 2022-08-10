@@ -8,10 +8,10 @@ import PWAHead from "../components/PWAHead";
 const Home: NextPage = () => {
   return (
     <div lang="hu">
-      <PWAHead />
-      <NextSeo title={'Menger Intézet'} />
-      <Head>        
+      <Head>  
+        <PWAHead />      
       </Head>
+      <NextSeo title={'Menger Intézet'} />
       <Layout>
         <LandingPage />
       </Layout>
