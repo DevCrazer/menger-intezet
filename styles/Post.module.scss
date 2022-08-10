@@ -17,7 +17,7 @@
     }
   }
 
-  .featuredImage {
+  .imageContainer {
     float: left;
     width: 40%;
     margin: 2rem;
@@ -52,7 +52,8 @@
 
 @media screen and (max-width: 900px) {
   .singlePostContainer {
-    .featuredImage {
+    width: 100vw;
+    .imageContainer {
       width: 100%;
       float: none;
       margin: 0;

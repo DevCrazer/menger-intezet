@@ -10,6 +10,7 @@ import { getAllPosts, getPostBySlug } from "../../helpers/getPosts";
 import * as _ from "lodash";
 import { NextSeo } from "next-seo";
 import { MetaTags, SinglePostParams, SinglePostProps } from "../../types/SinglePost";
+import Image from "next/image";
 
 export default function SinglePost({ post, metaTags }: SinglePostProps) {
   const { author, title, content, image, loading } = useParsePost(post);
@@ -40,7 +41,15 @@ export default function SinglePost({ post, metaTags }: SinglePostProps) {
             <div className={styles.author}>{author}</div>
             <div className={styles.title}>{title}</div>
           </div>
-          <img className={styles.featuredImage} src={image} alt={title} />
+          <div className={styles.imageContainer}>
+            <Image
+              src={image}
+              alt={title}
+              width={700}
+              height={700}
+              objectFit={"contain"}
+            />
+          </div>
           <div className={`${styles.content} singlePostContent`} lang="hu">
             {parse(content)}
           </div>
