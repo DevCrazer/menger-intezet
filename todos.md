@@ -11,5 +11,5 @@
 - Create admin interface for changing db content
 - Write documentation
   - How to write titles
-- Change onClicks to hrefs
+- Change onClicks to <Link/>
 - Add dynamic routing to bejegyzések so pagination can be controlled via url
