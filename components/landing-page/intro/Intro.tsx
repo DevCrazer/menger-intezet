@@ -1,11 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import React from "react";
 import styles from "./Intro.module.scss";
 
 export default function Intro() {
   return (
     <div className={styles.introContainer}>
-      <img src="/assets/images/menger.png" alt="Carl Menger" />
+      <Image
+        src="/assets/images/menger.png"
+        alt="Carl Menger"
+        width={1000}
+        height={500}
+        objectFit={"contain"}
+      />
       <div className={styles.textContainer}>
         <h2>Carl Menger Intézet</h2>
         <p>
