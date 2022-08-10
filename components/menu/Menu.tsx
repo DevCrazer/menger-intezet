@@ -2,6 +2,7 @@
 import { faFacebookSquare, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -11,12 +12,12 @@ import styles from "./Menu.module.scss";
 import { MenuProps } from "./Menu.types";
 
 const LIST_ITEMS = [
-  { name: "Főoldal", route: "/" },
-  { name: "Bejegyzések", route: "/bejegyzesek" },
-  { name: "Cikksorozatok", route: "/cikksorozatok" },
-  { name: "Videók", route: "/videok" },
-  { name: "Szerzőink", route: "/szerzoink" },
-  { name: "Kapcsolat", route: "/kapcsolat" },
+  { name: "Főoldal", route: "" },
+  { name: "Bejegyzések", route: "bejegyzesek" },
+  { name: "Cikksorozatok", route: "cikksorozatok" },
+  { name: "Videók", route: "videok" },
+  { name: "Szerzőink", route: "szerzoink" },
+  { name: "Kapcsolat", route: "kapcsolat" },
 ];
 
 const SOCIAL_MEDIA_LINKS = [
@@ -28,17 +29,14 @@ const SOCIAL_MEDIA_LINKS = [
 export default function Menu({ showLogo }: MenuProps) {
   const [currentItem, setCurrentItem] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
   const { pathname } = useRouter();
 
   function onClick(route: string) {
     setCurrentItem(route);
-    setLoading(true);
-    router.push(route)
-      .then(() => setLoading(false));
   }
 
   useEffect(() => {
+    console.log(pathname)
     setCurrentItem(pathname);
   }, []);
 
@@ -52,15 +50,15 @@ export default function Menu({ showLogo }: MenuProps) {
         ) : null}
         <ul className={styles.navigation}>
           {LIST_ITEMS.map((item) => {
-            return (
-              <li
-                className={`${styles.navigationElement} ${
-                  item.route === currentItem ? styles.activeElement : styles.inactiveElement
-                }`}
-                key={item.route}
-                onClick={() => onClick(item.route)}>
-                {item.name}
-              </li>
+            const highlightMenuItem: boolean = (item.route.length && currentItem?.includes(item.route)) || (currentItem === "/" && item.name === 'Főoldal');
+            return (              
+              <Link href={`/${item.route}`} key={item.route}>
+                <li
+                  className={`${styles.navigationElement} ${highlightMenuItem ? styles.activeElement : styles.inactiveElement}`}
+                  onClick={() => onClick(item.route)}>
+                  {item.name}
+                </li>
+              </Link>
             );
           })}
         </ul>

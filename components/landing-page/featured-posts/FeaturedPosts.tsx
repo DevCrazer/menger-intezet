@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import useParsePost, { ParsedPosts } from "../../../hooks/useParsePost";
 import { PostsContext } from "../../../pages/_app";
@@ -8,6 +7,7 @@ import { Post } from "../../../types/PostResponse";
 import styles from "./FeaturedPosts.module.scss";
 import parse from "html-react-parser";
 import LoadingBackdrop from "../../LoadingBackdrop";
+import Link from "next/link";
 
 export default function FeaturedPosts() {
   const [pauseAutoHighlight, setPauseAutoHighlight] = useState<boolean>(false);
@@ -19,7 +19,6 @@ export default function FeaturedPosts() {
     useParsePost(recentPosts[1]),
     useParsePost(recentPosts[2]),
   ];
-  const router = useRouter();
 
   useEffect(() => {
     displayNextPost();
@@ -45,44 +44,32 @@ export default function FeaturedPosts() {
     return timeout;
   };
 
-  function onClick(index: number) {
-    setLoading(true);
-    router
-      .push(`/posts/${recentPosts[index].slug}`)
-      .then(() => setLoading(false));
-  }
+  if (!recentPosts.length) return;
 
   return (
     <>
       <div className={styles.featuredPostsContainer}>
-        <img
-          src={parsedPostData[currentPost].image}
-          alt={parsedPostData[currentPost].title}
-          onClick={() => onClick(currentPost)}
-        />
+        <Link href={`/posts/${recentPosts[currentPost].slug}`}>
+          <img src={parsedPostData[currentPost].image} alt={parsedPostData[currentPost].title} />
+        </Link>
         <div className={styles.textContainer}>
           {parsedPostData.map((post: ParsedPosts, index: number) => {
             return (
-              <div
-                key={index}
-                className={
-                  currentPost === index
-                    ? styles.highlightedText
-                    : styles.regularText
-                }
-                onMouseOver={() => {
-                  setPauseAutoHighlight(true);
-                  setCurrentPost(index);
-                }}
-                onMouseLeave={() => setPauseAutoHighlight(false)}
-                onClick={() => onClick(index)}
-              >
-                <h3 className={styles.author}>{post.author}</h3>
-                <h1 className={styles.title}>{parse(post.title)}</h1>
-                <span lang="hu" className={styles.excerpt}>
-                  {parse(post.excerpt.substring(0, 400).concat("..."))}
-                </span>
-              </div>
+              <Link href={`/posts/${recentPosts[index].slug}`} key={index}>
+                <div
+                  className={currentPost === index ? styles.highlightedText : styles.regularText}
+                  onMouseOver={() => {
+                    setPauseAutoHighlight(true);
+                    setCurrentPost(index);
+                  }}
+                  onMouseLeave={() => setPauseAutoHighlight(false)}>
+                  <h3 className={styles.author}>{post.author}</h3>
+                  <h1 className={styles.title}>{parse(post.title)}</h1>
+                  <span lang="hu" className={styles.excerpt}>
+                    {parse(post.excerpt.substring(0, 400).concat("..."))}
+                  </span>
+                </div>
+              </Link>
             );
           })}
         </div>
