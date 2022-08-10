@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-page-custom-font */
+import Head from "next/head";
 import React from "react";
 
 export default function PWAHead() {
   return (
-    <>
+    <Head>
       <meta name="application-name" content="Menger Intézet" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -37,6 +38,6 @@ export default function PWAHead() {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Oswald:wght@200;300;400;500;600;700&display=swap"
       />
-    </>
+    </Head>
   );
 }
