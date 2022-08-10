@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
   try {
     await res.revalidate("/posts/randall-g-holcombe-a-demokracia-es-a-szabadsag-bonyolult-viszonya-2-resz");
-    await res.revalidate("/bbejegyzesek/1");
+    await res.revalidate("/bejegyzesek/1");
     return res.json({ revalidated: true });
   } catch (err) {
     return res.status(500).send("Error revalidating");
