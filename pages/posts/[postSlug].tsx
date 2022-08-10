@@ -9,27 +9,30 @@ import LoadingBackdrop from "../../components/LoadingBackdrop";
 import { Post } from "../../types/PostResponse";
 import { getAllPosts, getPostBySlug } from "../../helpers/getPosts";
 import * as _ from "lodash";
-import { NextSeo } from 'next-seo';
+import { NextSeo } from "next-seo";
+import { MetaTags, SinglePostParams, SinglePostProps } from "../../types/SinglePost";
 
-export default function SinglePost({ post, metaTags }: { post: Post, metaTags: any }) {
-  const { author, title, content, image, loading } = useParsePost(post.slug, post);
+export default function SinglePost({ post, metaTags }: SinglePostProps) {
+  const { author, title, content, image, loading } = useParsePost(post);
   const pageTitle = `${title} | ${author}`;
-  
+
   return (
     <>
-      <NextSeo 
+      <NextSeo
         title={pageTitle}
         openGraph={{
           url: metaTags.url,
           title: metaTags.title,
           description: metaTags.excerpt,
-          type: 'article',
-          images: [{
-            url: metaTags.image,
-            width: 1000,
-            height: 1000,
-            type: 'image/jpeg'
-          }]
+          type: "article",
+          images: [
+            {
+              url: metaTags.image,
+              width: 1000,
+              height: 1000,
+              type: "image/jpeg",
+            },
+          ],
         }}
       />
       <Layout>
@@ -49,27 +52,31 @@ export default function SinglePost({ post, metaTags }: { post: Post, metaTags: a
   );
 }
 
-export async function getStaticProps({params} : { params: { postSlug: string } }) {
-  const post: void | Post = await getPostBySlug(params.postSlug).then(post => { return post });
-  const metaTags = {
-    title: `${post?.title.rendered}`,
-    image: post?.jetpack_featured_media_url,
-    url: `https://menger.vercel.app/posts/${post?.id}`,
-    excerpt: post?.excerpt.rendered,
-    site_name: 'Menger Intézet'
-  }
-  return { props: { post, metaTags } }
+export async function getStaticProps({ params }: SinglePostParams) {
+  const post: Post = await getPostBySlug(params.postSlug).then((post) => {
+    return post;
+  });
+  const metaTags: MetaTags = {
+    title: `${post.title.rendered}`,
+    image: post.jetpack_featured_media_url,
+    url: `https://menger.vercel.app/posts/${post.slug}`,
+    excerpt: post.excerpt.rendered,
+    site_name: "Menger Intézet",
+  };
+  return { props: { post, metaTags } };
 }
 
 export async function getStaticPaths() {
-  const posts: Array<Post> = await getAllPosts().then(posts =>{ return posts });
-  const postSlugs = _.map(posts, 'slug');
-  const paths = _.map(postSlugs, (slug) => {
-    return { params: { postSlug: slug } }
-  })
+  const posts: Array<Post> = await getAllPosts().then((posts) => {
+    return posts;
+  });
+  const postSlugs = _.map(posts, "slug");
+  const paths: Array<SinglePostParams> = _.map(postSlugs, (slug) => {
+    return { params: { postSlug: slug } };
+  });
 
   return {
     paths: paths,
-    fallback: false
-  }
+    fallback: false,
+  };
 }

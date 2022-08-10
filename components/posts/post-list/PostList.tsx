@@ -14,7 +14,7 @@ export default function PostList({ displayImages }: PostListProps) {
       {postsWithoutTheFirstThree.map((post: Post, index: number) => {
         return (
           <PostListElement
-            postSlug={post.slug}
+            post={post}
             displayImage={displayImages}
             key={index}
           />

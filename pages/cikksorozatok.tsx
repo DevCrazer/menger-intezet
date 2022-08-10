@@ -105,13 +105,10 @@ export default function Collections() {
   const router = useRouter();
 
   function onClick(article: string) {
-    fetch(
-      `https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?search=${article}`
-    )
+    fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?search=${article}`)
       .then((response) => response.json())
       .then((data: Array<Post>) => {
-        console.log(data);
-        router.push(`/posts/${data[0].id}`);
+        router.push(`/posts/${data[0].slug}`);
       });
   }
 

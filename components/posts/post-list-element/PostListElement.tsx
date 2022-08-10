@@ -7,17 +7,14 @@ import { PostListElementProps } from "./PostListElement.types";
 import parse from "html-react-parser";
 import LoadingBackdrop from "../../LoadingBackdrop";
 
-export default function PostListElement({
-  postSlug,
-  displayImage,
-}: PostListElementProps) {
+export default function PostListElement({ post, displayImage }: PostListElementProps) {
   const [loading, setLoading] = useState<boolean>(false);
-  const { author, title, excerpt, image } = useParsePost(postSlug);
+  const { author, title, excerpt, image } = useParsePost(post);
   const router = useRouter();
 
   function onClick() {
     setLoading(true);
-    router.push(`/posts/${postSlug}`).then(() => setLoading(false));
+    router.push(`/posts/${post.slug}`).then(() => setLoading(false));
   }
 
   return (

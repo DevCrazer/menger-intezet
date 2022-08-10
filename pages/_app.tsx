@@ -6,8 +6,7 @@ import * as _ from "lodash";
 import PWAHead from "../components/PWAHead";
 
 export const PostsContext = createContext<any>(null);
-const POSTS_LINK =
-  "https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?per_page=20";
+const POSTS_LINK = "https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?per_page=20";
 
 function MengerApp({ Component, pageProps }: AppProps) {
   const [posts, setPosts] = useState<Array<Post>>([]);

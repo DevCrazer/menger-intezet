@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Post } from "../types/PostResponse";
 import sanitizeHtml from "sanitize-html";
 
-const useParsePost = (postSlug?: string, fetchedData?: Post) => {
+const useParsePost = (fetchedData?: Post) => {
   const [author, setAuthor] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [excerpt, setExcerpt] = useState<string>("");
@@ -15,24 +15,7 @@ const useParsePost = (postSlug?: string, fetchedData?: Post) => {
       parsePost(fetchedData);
       return;
     }
- 
-    if (postSlug && !fetchedData) {
-      fetchPostBySlug();
-    }
-  }, [postSlug, fetchedData]);
-
-
-  async function fetchPostBySlug() {
-    setLoading(true);
-    await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?slug=${postSlug}`)
-      .then((res) => res.json())
-      .then((data: Array<Post>) => {
-        if (data[0].title) {
-          parsePost(data[0]);
-          setLoading(false);
-        }
-      });
-  }
+  }, [fetchedData]);
 
   function parsePost(post: Post) {
     if (!post) return;
