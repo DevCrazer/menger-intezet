@@ -1,11 +1,14 @@
 import { NextSeo } from "next-seo";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../components/Layout";
+import { getAllPosts, getPostBySearchQuery } from "../helpers/getPosts";
 import styles from "../styles/Collections.module.scss";
-import { Post } from "../types/PostResponse";
+import { Collection, CollectionsParams, CollectionWithoutData } from "../types/Collections";
+import { FilteredPost, Post } from "../types/PostResponse";
 
-const COLLECTIONS = [
+const COLLECTIONS: Array<CollectionWithoutData> = [
   {
     name: "Infláció vagy árstabilitás?",
     articles: [
@@ -101,35 +104,21 @@ const COLLECTIONS = [
   },
 ];
 
-export default function Collections() {
-  const router = useRouter();
-
-  function onClick(article: string) {
-    fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?search=${article}`)
-      .then((response) => response.json())
-      .then((data: Array<Post>) => {
-        router.push(`/posts/${data[0].slug}`);
-      });
-  }
-
+export default function Collections({ collections }: CollectionsParams) {
   return (
     <>
       <NextSeo title={"Cikksorozatok | Menger Intézet"} />
       <Layout>
         <div className={styles.collectionsContainer}>
-          {COLLECTIONS.map((collection, index) => {
+          {collections.map((collection, index) => {
             return (
               <div key={index} className={styles.collection}>
                 <div className={styles.collectionName}>#{collection.name}</div>
                 {collection.articles.map((article, index) => {
                   return (
-                    <p
-                      className={styles.collectionArticle}
-                      key={index}
-                      onClick={() => onClick(article)}
-                    >
-                      {article}
-                    </p>
+                    <Link href={`posts/${article.data.slug}`} key={index}>
+                      <p className={styles.collectionArticle}>{article.title}</p>
+                    </Link>
                   );
                 })}
               </div>
@@ -139,4 +128,31 @@ export default function Collections() {
       </Layout>
     </>
   );
+}
+
+export async function getStaticProps() {
+  let collections: Array<Collection> = [];
+  for (const collection of COLLECTIONS) {
+    let collectionWithData: Collection = {
+      name: collection.name,
+      articles: [],
+    };
+
+    for (const article of collection.articles) {
+      await getPostBySearchQuery(article).then((post) => {
+        let filteredArticleData: FilteredPost = {
+          id: post.id,
+          slug: post.slug,
+          title: post.title,
+          content: post.content,
+          excerpt: post.excerpt,
+          jetpack_featured_media_url: post.jetpack_featured_media_url,
+        };
+        collectionWithData.articles.push({ title: article, data: filteredArticleData });
+      });
+    }
+
+    collections.push(collectionWithData);
+  }
+  return { props: { collections } };
 }

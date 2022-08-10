@@ -36,15 +36,25 @@ async function getNumberOfPages(): Promise<number> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post> {
-  return await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?slug=${slug}`)
+  return await fetch(`${BASE_URL}?slug=${slug}`)
     .then((res) => res.json())
-    .then((data: Array<Post>) => { return data[0] });
+    .then((data: Array<Post>) => {
+      return data[0];
+    });
 }
 
 export async function getLandingPagePosts(): Promise<Array<Post>> {
-  return await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?per_page=20&page=1`)
+  return await fetch(`${BASE_URL}?per_page=20&page=1`)
     .then((res) => res.json())
     .then((data: Array<Post>) => {
-      return data
+      return data;
+    });
+}
+
+export async function getPostBySearchQuery(searchQuery: string) {
+  return await fetch(`${BASE_URL}?search=${searchQuery}`)
+    .then((response) => response.json())
+    .then((data: Array<Post>) => {
+      return data[0];
     });
 }
