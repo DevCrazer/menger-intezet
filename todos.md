@@ -1,5 +1,4 @@
 - Expand meta tags for all pages
-- Implement On-Demand Revalidation
 - Add next-sitemap
 - Create logo images
 - Create favicons
