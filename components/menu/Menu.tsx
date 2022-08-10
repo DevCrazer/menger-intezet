@@ -36,7 +36,6 @@ export default function Menu({ showLogo }: MenuProps) {
   }
 
   useEffect(() => {
-    console.log(pathname)
     setCurrentItem(pathname);
   }, []);
 

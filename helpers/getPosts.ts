@@ -45,7 +45,6 @@ export async function getLandingPagePosts(): Promise<Array<Post>> {
   return await fetch(`https://public-api.wordpress.com/wp/v2/sites/mengerblog.com/posts?per_page=20&page=1`)
     .then((res) => res.json())
     .then((data: Array<Post>) => {
-      console.log(data.length);
       return data
     });
 }

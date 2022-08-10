@@ -52,8 +52,15 @@ export default function SinglePost({ post, metaTags }: SinglePostProps) {
 }
 
 export async function getStaticProps({ params }: SinglePostParams) {
-  const post: Post = await getPostBySlug(params.postSlug).then((post) => {
-    return post;
+  const post: FilteredPost = await getPostBySlug(params.postSlug).then((post) => {
+    return {
+      id: post.id,
+      slug: post.slug,
+      title: post.title,
+      content: post.content,
+      excerpt: post.excerpt,
+      jetpack_featured_media_url: post.jetpack_featured_media_url,
+    };
   });
   const metaTags: MetaTags = {
     title: `${post.title.rendered}`,
@@ -62,15 +69,7 @@ export async function getStaticProps({ params }: SinglePostParams) {
     excerpt: post.excerpt.rendered,
     site_name: "Menger Intézet",
   };
-  const filteredPost: FilteredPost = {
-    id: post.id,
-    slug: post.slug,
-    title: post.title,
-    content: post.content,
-    excerpt: post.excerpt,
-    jetpack_featured_media_url: post.jetpack_featured_media_url,
-  };
-  return { props: { filteredPost, metaTags } };
+  return { props: { post, metaTags } };
 }
 
 export async function getStaticPaths() {

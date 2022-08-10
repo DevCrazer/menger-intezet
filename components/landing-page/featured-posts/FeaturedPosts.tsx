@@ -51,19 +51,26 @@ export default function FeaturedPosts() {
     <>
       <div className={styles.featuredPostsContainer}>
         <Link href={`/posts/${recentPosts[currentPost].slug}`}>
-          <Image src={parsedPostData[currentPost].image} alt={parsedPostData[currentPost].title} width={1000} height={1000} objectFit={'contain'} />
+          <Image
+            src={parsedPostData[currentPost]?.image}
+            alt={parsedPostData[currentPost].title}
+            width={1000}
+            height={1000}
+            objectFit={"contain"}
+          />
         </Link>
         <div className={styles.textContainer}>
           {parsedPostData.map((post: ParsedPosts, index: number) => {
             return (
-              <Link href={`/posts/${recentPosts[index].slug}`} key={index}>
-                <div
-                  className={currentPost === index ? styles.highlightedText : styles.regularText}
-                  onMouseOver={() => {
-                    setPauseAutoHighlight(true);
-                    setCurrentPost(index);
-                  }}
-                  onMouseLeave={() => setPauseAutoHighlight(false)}>
+              <Link
+                href={`/posts/${recentPosts[index].slug}`}
+                key={index}
+                onMouseOver={() => {
+                  setPauseAutoHighlight(true);
+                  setCurrentPost(index);
+                }}
+                onMouseLeave={() => setPauseAutoHighlight(false)}>
+                <div className={currentPost === index ? styles.highlightedText : styles.regularText}>
                   <h3 className={styles.author}>{post.author}</h3>
                   <h1 className={styles.title}>{parse(post.title)}</h1>
                   <span lang="hu" className={styles.excerpt}>
