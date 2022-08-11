@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import sanitize from "sanitize-html";
 import parse from "html-react-parser";
-import styles from "./Postgrid.module.scss";
+import styles from "./PostGrid.module.scss";
 
 export default function PostGrid({ posts }: PostGridProps) {
   return (
