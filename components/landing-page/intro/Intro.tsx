@@ -19,7 +19,7 @@ export default function Intro() {
           A Carl Menger Intézet legfőbb célja, hogy névadója szellemében
           elősegítse a polgári értékek terjedését Magyarországon: a személyes
           szabadságét, a politikától nem függő szabad vállalkozásét, a
-          tulajdonjog védelméét. Fontosnak tartjuk az állami jelenlét
+          tulajdonjog védelmét. Fontosnak tartjuk az állami jelenlét
           csökkentését a szabadon szerveződő társadalom életében és a
           gazdaságban.
         </p>
