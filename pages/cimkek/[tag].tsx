@@ -20,7 +20,7 @@ export default function Tag({ posts }: TagProps) {
       <NextSeo title={`${tag} | Menger Intézet`} />
       <Layout>
         <div className={styles.postsContainer}>
-          <h2 className={styles.tagLabel}>{ tag }</h2>
+          <h2 className={styles.tagLabel}>#{tag}</h2>
           <PostGrid posts={posts} />
         </div>
         <LoadingBackdrop open={loading} />

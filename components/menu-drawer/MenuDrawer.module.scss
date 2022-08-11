@@ -1,5 +1,7 @@
+@import '../../styles/variables.scss';
+
 .menuDrawerContainer {
-  background-color: black;
+  background-color: $menu-background;
   color: white;
   display: flex;
   padding-inline: 2rem;
