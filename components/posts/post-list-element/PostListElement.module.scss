@@ -5,16 +5,15 @@
   padding-block: 3rem;
 
   .author {
-    color: gray;
+    color: rgb(82, 82, 82);
     margin-block: 0;
-    color: $secondary-darker;
   }
 
   .title {
     margin: 0;
     line-height: 1.1;
     cursor: pointer;
-    color: $secondary-darkest;
+    color: black;
 
     &:hover {
       text-decoration: underline;
@@ -37,7 +36,7 @@
       text-decoration-style: dashed;
       margin-left: auto;
       background-color: $secondary-lighter;
-      color: $secondary-darkest;
+      color: black;
       padding-inline: 2rem;
       padding-block: 5px;
       border-radius: 10px;
