@@ -9,7 +9,7 @@ export default function Logo() {
       <Link href={"/"}>
         <a>
           <Image
-          className={styles.logoImage}
+            className={styles.logoImage}
             src={"/assets/images/logo.png"}
             width={300}
             height={35}

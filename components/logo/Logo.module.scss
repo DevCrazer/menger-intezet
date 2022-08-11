@@ -37,3 +37,19 @@
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Chrome, Edge, Opera and Firefox */
 }
+
+@media screen and (max-width: 900px) {
+  .logoContainer {
+    margin-block: 1.5rem;
+    max-width: 60%;
+  }
+
+  .secondLine {
+    font-size: 0.75rem !important;
+    letter-spacing: 15px !important;
+    margin-right: -15px !important;
+
+  }
+
+
+}
