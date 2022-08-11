@@ -3,7 +3,7 @@ import { Post } from "../types/PostResponse";
 import { Tag } from "../types/TagsResponse";
 
 const BASE_URL = "https://public-api.wordpress.com/wp/v2/sites/mengerblog.com";
-const POSTS_PER_PAGE = 100;
+const POSTS_PER_PAGE = 50;
 
 export async function getAllPosts(): Promise<Array<Post>> {
   const numberOfPages: number = await getNumberOfPages(QueryTypes.Posts).then((number) => {

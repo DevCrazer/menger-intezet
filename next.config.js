@@ -22,6 +22,15 @@ module.exports = withPWA({
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/([0-9]*\/[0-9]*\/[0-9]*)/:slug',
+        destination: '/posts/:slug',
+        permanent: true,
+      }
+    ]
+  },
   images: {
     domains: ['mengerblogcom.files.wordpress.com']
   }
