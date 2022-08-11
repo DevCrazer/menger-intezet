@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import useParsePost from "../../hooks/useParsePost";
 import styles from "../../styles/Post.module.scss";
@@ -14,7 +14,18 @@ import Image from "next/image";
 
 export default function SinglePost({ post, metaTags }: SinglePostProps) {
   const { author, title, content, image, loading } = useParsePost(post);
+  const [convertedContent, setConvertedContent] = useState();
   const pageTitle = `${title} | ${author}`;
+
+  useEffect(() => {
+    convertRegularLinksToNextLinks(content);
+  }, [content])
+
+  function convertRegularLinksToNextLinks(html: string): string {
+    let convertedHtml: string = "";
+    // https://github.com/gitamj/html-string-to-nextjs/blob/main/pages/index.js
+    return convertedHtml;
+  }
 
   return (
     <>
@@ -42,13 +53,7 @@ export default function SinglePost({ post, metaTags }: SinglePostProps) {
             <div className={styles.title}>{title}</div>
           </div>
           <div className={styles.imageContainer}>
-            <Image
-              src={image}
-              alt={title}
-              width={700}
-              height={700}
-              objectFit={"contain"}
-            />
+            <Image src={image} alt={title} width={700} height={700} objectFit={"contain"} />
           </div>
           <div className={`${styles.content} singlePostContent`} lang="hu">
             {parse(content)}
