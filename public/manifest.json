@@ -3,7 +3,7 @@
   "short_name": "Menger Intézet",
   "theme_color": "#ffffff",
   "background_color": "#000000",
-  "display": "standalone",
+  "display": "fullscreen",
   "start_url": "./",
   "icons": [
     {
