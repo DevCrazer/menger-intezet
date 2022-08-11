@@ -53,10 +53,9 @@ const useParsePost = (fetchedData?: Post | FilteredPost) => {
       },
     };
 
-    let html = sanitizeHtml(content, sanitizeOptions).replaceAll(
-      'href="#_ftn',
-      'class="footnote-number" href="#_ftn'
-    );
+    let html = sanitizeHtml(content, sanitizeOptions)
+      .replaceAll('href="#_ftn', 'class="footnote-number" href="#_ftn')
+      .replaceAll(/https:\/\/mengerblog\.com\/[0-9]*\/[0-9]*\/[0-9]*\//g, "/posts\/");
 
     return html;
   }
