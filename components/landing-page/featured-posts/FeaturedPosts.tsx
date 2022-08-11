@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import useParsePost, { ParsedPosts } from "../../../hooks/useParsePost";
-import { PostsContext } from "../../../pages/_app";
+import { PostsContext } from "../../../pages/index";
 import { Post } from "../../../types/PostResponse";
 import styles from "./FeaturedPosts.module.scss";
 import parse from "html-react-parser";
@@ -14,11 +14,11 @@ export default function FeaturedPosts() {
   const [pauseAutoHighlight, setPauseAutoHighlight] = useState<boolean>(false);
   const [currentPost, setCurrentPost] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
-  const recentPosts: Array<Post> = useContext(PostsContext).slice(0, 3);
+  const recentPosts: Array<Post> = useContext(PostsContext)?.slice(0, 3);
   const parsedPostData = [
-    useParsePost(recentPosts[0]),
-    useParsePost(recentPosts[1]),
-    useParsePost(recentPosts[2]),
+    useParsePost(recentPosts ? recentPosts[0] : undefined),
+    useParsePost(recentPosts ? recentPosts[1] : undefined),
+    useParsePost(recentPosts ? recentPosts[2] : undefined),
   ];
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function FeaturedPosts() {
     return timeout;
   };
 
-  if (!recentPosts.length) return <></>;
+  if (!recentPosts?.length) return <></>;
 
   return (
     <>
@@ -65,16 +65,23 @@ export default function FeaturedPosts() {
         <div className={styles.textContainer}>
           {parsedPostData.map((post: ParsedPosts, index: number) => {
             const parsedTitle = parse(post.title);
-            const parsedExcerpt = parse(post.excerpt.substring(0, 400).concat("..."));
+            const parsedExcerpt = parse(
+              post.excerpt.substring(0, 400).concat("...")
+            );
             return (
               <Link href={`/posts/${recentPosts[index].slug}`} key={index}>
                 <div
-                  className={currentPost === index ? styles.highlightedText : styles.regularText}
+                  className={
+                    currentPost === index
+                      ? styles.highlightedText
+                      : styles.regularText
+                  }
                   onMouseOver={() => {
                     setPauseAutoHighlight(true);
                     setCurrentPost(index);
                   }}
-                  onMouseLeave={() => setPauseAutoHighlight(false)}>
+                  onMouseLeave={() => setPauseAutoHighlight(false)}
+                >
                   <h3 className={styles.author}>{post.author}</h3>
                   <h1 className={styles.title}>{parsedTitle}</h1>
                   <span lang="hu" className={styles.excerpt}>
