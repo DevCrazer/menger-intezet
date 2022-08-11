@@ -6,29 +6,37 @@ import styles from "./TagCloudComponent.module.scss";
 import Link from "next/link";
 
 const TAGS = [
-  { value: "kapitalizmus", count: 24 },
-  { value: "marx", count: 22 },
-  { value: "tőke", count: 20 },
-  { value: "menger", count: 18 },
-  { value: "monopólium", count: 18 },
   { value: "verseny", count: 18 },
-  { value: "kizsákmányolás", count: 17 },
+  { value: "szabadpiac", count: 12 },
+  { value: "tőke", count: 20 },
   { value: "vállalkozó", count: 16 },
+  { value: "szegénység", count: 12 },
   { value: "szocializmus", count: 16 },
-  { value: "munkaerő-piac", count: 15 },
-  { value: "egyenlőtlenség", count: 15 },
-  { value: "történelem", count: 14 },
+  { value: "marx", count: 22 },
+  { value: "monopólium", count: 18 },
   { value: "válság", count: 14 },
   { value: "középosztály", count: 13 },
-  { value: "szegénység", count: 12 },
-  { value: "szabadpiac", count: 12 },
+  { value: "kizsákmányolás", count: 17 },
+  { value: "menger", count: 18 },
+  { value: "munkaerő-piac", count: 15 },
+  { value: "egyenlőtlenség", count: 15 },
+  { value: "kapitalizmus", count: 24 },
+  { value: "történelem", count: 14 },
 ];
 
 export default function TagCloudComponent() {
-  const customRenderer = (tag: TagCloudDataEntry, size: number, color: string) => {
+  const customRenderer = (
+    tag: TagCloudDataEntry,
+    size: number,
+    color: string
+  ) => {
     return (
       <Link href={`/cimkek/${tag.value}`}>
-        <span key={tag.value} style={{ color }} className={styles[`tag-${size}`]}>
+        <span
+          key={tag.value}
+          style={{ color }}
+          className={styles[`tag-${size}`]}
+        >
           {tag.value}
         </span>
       </Link>
@@ -44,14 +52,12 @@ export default function TagCloudComponent() {
           tags={TAGS}
           colorOptions={{
             hue: "#09C778",
-            luminosity: "light",
+            luminosity: "bright",
           }}
           disableRandomColor={true}
           renderer={customRenderer}
+          shuffle={false}
         />
-        {/* <Link href={`/cimkek/`}>
-          <div className={styles.ctaButton}>Továbbiak »</div>
-        </Link> */}
       </div>
     </>
   );

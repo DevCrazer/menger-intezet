@@ -28,6 +28,10 @@
         color: $secondary-lighter !important;
       }
 
+      &::before {
+        content: "#";
+      }
+
       &::after {
         content: ",";
       }
