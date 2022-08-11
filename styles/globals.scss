@@ -22,7 +22,7 @@ a {
 
 p {
   font-family: "Montserrat";
-  font-weight: 400;
+  font-weight: 500;
   hyphens: auto;
   color: black !important;
 }
@@ -74,7 +74,6 @@ p {
 @media screen and (max-width: 800px) {
   p {
     font-size: 0.85rem;
-    font-weight: 400;
   }
 
   .has-large-font-size {
@@ -92,8 +91,3 @@ p {
   }
 }
 
-@media screen and (max-width: 1400px) {
-  p {
-    font-weight: 500;
-  }
-}
