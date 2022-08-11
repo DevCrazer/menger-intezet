@@ -74,7 +74,7 @@ export async function getStaticProps({ params }: SinglePostParams) {
   const metaTags: MetaTags = {
     title: `${post.title.rendered}`,
     image: post.jetpack_featured_media_url,
-    url: `https://menger.vercel.app/posts/${post.slug}`,
+    url: `https://menger.hu/posts/${post.slug}`,
     excerpt: post.excerpt.rendered,
     site_name: "Menger Intézet",
   };

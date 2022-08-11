@@ -28,7 +28,7 @@ export default function PWAHead() {
       <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Oswald:wght@200;300;400;500;600;700&display=swap' />
           
       <meta name='twitter:card' content='summary' />
-      <meta name='twitter:url' content='https://menger.vercel.app' />
+      <meta name='twitter:url' content='https://menger.hu' />
       <meta name='twitter:title' content='Menger Intézet' />
       <meta name='twitter:description' content='Menger Intézet' />
       <meta name='twitter:image' content='/assets/icons/android-chrome-192x192.png' />
@@ -38,7 +38,7 @@ export default function PWAHead() {
       <meta property='og:title' content='Menger Intézet' />
       <meta property='og:description' content='Menger Intézet' />
       <meta property='og:site_name' content='Menger Intézet' />
-      <meta property='og:url' content='https://menger.vercel.app' />
+      <meta property='og:url' content='https://menger.hu' />
       {/* <meta property='og:image' content='https://yourdomain.com/icons/apple-touch-icon.png' /> */}
 
     </Head>
