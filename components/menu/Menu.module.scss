@@ -12,7 +12,6 @@
   -webkit-box-shadow: 2px 0px 15px 1px #000000;
   box-shadow: 2px 0px 15px 1px #000000;
   z-index: 10;
-  max-width: 40vw;
 
   .logoContainer {
     padding-inline: 2rem;
@@ -70,5 +69,6 @@
 @media screen and (max-width: 600px) {
   .menuContainer {
     height: 100%;
+    max-width: 70vw;
   }
 }
