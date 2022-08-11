@@ -17,15 +17,51 @@ export default function SinglePost({ post, metaTags }: SinglePostProps) {
   const [convertedContent, setConvertedContent] = useState();
   const pageTitle = `${title} | ${author}`;
 
-  useEffect(() => {
-    convertRegularLinksToNextLinks(content);
-  }, [content])
+  // useEffect(() => {
+  //   convertRegularLinksToNextLinks(content);
+  // }, [content])
 
-  function convertRegularLinksToNextLinks(html: string): string {
-    let convertedHtml: string = "";
-    // https://github.com/gitamj/html-string-to-nextjs/blob/main/pages/index.js
-    return convertedHtml;
-  }
+  // function convertRegularLinksToNextLinks(html: string): string | JSX.Element | Array<JSX.Element>{
+  //   let parsedHtml = parse(html);
+
+  //   if (typeof parsedHtml === 'string' || !Array.isArray(parsedHtml)) return parsedHtml;
+
+  //   let convertedHtml = _.map(parsedHtml, (node: JSX.Element) => {
+  //     if (node.name === 'a') {
+  //       return node
+  //     }
+  //   })
+
+  //   // https://github.com/gitamj/html-string-to-nextjs/blob/main/pages/index.js
+  //   // return convertedHtml;
+
+
+  //   const htmlInput = '<p><a href="/contact">Contact</a></p><img width="200" height="200" src="/vercel.svg">';
+
+  //   const processingInstructions = [
+  //       {
+  //           // Custom <a /> processing
+  //           shouldProcessNode: (node: JSX.Element) => {return  node.name === 'a';},
+  //           processNode: (node, children,index) => {
+  //             return <Link key={index} href={node.attribs.href} className={node.attribs.class}>{children[0]}</Link>;
+  //           }
+  //       },
+  //       {
+  //           // Custom <img /> processing
+  //           shouldProcessNode: (node: JSX.Element) => {return  node.name === 'img';},
+  //           processNode: (node,children,index) => {
+  //              return <Image key={index} src={node.attribs.src} className={node.attribs.class} width={node.attribs.width} height={node.attribs.height}  alt={node.attribs.alt} title={node.attribs.title}/>;
+  //             }
+  //       },
+  //       {
+  //           // Anything else
+  //           shouldProcessNode: (node: JSX.Element) => {return true;},
+  //           processNode: new HtmlToReact.ProcessNodeDefinitions(React).processDefaultNode
+  //       }
+  //   ];
+
+  //   const elements = new HtmlToReactParser().parseWithInstructions(htmlInput,()=>{return true},processingInstructions);
+  // }
 
   return (
     <>
