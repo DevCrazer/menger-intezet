@@ -17,7 +17,22 @@ export default function Tag({ posts }: TagProps) {
 
   return (
     <>
-      <NextSeo title={`${tag} | Menger Intézet`} />
+      <NextSeo
+        title={`${tag} | Menger Intézet`}
+        openGraph={{
+          url: `https://menger.hu/cimkek/${tag}`,
+          title: `#${tag} | Menger Intézet`,
+          type: "article",
+          images: [
+            {
+              url: "/assets/images/fb-featured.png",
+              width: 1200,
+              height: 630,
+              type: "image/png",
+            },
+          ],
+        }}
+      />
       <Layout>
         <div className={styles.postsContainer}>
           <h2 className={styles.tagLabel}>#{tag}</h2>
@@ -40,9 +55,11 @@ export async function getStaticProps({ params }: { params: { tag: string } }) {
     return;
   }
 
-  const posts: Array<Post> = await getPostsByTag(tagToDisplay.id).then((posts) => {
-    return posts;
-  });
+  const posts: Array<Post> = await getPostsByTag(tagToDisplay.id).then(
+    (posts) => {
+      return posts;
+    }
+  );
 
   const filteredPosts: Array<FilteredPost> = _.map(posts, (post) => {
     return {

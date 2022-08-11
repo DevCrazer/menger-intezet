@@ -36,7 +36,22 @@ const AUTHORS_DATA = [
 export default function Authors() {
   return (
     <>
-      <NextSeo title={'Szerzőink | Menger Intézet'} />
+      <NextSeo
+        title={"Szerzőink | Menger Intézet"}
+        openGraph={{
+          url: `https://menger.hu/szerzoink`,
+          title: `Szerzőink | Menger Intézet`,
+          type: "article",
+          images: [
+            {
+              url: "/assets/images/fb-featured.png",
+              width: 1200,
+              height: 630,
+              type: "image/png",
+            },
+          ],
+        }}
+      />
       <Layout>
         <div className={styles.authorsContainer}>
           {AUTHORS_DATA.map((author, index) => {

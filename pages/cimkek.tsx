@@ -31,7 +31,22 @@ export default function Tags({ tags }: TagsProps) {
 
   return (
     <>
-      <NextSeo title={"Címkék | Menger Intézet"} />
+      <NextSeo
+        title={"Címkék | Menger Intézet"}
+        openGraph={{
+          url: `https://menger.hu/cimkek/`,
+          title: `Címkék | Menger Intézet`,
+          type: "article",
+          images: [
+            {
+              url: "/assets/images/fb-featured.png",
+              width: 1200,
+              height: 630,
+              type: "image/png",
+            },
+          ],
+        }}
+      />
       <Layout>
         <div className={styles.tagsContainer}>
           <div className={styles.tagCloudContainer}>
@@ -41,8 +56,8 @@ export default function Tags({ tags }: TagsProps) {
               tags={data}
               onClick={(tag: TagCloudDataEntry) => navigateToTagPage(tag.value)}
               colorOptions={{
-                hue: 'blue',
-                luminosity: 'bright'
+                hue: "blue",
+                luminosity: "bright",
               }}
             />
           </div>

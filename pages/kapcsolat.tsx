@@ -6,7 +6,22 @@ import styles from "../styles/Contact.module.scss";
 export default function Contact() {
   return (
     <>
-      <NextSeo title={'Kapcsolat | Menger Intézet'} />
+      <NextSeo
+        title={"Kapcsolat | Menger Intézet"}
+        openGraph={{
+          url: "https://menger.hu/kapcsolat",
+          title: "Kapcsolat | Menger Intézet",
+          type: "article",
+          images: [
+            {
+              url: "/assets/images/fb-featured.png",
+              width: 1200,
+              height: 630,
+              type: "image/png",
+            },
+          ],
+        }}
+      />
       <Layout>
         <div className={styles.contactContainer}>
           <p>

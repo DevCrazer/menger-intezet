@@ -14,7 +14,22 @@ const Home = ({ filteredPosts }: { filteredPosts: Array<FilteredPost> }) => {
     <div lang="hu">
       <PostsContext.Provider value={filteredPosts}>
         <PWAHead />
-        <NextSeo title={"Menger Intézet"} />
+        <NextSeo
+          title={"Menger Intézet"}
+          openGraph={{
+            url: `https://menger.hu/`,
+            title: `Menger Intézet`,
+            type: "article",
+            images: [
+              {
+                url: "/assets/images/fb-featured.png",
+                width: 1200,
+                height: 630,
+                type: "image/png",
+              },
+            ],
+          }}
+        />
         <Layout>
           <LandingPage />
         </Layout>

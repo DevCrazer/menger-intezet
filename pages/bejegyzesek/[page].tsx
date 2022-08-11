@@ -29,7 +29,22 @@ export default function Posts({ posts, pageCount, page }: PostsProps) {
 
   return (
     <>
-      <NextSeo title={"Bejegyzések | Menger Intézet"} />
+      <NextSeo
+        title={"Bejegyzések | Menger Intézet"}
+        openGraph={{
+          url: `https://menger.hu/bejegyzesek/${page}`,
+          title: "Bejegyzések | Menger Intézet",
+          type: "article",
+          images: [
+            {
+              url: "/assets/images/fb-featured.png",
+              width: 1200,
+              height: 630,
+              type: "image/png",
+            },
+          ],
+        }}
+      />
       <Layout>
         <div className={styles.postsContainer}>
           <PostGrid posts={posts} />

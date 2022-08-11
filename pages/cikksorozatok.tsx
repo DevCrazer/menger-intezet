@@ -5,7 +5,11 @@ import React from "react";
 import Layout from "../components/Layout";
 import { getAllPosts, getPostBySearchQuery } from "../helpers/getPosts";
 import styles from "../styles/Collections.module.scss";
-import { Collection, CollectionsParams, CollectionWithoutData } from "../types/Collections";
+import {
+  Collection,
+  CollectionsParams,
+  CollectionWithoutData,
+} from "../types/Collections";
 import { FilteredPost, Post } from "../types/PostResponse";
 
 const COLLECTIONS: Array<CollectionWithoutData> = [
@@ -107,7 +111,22 @@ const COLLECTIONS: Array<CollectionWithoutData> = [
 export default function Collections({ collections }: CollectionsParams) {
   return (
     <>
-      <NextSeo title={"Cikksorozatok | Menger Intézet"} />
+      <NextSeo
+        title={"Cikksorozatok | Menger Intézet"}
+        openGraph={{
+          url: `https://menger.hu/cikksorozatok/`,
+          title: `Cikksorozatok | Menger Intézet`,
+          type: "article",
+          images: [
+            {
+              url: "/assets/images/fb-featured.png",
+              width: 1200,
+              height: 630,
+              type: "image/png",
+            },
+          ],
+        }}
+      />
       <Layout>
         <div className={styles.collectionsContainer}>
           {collections.map((collection, index) => {
@@ -117,7 +136,9 @@ export default function Collections({ collections }: CollectionsParams) {
                 {collection.articles.map((article, index) => {
                   return (
                     <Link href={`posts/${article.data.slug}`} key={index}>
-                      <p className={styles.collectionArticle}>{article.title}</p>
+                      <p className={styles.collectionArticle}>
+                        {article.title}
+                      </p>
                     </Link>
                   );
                 })}
@@ -148,7 +169,10 @@ export async function getStaticProps() {
           excerpt: post.excerpt,
           jetpack_featured_media_url: post.jetpack_featured_media_url,
         };
-        collectionWithData.articles.push({ title: article, data: filteredArticleData });
+        collectionWithData.articles.push({
+          title: article,
+          data: filteredArticleData,
+        });
       });
     }
 
