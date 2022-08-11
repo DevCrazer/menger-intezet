@@ -1,0 +1,10 @@
+.postsContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: center;
+ 
+    .tagLabel {
+        text-transform: uppercase;
+    }
+}

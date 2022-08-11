@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import LoadingBackdrop from "../LoadingBackdrop";
 import Logo from "../logo/Logo";
+import TagCloudComponent from "../tag-cloud/TagCloudComponent";
 import styles from "./Menu.module.scss";
 import { MenuProps } from "./Menu.types";
 
@@ -49,11 +50,15 @@ export default function Menu({ showLogo }: MenuProps) {
         ) : null}
         <ul className={styles.navigation}>
           {LIST_ITEMS.map((item) => {
-            const highlightMenuItem: boolean = (item.route.length && currentItem?.includes(item.route)) || (currentItem === "/" && item.name === 'Főoldal');
-            return (              
+            const highlightMenuItem: boolean =
+              (item.route.length && currentItem?.includes(item.route)) ||
+              (currentItem === "/" && item.name === "Főoldal");
+            return (
               <Link href={`/${item.route}`} key={item.route}>
                 <li
-                  className={`${styles.navigationElement} ${highlightMenuItem ? styles.activeElement : styles.inactiveElement}`}
+                  className={`${styles.navigationElement} ${
+                    highlightMenuItem ? styles.activeElement : styles.inactiveElement
+                  }`}
                   onClick={() => onClick(item.route)}>
                   {item.name}
                 </li>
@@ -61,6 +66,9 @@ export default function Menu({ showLogo }: MenuProps) {
             );
           })}
         </ul>
+        <div className={styles.tagsContainer}>
+          <TagCloudComponent />
+        </div>
         <div className={styles.socials}>
           {SOCIAL_MEDIA_LINKS.map((data) => {
             return (

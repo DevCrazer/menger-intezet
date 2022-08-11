@@ -4,62 +4,6 @@
   padding: 2rem;
   justify-content: center;
 
-  .postCardsContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-inline: auto;
-    gap: 2rem;
-    margin-bottom: 1.25rem;
-
-    .postCard {
-      min-width: 300px;
-      max-width: 400px;
-
-      .postAuthor {
-        margin-top: 1rem;
-      }
-
-      .postName {
-        cursor: pointer;
-        font-size: 1.75rem;
-        line-height: 1.1;
-
-        &:hover {
-          text-decoration: underline;
-          text-decoration-style: dotted;
-        }
-      }
-
-      .excerptContainer {
-        display: grid;
-        grid-template-columns: 1fr;
-
-        .postExcerpt {
-          text-align: justify;
-          hyphens: auto;
-
-          p {
-            margin-bottom: 0; 
-          }
-        }
-        .readMoreButton {
-          cursor: pointer;
-          margin-left: auto;
-
-          &:hover {
-            text-decoration: underline;
-            text-decoration-style: dotted;
-          }
-        }
-      }
-
-      img {
-        cursor: pointer;
-        max-width: 100%;
-      }
-    }
-  }
-
   .paginationContainer {
     margin-inline: auto;
     margin-top: auto;
@@ -67,14 +11,3 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .postCardsContainer {
-    grid-template-columns: 1fr 1fr !important;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .postCardsContainer {
-    grid-template-columns: 1fr !important;
-  }
-}

@@ -8,3 +8,4 @@
 - Create admin interface for changing db content
 - Write documentation
   - How to write titles
+- Add tags

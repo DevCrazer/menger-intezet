@@ -4,6 +4,16 @@
 }
 
 .bodyContainerMobile {
-  display: grid;
+  display: none;
   grid-template-columns: 1fr;
+}
+
+@media screen and (max-width: 900px) {
+  .bodyContainerDesktop {
+    display: none;
+  }
+  
+  .bodyContainerMobile {
+    display: grid;
+  }
 }
