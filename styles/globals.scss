@@ -38,7 +38,7 @@ p {
   text-transform: uppercase;
   font-size: 1.75rem;
   padding-left: 10px;
-  border-left: 10px solid $secondary;
+  border-left: 10px solid $secondary-lighter;
   text-align: left !important;
   hyphens: none;
   margin-top: 5rem;
@@ -85,7 +85,7 @@ p {
       font-size: 1.33rem;
       text-align: center !important;
       padding-inline: 10px !important;
-      border-right: 10px solid $secondary;
+      border-right: 10px solid $secondary-lighter;
     }
   }
 }
