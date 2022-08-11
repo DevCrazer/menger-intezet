@@ -3,9 +3,18 @@
 @mixin tag-x-list {
   @for $i from 12 through 24 {
     .tag-#{$i} {
-      font-size: #{$i}px !important;
+      font-size: #{$i + 3}px !important;
       margin-inline: 4px;
+      margin-block: 2px;
       align-self: center !important;
+      color: white;
+    }
+
+    @media screen and (max-width: 1439px) {
+      .tag-#{$i} {
+        margin-block: 0px;
+        font-size: #{$i}px !important;
+      }
     }
   }
 }
@@ -13,6 +22,8 @@
 .tagCloudComponentContainer {
   display: grid;
   grid-template-columns: 1fr;
+  padding: 0.5rem;
+  border-top: 5px solid $secondary-lighter;
 
   div {
     display: flex;
@@ -21,7 +32,6 @@
 
     span {
       cursor: pointer;
-      text-transform: capitalize;
       transition-duration: 0.5s;
 
       &:hover {

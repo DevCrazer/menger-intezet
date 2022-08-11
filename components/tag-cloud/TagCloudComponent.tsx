@@ -11,17 +11,16 @@ const TAGS = [
   { value: "tőke", count: 20 },
   { value: "vállalkozó", count: 16 },
   { value: "szegénység", count: 12 },
-  { value: "szocializmus", count: 16 },
+  { value: "középosztály", count: 13 },
   { value: "marx", count: 22 },
   { value: "monopólium", count: 18 },
+  { value: "történelem", count: 14 },
   { value: "válság", count: 14 },
-  { value: "középosztály", count: 13 },
   { value: "kizsákmányolás", count: 17 },
   { value: "menger", count: 18 },
   { value: "munkaerő-piac", count: 15 },
-  { value: "egyenlőtlenség", count: 15 },
   { value: "kapitalizmus", count: 24 },
-  { value: "történelem", count: 14 },
+  { value: "egyenlőtlenség", count: 15 },
 ];
 
 export default function TagCloudComponent() {

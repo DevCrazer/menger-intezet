@@ -1,5 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { faFacebookSquare, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebookSquare,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -22,9 +25,21 @@ const LIST_ITEMS = [
 ];
 
 const SOCIAL_MEDIA_LINKS = [
-  { name: "facebook", icon: faFacebookSquare, link: "https://www.facebook.com/mengerhun/" },
-  { name: "youtube", icon: faYoutube, link: "https://www.youtube.com/channel/UCR9ZpmR-YA-XRjhx2NRTJVw" },
-  { name: "email", icon: faEnvelope, link: "mailto:carlmengerintezet@gmail.com" },
+  {
+    name: "facebook",
+    icon: faFacebookSquare,
+    link: "https://www.facebook.com/mengerhun/",
+  },
+  {
+    name: "youtube",
+    icon: faYoutube,
+    link: "https://www.youtube.com/channel/UCR9ZpmR-YA-XRjhx2NRTJVw",
+  },
+  {
+    name: "email",
+    icon: faEnvelope,
+    link: "mailto:carlmengerintezet@gmail.com",
+  },
 ];
 
 export default function Menu({ showLogo }: MenuProps) {
@@ -57,26 +72,34 @@ export default function Menu({ showLogo }: MenuProps) {
               <Link href={`/${item.route}`} key={item.route}>
                 <li
                   className={`${styles.navigationElement} ${
-                    highlightMenuItem ? styles.activeElement : styles.inactiveElement
+                    highlightMenuItem
+                      ? styles.activeElement
+                      : styles.inactiveElement
                   }`}
-                  onClick={() => onClick(item.route)}>
+                  onClick={() => onClick(item.route)}
+                >
                   {item.name}
                 </li>
               </Link>
             );
           })}
         </ul>
-        <div className={styles.tagsContainer}>
-          <TagCloudComponent />
-        </div>
         <div className={styles.socials}>
           {SOCIAL_MEDIA_LINKS.map((data) => {
             return (
-              <a href={data.link} target="_blank" rel="noopener noreferrer" key={data.name}>
+              <a
+                href={data.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={data.name}
+              >
                 <FontAwesomeIcon icon={data.icon} />
               </a>
             );
           })}
+        </div>
+        <div className={styles.tagsContainer}>
+          <TagCloudComponent />
         </div>
       </div>
       <LoadingBackdrop open={loading} />
