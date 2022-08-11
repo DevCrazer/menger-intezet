@@ -1,4 +1,3 @@
-- Expand meta tags for all pages
 - Connect with a supabase / firebase db
 - Refactor to fetch static content from db
   - Intro text
