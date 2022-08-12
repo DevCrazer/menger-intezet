@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: any }) {
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    if (isRightSwipe) {
+    if (isLeftSwipe) {
       setOpen(true);
     }
   };
