@@ -7,4 +7,5 @@
 - Add logos to menu icons 
 - Add share button 
 - Handle hold tap event on links 
-
+- Add navigate to previous or next  post  by swipe 
+- 
