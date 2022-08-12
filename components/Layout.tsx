@@ -26,6 +26,10 @@ export default function Layout({ children }: { children: any }) {
     if (isLeftSwipe) {
       setOpen(true);
     }
+
+    if (isRightSwipe){
+      setOpen(false)
+    }
   };
   return (
     <>
