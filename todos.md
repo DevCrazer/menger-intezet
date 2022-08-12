@@ -4,5 +4,7 @@
   - Collections
   - Authors
 - Create admin interface for changing db content
-- Write documentation
-  - How to write titles
+- Add logos to menu icons 
+- Add share button 
+- Handle hold tap event on links 
+
