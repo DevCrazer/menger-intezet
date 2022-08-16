@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import LandingPage from "../components/landing-page/LandingPage";
 import Layout from "../components/Layout";
 import PWAHead from "../components/PWAHead";
-import { getLandingPagePosts } from "../helpers/getPosts";
+import { getFilteredPostData, getLandingPagePosts } from "../helpers/getPosts";
 import { FilteredPost, Post } from "../types/PostResponse";
 import { createContext } from "react";
 
@@ -41,19 +41,8 @@ const Home = ({ filteredPosts }: { filteredPosts: Array<FilteredPost> }) => {
 export default Home;
 
 export async function getStaticProps() {
-  const posts = await getLandingPagePosts().then((posts) => {
-    return posts;
-  });
-
-  const filteredPosts: Array<FilteredPost> = _.map(posts, (post: Post) => {
-    return {
-      id: post.id,
-      slug: post.slug,
-      title: post.title,
-      content: post.content,
-      excerpt: post.excerpt,
-      jetpack_featured_media_url: post.jetpack_featured_media_url,
-    };
-  });
+  const posts = await getLandingPagePosts();
+  const filteredPosts = await getFilteredPostData(posts);
+  
   return { props: { filteredPosts } };
 }

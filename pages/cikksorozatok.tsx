@@ -1,16 +1,16 @@
 import { NextSeo } from "next-seo";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../components/Layout";
-import { getAllPosts, getPostBySearchQuery } from "../helpers/getPosts";
+import { getAllTags, getPostBySearchQuery } from "../helpers/getPosts";
 import styles from "../styles/Collections.module.scss";
 import {
   Collection,
   CollectionsParams,
   CollectionWithoutData,
 } from "../types/Collections";
-import { FilteredPost, Post } from "../types/PostResponse";
+import { FilteredPost } from "../types/PostResponse";
+import * as _ from "lodash";
 
 const COLLECTIONS: Array<CollectionWithoutData> = [
   {
@@ -154,6 +154,7 @@ export default function Collections({ collections }: CollectionsParams) {
 }
 
 export async function getStaticProps() {
+  const fetchedTags = await getAllTags();
   let collections: Array<Collection> = [];
   for (const collection of COLLECTIONS) {
     let collectionWithData: Collection = {
@@ -163,6 +164,12 @@ export async function getStaticProps() {
 
     for (const article of collection.articles) {
       await getPostBySearchQuery(article).then((post) => {
+        const filteredTagData = _.map(post.tags, (tag) => {
+          const tagData = _.filter(fetchedTags, (fetchedTag) => {
+            return fetchedTag.id == tag;
+          })[0];
+          return { id: tagData.id, name: tagData.name, slug: tagData.slug };
+        });
         let filteredArticleData: FilteredPost = {
           id: post.id,
           slug: post.slug,
@@ -170,6 +177,7 @@ export async function getStaticProps() {
           content: post.content,
           excerpt: post.excerpt,
           jetpack_featured_media_url: post.jetpack_featured_media_url,
+          tags: filteredTagData,
         };
         collectionWithData.articles.push({
           title: article,
