@@ -33,6 +33,11 @@
       padding-inline: 1.5rem;
       display: flex;
       align-items: center;
+     
+      svg {
+        margin-right: 1rem;
+        width: 1.5rem;
+      }
 
       &:hover {
         background-color: $secondary-lighter;
@@ -51,16 +56,18 @@
   }
 
   .socials {
+    width: 50%;
     display: flex;
     margin-inline: auto;
     align-items: center;
+    justify-content: space-evenly;
     cursor: pointer;
     margin-top: auto;
     margin-bottom: 10px;
-    gap: 1rem;
 
     svg {
-      width: 1rem;
+      width: 1.5rem;
+      height: auto;
 
       &:hover {
         color: $secondary-lighter;

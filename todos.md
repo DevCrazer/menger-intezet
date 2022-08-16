@@ -8,7 +8,6 @@ Code improvements
 
 
 UI Improvements
-- Add logos to menu icons 
 - Handle hold tap event on links 
 - Add share buttons
 - Add ability to search, filter and sort articles

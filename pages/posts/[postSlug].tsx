@@ -69,7 +69,7 @@ export default function SinglePost({ post, metaTags }: SinglePostProps) {
   );
 }
 
-export async function getStaticProps({ params }: SinglePostParams) {
+export async function getStaticProps({ params }: SinglePostParams): Promise<{ props: SinglePostProps}> {
   const post: Post = await getPostBySlug(params.postSlug);
   const filteredPost = await getFilteredPostData([post]);
   const metaTags: MetaTags = {

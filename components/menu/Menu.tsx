@@ -1,9 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import {
   faFacebookSquare,
+  faReadme,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEnvelope,
+  faHeart,
+  faHouseChimney,
+  faList,
+  faPenNib,
+  faPlay,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -16,13 +24,12 @@ import styles from "./Menu.module.scss";
 import { MenuProps } from "./Menu.types";
 
 const LIST_ITEMS = [
-  { name: "Főoldal", route: "" },
-  { name: "Bejegyzések", route: "bejegyzesek" },
-  { name: "Cikksorozatok", route: "cikksorozatok" },
-  { name: "Videók", route: "videok" },
-  { name: "Szerzőink", route: "szerzoink" },
-  { name: "Kapcsolat", route: "kapcsolat" },
-  { name: "Támogatás", route: "tamogatas" },
+  { name: "Főoldal", icon: faHouseChimney, route: "" },
+  { name: "Bejegyzések", icon: faReadme, route: "bejegyzesek" },
+  { name: "Cikksorozatok", icon: faList, route: "cikksorozatok" },
+  { name: "Videók", icon: faPlay, route: "videok" },
+  { name: "Szerzőink", icon: faPenNib, route: "szerzoink" },
+  { name: "Támogatás", icon: faHeart, route: "tamogatas" },
 ];
 
 const SOCIAL_MEDIA_LINKS = [
@@ -79,7 +86,10 @@ export default function Menu({ showLogo }: MenuProps) {
                   }`}
                   onClick={() => onClick(item.route)}
                 >
-                  <li>{item.name}</li>
+                  <li> 
+                    <FontAwesomeIcon icon={item.icon} />
+                    {item.name}
+                  </li>
                 </a>
               </Link>
             );
