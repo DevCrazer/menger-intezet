@@ -32,7 +32,7 @@ export default function PostGrid({ posts }: PostGridProps) {
             <div className={styles.tagList}>
               {post.tags.map((tag) => {
                 return (
-                  <Link href={`/cimkek/${tag.slug}`} key={tag.id} passHref>
+                  <Link href={`/cimkek/${tag.name}`} key={tag.id} passHref>
                     <a>
                       <span className={styles.tagListElement}>#{tag.name}</span>
                     </a>
