@@ -5,20 +5,11 @@ import useParsePost from "../../hooks/useParsePost";
 import styles from "../../styles/Post.module.scss";
 import parse from "html-react-parser";
 import LoadingBackdrop from "../../components/LoadingBackdrop";
-import { FilteredPost, Post } from "../../types/PostResponse";
-import {
-  getAllPosts,
-  getAllTags,
-  getFilteredPostData,
-  getPostBySlug,
-} from "../../helpers/getPosts";
+import { Post } from "../../types/PostResponse";
+import { getAllPosts, getFilteredPostData, getPostBySlug, } from "../../helpers/getPosts";
 import * as _ from "lodash";
 import { NextSeo } from "next-seo";
-import {
-  MetaTags,
-  SinglePostParams,
-  SinglePostProps,
-} from "../../types/SinglePost";
+import { MetaTags, SinglePostParams, SinglePostProps, } from "../../types/SinglePost";
 import Image from "next/image";
 import SharePrompt from "../../components/share-prompt/SharePrompt";
 import { convert } from "html-to-text";
@@ -78,7 +69,7 @@ export async function getStaticProps({
   const filteredPost = await getFilteredPostData([post]);
   const title = convert(post.title.rendered);
   const excerpt = convert(post.excerpt.rendered);
-  
+
   const metaTags: MetaTags = {
     title: title,
     image: post.jetpack_featured_media_url,
