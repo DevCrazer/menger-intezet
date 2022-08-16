@@ -55,13 +55,24 @@ export async function getStaticProps({ params }: { params: { tag: string } }) {
     return;
   }
 
-  const posts: Array<Post> = await getPostsByTag(tagToDisplay.id).then(
-    (posts) => {
-      return posts;
-    }
-  );
+  const posts: Array<Post> = await getPostsByTag(tagToDisplay.id).then((posts) => {
+    return posts;
+  });
 
-  const filteredPosts: Array<FilteredPost> = _.map(posts, (post) => {
+  const fetchedTags = await getAllTags().then((tags) => {
+    return tags;
+  });
+
+  const filteredPosts = _.map(posts, (post) => {
+    const tags = _.map(post.tags, (tag) => {
+      const tagData = _.find(fetchedTags, (fetchedTag) => {
+        return fetchedTag.id == tag;
+      });
+      if (!tagData) {
+        return { id: 0, name: "", slug: "" };
+      }
+      return { id: tagData?.id, name: tagData?.name, slug: tagData?.slug };
+    });
     return {
       id: post.id,
       slug: post.slug,
@@ -69,6 +80,7 @@ export async function getStaticProps({ params }: { params: { tag: string } }) {
       content: post.content,
       excerpt: post.excerpt,
       jetpack_featured_media_url: post.jetpack_featured_media_url,
+      tags: tags,
     };
   });
 

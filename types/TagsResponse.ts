@@ -10,6 +10,12 @@ export interface Tag {
     _links:      Links;
 }
 
+export interface FilteredTag {
+    id: number,
+    name: string,
+    slug: string
+}
+
 export interface Links {
     self:           About[];
     collection:     About[];

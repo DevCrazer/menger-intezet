@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .postCardsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -36,13 +38,18 @@
           margin-bottom: 0;
         }
       }
-      .readMoreButton {
-        cursor: pointer;
-        margin-left: auto;
+      a {
+        display: flex;
+        margin-top: 0.5rem;
 
-        &:hover {
-          text-decoration: underline;
-          text-decoration-style: dotted;
+        .readMoreButton {
+          cursor: pointer;
+          margin-left: auto;
+
+          &:hover {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+          }
         }
       }
     }
@@ -50,6 +57,31 @@
     img {
       cursor: pointer;
       max-width: 100%;
+    }
+  }
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-left: 10px;
+  border-left: 5px solid $secondary-lighter;
+
+  a {
+    display: flex;
+
+    .tagListElement {
+      cursor: pointer;
+      margin-right: 10px;
+      font-size: 0.8rem;
+      font-family: "Montserrat";
+      font-weight: 400;
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-style: dotted;
+      }
     }
   }
 }

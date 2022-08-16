@@ -12,7 +12,7 @@ export default function PostGrid({ posts }: PostGridProps) {
       {posts?.map((post, index) => {
         return (
           <div className={styles.postCard} key={index}>
-            <Link href={`/posts/${post.slug}`}>
+            <Link href={`/posts/${post.slug}`} passHref>
               <a>
                 <Image
                   src={post.jetpack_featured_media_url}
@@ -24,15 +24,30 @@ export default function PostGrid({ posts }: PostGridProps) {
               </a>
             </Link>
             <div className={styles.postAuthor}>{parse(sanitize(post.title.rendered.split(":", 1)[0]))}</div>
-            <Link href={`/posts/${post.slug}`}>
-              <div className={styles.postName}>{parse(sanitize(post.title.rendered.split(":", 2)[1]))}</div>
+            <Link href={`/posts/${post.slug}`} passHref>
+              <a>
+                <div className={styles.postName}>{parse(sanitize(post.title.rendered.split(":", 2)[1]))}</div>
+              </a>
             </Link>
+            <div className={styles.tagList}>
+              {post.tags.map((tag) => {
+                return (
+                  <Link href={`/cimkek/${tag.slug}`} key={tag.id} passHref>
+                    <a>
+                      <span className={styles.tagListElement}>#{tag.name}</span>
+                    </a>
+                  </Link>
+                );
+              })}
+            </div>
             <div className={styles.excerptContainer}>
               <div className={styles.postExcerpt} lang="hu">
                 {parse(sanitize(post.excerpt.rendered.split('<a class="more-link"', 1)[0] + "..."))}
               </div>
-              <Link href={`/posts/${post.slug}`}>
-                <div className={styles.readMoreButton}>Tovább »</div>
+              <Link href={`/posts/${post.slug}`} passHref>
+                <a>
+                  <div className={styles.readMoreButton}>Tovább »</div>
+                </a>
               </Link>
             </div>
           </div>

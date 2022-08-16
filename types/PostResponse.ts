@@ -1,3 +1,5 @@
+import { FilteredTag } from "./TagsResponse";
+
 export interface Post {
   id:                            number;
   date:                          Date;
@@ -38,7 +40,7 @@ export interface FilteredPost {
   content:                       Content;
   excerpt:                       Content;
   jetpack_featured_media_url:    string;
-
+  tags?:                          Array<FilteredTag>;
 }
 
 export interface Links {

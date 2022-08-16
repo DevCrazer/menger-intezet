@@ -13,7 +13,7 @@ export async function getAllPosts(): Promise<Array<Post>> {
   return allPosts;
 }
 
-export async function getAllTags(): Promise<Array<Tag>>  {
+export async function getAllTags(): Promise<Array<Tag>> {
   const numberOfPages: number = await getNumberOfPages(QueryTypes.Tags).then((number) => {
     return number;
   });
@@ -21,10 +21,15 @@ export async function getAllTags(): Promise<Array<Tag>>  {
   return allTags;
 }
 
-async function getDataFromAllPages<T extends QueryTypes>(pageCount: number, queryType: T): Promise<GetDataFromAllPagesReturnType[T]> {
+async function getDataFromAllPages<T extends QueryTypes>(
+  pageCount: number,
+  queryType: T
+): Promise<GetDataFromAllPagesReturnType[T]> {
   let results: GetDataFromAllPagesReturnType[T] = [];
   for (let i = 0; i < pageCount; i++) {
-    await fetch(`${BASE_URL}/${queryType}?${QueryArguments.PerPage}=${POSTS_PER_PAGE}&${QueryArguments.Page}=${i + 1}`)
+    await fetch(
+      `${BASE_URL}/${queryType}?${QueryArguments.PerPage}=${POSTS_PER_PAGE}&${QueryArguments.Page}=${i + 1}`
+    )
       .then((response) => response.json())
       .then((data) => {
         results = [...results, ...data];
@@ -35,7 +40,9 @@ async function getDataFromAllPages<T extends QueryTypes>(pageCount: number, quer
 
 async function getNumberOfPages(queryType: QueryTypes): Promise<number> {
   let numberOfPages: number = 0;
-  await fetch(`${BASE_URL}/${queryType}?${QueryArguments.PerPage}=${POSTS_PER_PAGE}&${QueryArguments.Page}=1`).then((response) => {
+  await fetch(
+    `${BASE_URL}/${queryType}?${QueryArguments.PerPage}=${POSTS_PER_PAGE}&${QueryArguments.Page}=1`
+  ).then((response) => {
     for (let header of response.headers.entries()) {
       if (header[0] === "x-wp-totalpages") {
         numberOfPages = parseInt(header[1]);
