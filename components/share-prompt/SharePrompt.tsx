@@ -30,7 +30,7 @@ export default function SharePrompt({
     };
 
     try {
-      await navigator?.share(shareData);
+      await navigator.share(shareData);
     } catch (err) {
       console.log(`Error: ${err}`);
     }

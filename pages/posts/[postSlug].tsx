@@ -47,7 +47,7 @@ export default function SinglePost({ post, metaTags }: SinglePostProps) {
       />
       <Layout>
         <div className={styles.singlePostContainer}>
-          <SharePrompt title={pageTitle} url={metaTags.url} />
+          <SharePrompt title={metaTags.title} url={metaTags.url} />
           <div className={styles.metaInfoContainer}>
             <div className={styles.author}>{author}</div>
             <div className={styles.title}>{title}</div>
