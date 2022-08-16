@@ -76,7 +76,7 @@ export default function Menu({ showLogo }: MenuProps) {
               (item.route.length && currentItem?.includes(item.route)) ||
               (currentItem === "/" && item.name === "Főoldal");
             return (
-              <Link href={`${item.route}`} key={item.route} passHref>
+              <Link href={`/${item.route}`} key={item.route} passHref>
                 <a
                   className={`${styles.navigationElement} ${
                     highlightMenuItem
