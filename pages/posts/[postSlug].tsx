@@ -79,7 +79,7 @@ export async function getStaticProps({ params }: SinglePostParams) {
     excerpt: post.excerpt.rendered,
     site_name: "Menger Intézet",
   };
-  return { props: { filteredPost, metaTags } };
+  return { props: { post: filteredPost[0], metaTags } };
 }
 
 export async function getStaticPaths() {

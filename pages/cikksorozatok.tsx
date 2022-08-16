@@ -154,7 +154,6 @@ export default function Collections({ collections }: CollectionsParams) {
 }
 
 export async function getStaticProps() {
-  const fetchedTags = await getAllTags();
   let collections: Array<Collection> = [];
   for (const collection of COLLECTIONS) {
     let collectionWithData: Collection = {

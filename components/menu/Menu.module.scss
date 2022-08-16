@@ -20,24 +20,29 @@
   .navigation {
     list-style: none;
     padding-inline: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
 
-    a {
-      .navigationElement {
-        cursor: pointer;
-        font-size: 1.5rem;
-        text-transform: uppercase;
-        padding-inline: 1.5rem;
-        padding-block: 0.5rem;
-        &:hover {
-          background-color: $secondary-lighter;
-          color: black;
-        }
-      }
+    .navigationElement {
+      flex: 1;
+      cursor: pointer;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      padding-inline: 1.5rem;
+      display: flex;
+      align-items: center;
 
-      .activeElement {
+      &:hover {
         background-color: $secondary-lighter;
         color: black;
       }
+    }
+
+    .activeElement {
+      background-color: $secondary-lighter;
+      color: black;
     }
   }
 
@@ -68,11 +73,5 @@
   .menuContainer {
     height: 100%;
     max-width: 70vw;
-  }
-}
-
-@media screen and (max-height: 1000px) {
-  .navigationElement {
-    padding-block: 0.25rem !important;
   }
 }
