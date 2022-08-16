@@ -24,15 +24,14 @@ import SharePrompt from "../../components/share-prompt/SharePrompt";
 
 export default function SinglePost({ post, metaTags }: SinglePostProps) {
   const { author, title, content, image, loading } = useParsePost(post);
-  const pageTitle = `${title} | ${author}`;
 
   return (
     <>
       <NextSeo
-        title={pageTitle}
+        title={metaTags.title}
         openGraph={{
           url: metaTags.url,
-          title: pageTitle,
+          title: metaTags.title,
           description: metaTags.excerpt,
           type: "article",
           images: [
