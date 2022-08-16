@@ -6,7 +6,12 @@ import styles from "../../styles/Post.module.scss";
 import parse from "html-react-parser";
 import LoadingBackdrop from "../../components/LoadingBackdrop";
 import { FilteredPost, Post } from "../../types/PostResponse";
-import { getAllPosts, getPostBySlug } from "../../helpers/getPosts";
+import {
+  getAllPosts,
+  getAllTags,
+  getFilteredPostData,
+  getPostBySlug,
+} from "../../helpers/getPosts";
 import * as _ from "lodash";
 import { NextSeo } from "next-seo";
 import {
@@ -65,18 +70,8 @@ export default function SinglePost({ post, metaTags }: SinglePostProps) {
 }
 
 export async function getStaticProps({ params }: SinglePostParams) {
-  const post: FilteredPost = await getPostBySlug(params.postSlug).then(
-    (post) => {
-      return {
-        id: post.id,
-        slug: post.slug,
-        title: post.title,
-        content: post.content,
-        excerpt: post.excerpt,
-        jetpack_featured_media_url: post.jetpack_featured_media_url,
-      };
-    }
-  );
+  const post: Post = await getPostBySlug(params.postSlug);
+  const filteredPost = await getFilteredPostData([post]);
   const metaTags: MetaTags = {
     title: `${post.title.rendered}`,
     image: post.jetpack_featured_media_url,
@@ -84,13 +79,11 @@ export async function getStaticProps({ params }: SinglePostParams) {
     excerpt: post.excerpt.rendered,
     site_name: "Menger Intézet",
   };
-  return { props: { post, metaTags } };
+  return { props: { filteredPost, metaTags } };
 }
 
 export async function getStaticPaths() {
-  const posts: Array<Post> = await getAllPosts().then((posts) => {
-    return posts;
-  });
+  const posts: Array<Post> = await getAllPosts();
   const postSlugs = _.map(posts, "slug");
   const paths: Array<SinglePostParams> = _.map(postSlugs, (slug) => {
     return { params: { postSlug: slug } };

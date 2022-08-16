@@ -8,7 +8,7 @@ import styles from "../../styles/Posts.module.scss";
 import { Post } from "../../types/PostResponse";
 import LoadingBackdrop from "../../components/LoadingBackdrop";
 import { NextSeo } from "next-seo";
-import { getAllPosts, getAllTags } from "../../helpers/getPosts";
+import { getAllPosts, getAllTags, getFilteredPostData } from "../../helpers/getPosts";
 import * as _ from "lodash";
 import { PostsProps } from "../../types/PostList";
 import PostGrid from "../../components/posts/post-grid/PostGrid";
@@ -65,30 +65,8 @@ export default function Posts({ posts, pageCount, page }: PostsProps) {
 }
 
 export async function getStaticProps({ params }: { params: { page: string } }) {
-  const posts: Array<Post> = await getAllPosts().then((posts) => {
-    return posts;
-  });
-  const fetchedTags = await getAllTags().then((tags) => {
-    return tags;
-  })
-  const filteredPosts = _.map(posts, (post) => {
-    const tags = _.map(post.tags, (tag) => {
-      const tagData = _.find(fetchedTags, (fetchedTag) => { return fetchedTag.id == tag });
-      if (!tagData) {
-        return { id: 0, name: '', slug: '' }
-      }
-      return { id: tagData?.id, name: tagData?.name, slug: tagData?.slug }
-    });
-    return {
-      id: post.id,
-      slug: post.slug,
-      title: post.title,
-      content: post.content,
-      excerpt: post.excerpt,
-      jetpack_featured_media_url: post.jetpack_featured_media_url,
-      tags: tags
-    };
-  });
+  const posts: Array<Post> = await getAllPosts();
+  const filteredPosts = await getFilteredPostData(posts);
   const postChunks = _.chunk(filteredPosts, POSTS_PER_PAGE);
   const props: PostsProps = {
     posts: postChunks[parseInt(params.page) - 1],
@@ -100,9 +78,7 @@ export async function getStaticProps({ params }: { params: { page: string } }) {
 }
 
 export async function getStaticPaths() {
-  const posts: Array<Post> = await getAllPosts().then((posts) => {
-    return posts;
-  });
+  const posts: Array<Post> = await getAllPosts();
   const postChunks = _.chunk(posts, POSTS_PER_PAGE);
   const paths = _.map(postChunks, (chunk, index) => {
     return { params: { page: (index + 1).toString() } };

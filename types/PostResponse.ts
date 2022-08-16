@@ -40,7 +40,7 @@ export interface FilteredPost {
   content:                       Content;
   excerpt:                       Content;
   jetpack_featured_media_url:    string;
-  tags?:                          Array<FilteredTag>;
+  tags:                          Array<FilteredTag>;
 }
 
 export interface Links {

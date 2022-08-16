@@ -1,6 +1,7 @@
 import { GetDataFromAllPagesReturnType, QueryArguments, QueryTypes } from "../types/getPosts.types";
-import { Post } from "../types/PostResponse";
+import { FilteredPost, Post } from "../types/PostResponse";
 import { Tag } from "../types/TagsResponse";
+import * as _ from "lodash";
 
 const BASE_URL = "https://public-api.wordpress.com/wp/v2/sites/mengerblog.com";
 const POSTS_PER_PAGE = 50;
@@ -82,4 +83,26 @@ export async function getPostBySearchQuery(searchQuery: string) {
     .then((data: Array<Post>) => {
       return data[0];
     });
+}
+
+export async function getFilteredPostData(posts: Array<Post>): Promise<Array<FilteredPost>> {
+  const fetchedTags = await getAllTags();
+  const filteredPosts = _.map(posts, (post) => {
+    const filteredTagData = _.map(post.tags, (tag) => {
+      const tagData = _.filter(fetchedTags, (fetchedTag) => {
+        return fetchedTag.id == tag;
+      })[0];
+      return { id: tagData.id, name: tagData.name, slug: tagData.slug };
+    });
+    return {
+      id: post.id,
+      slug: post.slug,
+      title: post.title,
+      content: post.content,
+      excerpt: post.excerpt,
+      jetpack_featured_media_url: post.jetpack_featured_media_url,
+      tags: filteredTagData,
+    };
+  });
+  return filteredPosts;
 }

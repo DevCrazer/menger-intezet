@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getAllTags, getPostsByTag } from "../../helpers/getPosts";
+import { getAllTags, getFilteredPostData, getPostsByTag } from "../../helpers/getPosts";
 import { FilteredPost, Post } from "../../types/PostResponse";
 import * as _ from "lodash";
 import { TagProps } from "../../types/SingleTagPage";
@@ -55,35 +55,8 @@ export async function getStaticProps({ params }: { params: { tag: string } }) {
     return;
   }
 
-  const posts: Array<Post> = await getPostsByTag(tagToDisplay.id).then((posts) => {
-    return posts;
-  });
-
-  const fetchedTags = await getAllTags().then((tags) => {
-    return tags;
-  });
-
-  const filteredPosts = _.map(posts, (post) => {
-    const tags = _.map(post.tags, (tag) => {
-      const tagData = _.find(fetchedTags, (fetchedTag) => {
-        return fetchedTag.id == tag;
-      });
-      if (!tagData) {
-        return { id: 0, name: "", slug: "" };
-      }
-      return { id: tagData?.id, name: tagData?.name, slug: tagData?.slug };
-    });
-    return {
-      id: post.id,
-      slug: post.slug,
-      title: post.title,
-      content: post.content,
-      excerpt: post.excerpt,
-      jetpack_featured_media_url: post.jetpack_featured_media_url,
-      tags: tags,
-    };
-  });
-
+  const posts: Array<Post> = await getPostsByTag(tagToDisplay.id);
+  const filteredPosts = await getFilteredPostData(posts);
   const props: TagProps = {
     tag: params.tag,
     posts: filteredPosts,
@@ -93,9 +66,7 @@ export async function getStaticProps({ params }: { params: { tag: string } }) {
 }
 
 export async function getStaticPaths() {
-  const tags = await getAllTags().then((posts) => {
-    return posts;
-  });
+  const tags = await getAllTags();
   const paths = _.map(tags, (tag) => {
     return { params: { tag: tag.name } };
   });
