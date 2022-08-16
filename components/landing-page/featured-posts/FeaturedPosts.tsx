@@ -69,8 +69,8 @@ export default function FeaturedPosts() {
               post.excerpt.substring(0, 400).concat("...")
             );
             return (
-              <Link href={`/posts/${recentPosts[index].slug}`} key={index}>
-                <div
+              <Link href={`/posts/${recentPosts[index].slug}`} key={index} passHref>
+                <a
                   className={
                     currentPost === index
                       ? styles.highlightedText
@@ -87,7 +87,7 @@ export default function FeaturedPosts() {
                   <span lang="hu" className={styles.excerpt}>
                     {parsedExcerpt}
                   </span>
-                </div>
+                </a>
               </Link>
             );
           })}

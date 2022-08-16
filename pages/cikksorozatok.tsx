@@ -135,10 +135,12 @@ export default function Collections({ collections }: CollectionsParams) {
                 <div className={styles.collectionName}>#{collection.name}</div>
                 {collection.articles.map((article, index) => {
                   return (
-                    <Link href={`posts/${article.data.slug}`} key={index}>
-                      <p className={styles.collectionArticle}>
-                        {article.title}
-                      </p>
+                    <Link href={`posts/${article.data.slug}`} key={index} passHref>
+                      <a>
+                        <p className={styles.collectionArticle}>
+                          {article.title}
+                        </p>
+                      </a>
                     </Link>
                   );
                 })}

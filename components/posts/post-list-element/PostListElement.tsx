@@ -16,17 +16,21 @@ export default function PostListElement({ post, displayImage }: PostListElementP
       <div className={styles.postListElementContainer}>
         {displayImage ? <img src={image} alt={title} /> : null}
         <h3 className={styles.author}>{author}</h3>
-        <Link href={`/posts/${post.slug}`}>
-          <h1 className={styles.title}>
-            {parse(title)}
-          </h1>
+        <Link href={`/posts/${post.slug}`} passHref>
+          <a>
+            <h1 className={styles.title}>
+              {parse(title)}
+            </h1>
+          </a>
         </Link>
         <span className={styles.excerpt}>{parse(excerpt)}</span>
         <div className={styles.readMoreContainer}>
-          <Link href={`/posts/${post.slug}`}>
-            <div className={styles.readMore}>
-              Tovább »
-            </div>
+          <Link href={`/posts/${post.slug}`} passHref>
+            <a>
+              <div className={styles.readMore}>
+                Tovább »
+              </div>
+            </a>
           </Link>
         </div>
       </div>

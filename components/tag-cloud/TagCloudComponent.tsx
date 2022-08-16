@@ -26,10 +26,12 @@ const TAGS = [
 export default function TagCloudComponent() {
   const customRenderer = (tag: TagCloudDataEntry, size: number, color: string) => {
     return (
-      <Link href={`/cimkek/${tag.value}`} key={tag.value}>
-        <span style={{ color }} className={styles[`tag-${size}`]}>
-          {tag.value}
-        </span>
+      <Link href={`/cimkek/${tag.value}`} key={tag.value} passHref>
+        <a>
+          <span style={{ color }} className={styles[`tag-${size}`]}>
+            {tag.value}
+          </span>
+        </a>
       </Link>
     );
   };

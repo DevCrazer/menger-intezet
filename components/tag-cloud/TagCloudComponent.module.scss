@@ -29,25 +29,27 @@
     flex-wrap: wrap;
     align-items: center;
 
-    span {
-      cursor: pointer;
-      transition-duration: 0.5s;
+    a {        
+      span {
+        cursor: pointer;
+        transition-duration: 0.5s;
 
-      &:hover {
-        color: $secondary-lighter !important;
-      }
+        &:hover {
+          color: $secondary-lighter !important;
+        }
 
-      &::before {
-        content: "#";
-      }
+        &::before {
+          content: "#";
+        }
 
-      &::after {
-        content: ",";
-      }
-
-      &:last-child {
         &::after {
-          content: "";
+          content: ",";
+        }
+
+        &:last-child {
+          &::after {
+            content: "";
+          }
         }
       }
     }

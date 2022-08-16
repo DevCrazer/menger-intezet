@@ -28,18 +28,21 @@
   }
 
   .readMoreContainer {
-    display: flex;
-    .readMore {
-      display: inline-block;
-      text-align: center;
-      cursor: pointer;
-      text-decoration-style: dashed;
-      margin-left: auto;
-      background-color: $secondary-lighter;
-      color: black;
-      padding-inline: 2rem;
-      padding-block: 5px;
-      border-radius: 10px;
+    a {
+      display: flex;
+      
+      .readMore {
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        text-decoration-style: dashed;
+        margin-left: auto;
+        background-color: $secondary-lighter;
+        color: black;
+        padding-inline: 2rem;
+        padding-block: 5px;
+        border-radius: 10px;
+      }
     }
   }
 }
