@@ -21,6 +21,7 @@ import {
 } from "../../types/SinglePost";
 import Image from "next/image";
 import SharePrompt from "../../components/share-prompt/SharePrompt";
+import { convert } from "html-to-text";
 
 export default function SinglePost({ post, metaTags }: SinglePostProps) {
   const { author, title, content, image, loading } = useParsePost(post);
@@ -76,10 +77,10 @@ export async function getStaticProps({
   const post: Post = await getPostBySlug(params.postSlug);
   const filteredPost = await getFilteredPostData([post]);
   const metaTags: MetaTags = {
-    title: `${post.title.rendered}`,
+    title: convert(post.title.rendered),
     image: post.jetpack_featured_media_url,
     url: `https://menger.hu/posts/${post.slug}`,
-    excerpt: post.excerpt.rendered,
+    excerpt: convert(post.excerpt.rendered),
     site_name: "Menger Intézet",
   };
   return { props: { post: filteredPost[0], metaTags } };
