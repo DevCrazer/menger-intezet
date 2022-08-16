@@ -22,6 +22,7 @@ const LIST_ITEMS = [
   { name: "Videók", route: "videok" },
   { name: "Szerzőink", route: "szerzoink" },
   { name: "Kapcsolat", route: "kapcsolat" },
+  // { name: "Támogatás", route: "tamogatas" }
 ];
 
 const SOCIAL_MEDIA_LINKS = [
@@ -69,17 +70,19 @@ export default function Menu({ showLogo }: MenuProps) {
               (item.route.length && currentItem?.includes(item.route)) ||
               (currentItem === "/" && item.name === "Főoldal");
             return (
-              <Link href={`/${item.route}`} key={item.route}>
-                <li
-                  className={`${styles.navigationElement} ${
-                    highlightMenuItem
-                      ? styles.activeElement
-                      : styles.inactiveElement
-                  }`}
-                  onClick={() => onClick(item.route)}
-                >
-                  {item.name}
-                </li>
+              <Link href={`/${item.route}`} key={item.route} passHref>
+                <a>
+                  <li
+                    className={`${styles.navigationElement} ${
+                      highlightMenuItem
+                        ? styles.activeElement
+                        : styles.inactiveElement
+                    }`}
+                    onClick={() => onClick(item.route)}
+                  >
+                    {item.name}
+                  </li>
+                </a>
               </Link>
             );
           })}
