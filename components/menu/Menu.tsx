@@ -29,7 +29,6 @@ const LIST_ITEMS = [
   { name: "Cikksorozatok", icon: faList, route: "cikksorozatok" },
   { name: "Videók", icon: faPlay, route: "videok" },
   { name: "Szerzőink", icon: faPenNib, route: "szerzoink" },
-  { name: "Támogatás", icon: faHeart, route: "tamogatas" },
 ];
 
 const SOCIAL_MEDIA_LINKS = [
@@ -77,7 +76,7 @@ export default function Menu({ showLogo }: MenuProps) {
               (item.route.length && currentItem?.includes(item.route)) ||
               (currentItem === "/" && item.name === "Főoldal");
             return (
-              <Link href={`/${item.route}`} key={item.route} passHref>
+              <Link href={`${item.route}`} key={item.route} passHref>
                 <a
                   className={`${styles.navigationElement} ${
                     highlightMenuItem
@@ -86,7 +85,7 @@ export default function Menu({ showLogo }: MenuProps) {
                   }`}
                   onClick={() => onClick(item.route)}
                 >
-                  <li> 
+                  <li>
                     <FontAwesomeIcon icon={item.icon} />
                     {item.name}
                   </li>
@@ -94,6 +93,17 @@ export default function Menu({ showLogo }: MenuProps) {
               </Link>
             );
           })}
+          <a
+            href="https://patreon.com/andrastoth"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.navigationElement} ${styles.inactiveElement}`}
+          >
+            <li>
+              <FontAwesomeIcon icon={faHeart} />
+              Támogatás
+            </li>
+          </a>
         </ul>
         <div className={styles.socials}>
           {SOCIAL_MEDIA_LINKS.map((data) => {
