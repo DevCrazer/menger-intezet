@@ -12,4 +12,3 @@ UI Improvements
 - Handle hold tap event on links 
 - Add share buttons
 - Add ability to search, filter and sort articles
-- Add donate page - https://www.patreon.com/andrastoth
