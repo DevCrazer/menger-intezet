@@ -20,6 +20,7 @@ import {
   SinglePostProps,
 } from "../../types/SinglePost";
 import Image from "next/image";
+import SharePrompt from "../../components/share-prompt/SharePrompt";
 
 export default function SinglePost({ post, metaTags }: SinglePostProps) {
   const { author, title, content, image, loading } = useParsePost(post);
@@ -31,7 +32,7 @@ export default function SinglePost({ post, metaTags }: SinglePostProps) {
         title={pageTitle}
         openGraph={{
           url: metaTags.url,
-          title: metaTags.title,
+          title: pageTitle,
           description: metaTags.excerpt,
           type: "article",
           images: [
@@ -46,6 +47,7 @@ export default function SinglePost({ post, metaTags }: SinglePostProps) {
       />
       <Layout>
         <div className={styles.singlePostContainer}>
+          <SharePrompt title={pageTitle} url={metaTags.url} />
           <div className={styles.metaInfoContainer}>
             <div className={styles.author}>{author}</div>
             <div className={styles.title}>{title}</div>
@@ -69,7 +71,9 @@ export default function SinglePost({ post, metaTags }: SinglePostProps) {
   );
 }
 
-export async function getStaticProps({ params }: SinglePostParams): Promise<{ props: SinglePostProps}> {
+export async function getStaticProps({
+  params,
+}: SinglePostParams): Promise<{ props: SinglePostProps }> {
   const post: Post = await getPostBySlug(params.postSlug);
   const filteredPost = await getFilteredPostData([post]);
   const metaTags: MetaTags = {
