@@ -76,13 +76,17 @@ export async function getStaticProps({
 }: SinglePostParams): Promise<{ props: SinglePostProps }> {
   const post: Post = await getPostBySlug(params.postSlug);
   const filteredPost = await getFilteredPostData([post]);
+  const title = convert(post.title.rendered);
+  const excerpt = convert(post.excerpt.rendered);
+  
   const metaTags: MetaTags = {
-    title: convert(post.title.rendered),
+    title: title,
     image: post.jetpack_featured_media_url,
     url: `https://menger.hu/posts/${post.slug}`,
-    excerpt: convert(post.excerpt.rendered),
+    excerpt: excerpt,
     site_name: "Menger Intézet",
   };
+
   return { props: { post: filteredPost[0], metaTags } };
 }
 
