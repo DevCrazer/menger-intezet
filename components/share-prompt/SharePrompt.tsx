@@ -4,7 +4,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faAt, faShareNodes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SharePrompt.module.scss";
 import { SharePromptProps } from "./SharePrompt.types";
 
@@ -14,7 +14,14 @@ export default function SharePrompt({
   title,
   files,
 }: SharePromptProps) {
-  const isMobile = navigator.canShare();
+  const [navigator, setNavigator] = useState<Window["navigator"]>();
+
+  useEffect(() => {
+    const nav = window.navigator;
+    setNavigator(nav);
+  }, [])
+
+  const isMobile = navigator?.canShare();
 
   async function useNavigatorShare() {
     const shareData = {
@@ -23,7 +30,7 @@ export default function SharePrompt({
     };
 
     try {
-      await navigator.share(shareData);
+      await navigator?.share(shareData);
     } catch (err) {
       console.log(`Error: ${err}`);
     }
