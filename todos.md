@@ -12,3 +12,6 @@ UI Improvements
 - Add share buttons
 - Add ability to search, filter and sort articles
 - Add highlight-to-share function
+- Add link to EP
+- Add link to all tags
+- Add button that reads the post aloud
