@@ -8,10 +8,8 @@ Code improvements
 
 
 UI Improvements
-- Handle hold tap event on links 
-- Add share buttons
-- Add ability to search, filter and sort articles
+- Add option to search, filter and sort articles
 - Add highlight-to-share function
-- Add link to EP
-- Add link to all tags
+- Add link to EP 
+- Add link to page that displays all tags
 - Add button that reads the post aloud
