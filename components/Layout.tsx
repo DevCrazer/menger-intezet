@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, TouchEvent } from "react";
 import styles from "./Layout.module.scss";
 import MenuDrawer from "./menu-drawer/MenuDrawer";
 import Menu from "./menu/Menu";
 
-export default function Layout({ children }: { children: any }) {
+export default function Layout({ children }: { children: JSX.Element | Array<JSX.Element> }) {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const [open, setOpen] = useState<boolean>(false);
 
-  // the required distance between touchStart and touchEnd to be detected as a swipe
   const minSwipeDistance = 50;
 
-  const onTouchStart = (event: any) => {
-    setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
+  const onTouchStart = (event: TouchEvent) => {
+    setTouchEnd(null); 
     setTouchStart(event.targetTouches[0].clientX);
   };
 
-  const onTouchMove = (event: any) => setTouchEnd(event.targetTouches[0].clientX);
+  const onTouchMove = (event: TouchEvent) => setTouchEnd(event.targetTouches[0].clientX);
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
