@@ -1,4 +1,4 @@
-@import "../styles/_variables.scss";
+@import '../styles/_variables.scss';
 
 .singlePostContainer {
   .metaInfoContainer {
@@ -28,11 +28,12 @@
     padding: 1rem;
     text-align: justify;
     hyphens: auto;
-    font-size: 1rem;
+    font-size: 1.1rem;
     scroll-behavior: smooth;
+    line-height: 1.5;
 
     * {
-      font-family: "Montserrat";
+      font-family: 'Montserrat';
     }
 
     a {

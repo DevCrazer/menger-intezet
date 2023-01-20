@@ -8,10 +8,12 @@ import styles from '../../styles/Posts.module.scss';
 import {Post} from '../../types/PostResponse';
 import LoadingBackdrop from '../../components/LoadingBackdrop';
 import {NextSeo} from 'next-seo';
-import {getAllPosts, getAllTags, getFilteredPostData} from '../../helpers/getPosts';
+import {getFilteredPostData, getNumberOfPages, getPostsByPage} from '../../helpers/getPosts';
 import * as _ from 'lodash';
 import {PostsProps} from '../../types/PostList';
 import PostGrid from '../../components/posts/post-grid/PostGrid';
+import {GetServerSideProps} from 'next';
+import {QueryTypes} from '../../types/getPosts.types';
 
 const POSTS_PER_PAGE = 9;
 
@@ -64,28 +66,18 @@ export default function Posts({posts, pageCount, page}: PostsProps) {
   );
 }
 
-export async function getStaticProps({params}: {params: {page: string}}) {
-  const posts: Array<Post> = await getAllPosts();
+export const getServerSideProps: GetServerSideProps<PostsProps> = async context => {
+  let page = context.params?.page;
+  if (!page || Array.isArray(page) || isNaN(parseInt(page))) {
+    page = '1';
+  }
+  const posts: Array<Post> = await getPostsByPage(parseInt(page), POSTS_PER_PAGE);
   const filteredPosts = await getFilteredPostData(posts);
-  const postChunks = _.chunk(filteredPosts, POSTS_PER_PAGE);
+  const numberOfPages = await getNumberOfPages(QueryTypes.Posts, POSTS_PER_PAGE);
   const props: PostsProps = {
-    posts: postChunks[parseInt(params.page) - 1],
-    pageCount: Math.ceil(posts.length / 9),
-    page: parseInt(params.page),
+    posts: filteredPosts,
+    pageCount: numberOfPages,
+    page: parseInt(page),
   };
-
-  return {props: props, revalidate: 60};
-}
-
-export async function getStaticPaths() {
-  const posts: Array<Post> = await getAllPosts();
-  const postChunks = _.chunk(posts, POSTS_PER_PAGE);
-  const paths = _.map(postChunks, (chunk, index) => {
-    return {params: {page: (index + 1).toString()}};
-  });
-
-  return {
-    paths: paths,
-    fallback: false,
-  };
-}
+  return {props};
+};

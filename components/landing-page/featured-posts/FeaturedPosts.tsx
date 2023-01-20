@@ -1,14 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from "react";
-import useParsePost, { ParsedPosts } from "../../../hooks/useParsePost";
-import { PostsContext } from "../../../pages/index";
-import { Post } from "../../../types/PostResponse";
-import styles from "./FeaturedPosts.module.scss";
-import parse from "html-react-parser";
-import LoadingBackdrop from "../../LoadingBackdrop";
-import Link from "next/link";
-import Image from "next/image";
+import React, {useContext, useEffect, useState} from 'react';
+import useParsePost, {ParsedPosts} from '../../../hooks/useParsePost';
+import {PostsContext} from '../../../pages/index';
+import {Post} from '../../../types/PostResponse';
+import styles from './FeaturedPosts.module.scss';
+import parse from 'html-react-parser';
+import LoadingBackdrop from '../../LoadingBackdrop';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function FeaturedPosts() {
   const [pauseAutoHighlight, setPauseAutoHighlight] = useState<boolean>(false);
@@ -53,11 +53,15 @@ export default function FeaturedPosts() {
         <Link href={`/posts/${recentPosts[currentPost].slug}`}>
           <a className={styles.imageAnchor}>
             <Image
-              src={parsedPostData[currentPost]?.image}
+              src={
+                parsedPostData[currentPost].image
+                  ? parsedPostData[currentPost].image
+                  : '/assets/images/logo-rectangle.png'
+              }
               alt={parsedPostData[currentPost].title}
               width={1000}
               height={1000}
-              objectFit={"contain"}
+              objectFit={'contain'}
               priority
             />
           </a>
@@ -65,29 +69,30 @@ export default function FeaturedPosts() {
         <div className={styles.textContainer}>
           {parsedPostData.map((post: ParsedPosts, index: number) => {
             const parsedTitle = parse(post.title);
-            const parsedExcerpt = parse(
-              post.excerpt.substring(0, 400).concat("...")
-            );
+            const parsedExcerpt = parse(post.excerpt.substring(0, 400).concat('...'));
             return (
               <Link href={`/posts/${recentPosts[index].slug}`} key={index} passHref>
-                <a
-                  className={
-                    currentPost === index
-                      ? styles.highlightedText
-                      : styles.regularText
-                  }
+                <div
+                  className={currentPost === index ? styles.highlightedText : styles.regularText}
                   onMouseOver={() => {
                     setPauseAutoHighlight(true);
                     setCurrentPost(index);
                   }}
                   onMouseLeave={() => setPauseAutoHighlight(false)}
                 >
-                  <h3 className={styles.author}>{post.author}</h3>
-                  <h1 className={styles.title}>{parsedTitle}</h1>
+                  {(parsedTitle && typeof parsedTitle === 'string') ||
+                  (Array.isArray(parsedTitle) && parsedTitle.length > 0) ? (
+                    <h3 className={styles.author}>{post.author}</h3>
+                  ) : null}
+                  <h1 className={styles.title}>
+                    {parsedTitle && Array.isArray(parsedTitle) && parsedTitle.length > 0
+                      ? parsedTitle
+                      : post.author}
+                  </h1>
                   <span lang="hu" className={styles.excerpt}>
                     {parsedExcerpt}
                   </span>
-                </a>
+                </div>
               </Link>
             );
           })}

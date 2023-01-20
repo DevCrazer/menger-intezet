@@ -1,4 +1,4 @@
-import { FilteredPost } from "./PostResponse";
+import {FilteredPost} from './PostResponse';
 
 export interface PostsProps {
   posts: Array<FilteredPost>;

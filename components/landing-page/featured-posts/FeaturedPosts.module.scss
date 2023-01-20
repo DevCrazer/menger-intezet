@@ -1,4 +1,4 @@
-@import "../../../styles/_variables.scss";
+@import '../../../styles/_variables.scss';
 
 .featuredPostsContainer {
   display: grid;
@@ -11,8 +11,8 @@
   .textContainer {
     display: flex;
     flex-direction: column;
-    
-    a {
+
+    div {
       flex: 1;
       padding-inline: 2rem;
       cursor: pointer;
@@ -20,6 +20,7 @@
       padding-block: 1rem;
       display: flex;
       flex-direction: column;
+      justify-content: center;
 
       .author {
         color: rgb(82, 82, 82);
@@ -37,9 +38,8 @@
 
       .excerpt {
         text-align: justify;
-        margin-bottom: auto;
         color: black;
-        hyphens: auto; 
+        hyphens: auto;
       }
     }
 
@@ -51,7 +51,6 @@
 
 .imageAnchor {
   display: flex;
-  
 }
 
 @media screen and (max-width: 1800px) {

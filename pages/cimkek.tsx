@@ -1,20 +1,20 @@
-import { NextSeo } from "next-seo";
-import React, { useEffect, useState } from "react";
-import Layout from "../components/Layout";
-import { getAllTags } from "../helpers/getPosts";
-import { TagCloudData, TagCloudDataEntry, TagsProps } from "../types/TagsPage";
-import { Tag } from "../types/TagsResponse";
-import styles from "../styles/Tags.module.scss";
-import * as _ from "lodash";
-import { TagCloud } from "react-tagcloud";
-import { useRouter } from "next/router";
+import {NextSeo} from 'next-seo';
+import React, {useEffect, useState} from 'react';
+import Layout from '../components/Layout';
+import {getAllTags} from '../helpers/getPosts';
+import {TagCloudData, TagCloudDataEntry, TagsProps} from '../types/TagsPage';
+import {Tag} from '../types/TagsResponse';
+import styles from '../styles/Tags.module.scss';
+import * as _ from 'lodash';
+import {TagCloud} from 'react-tagcloud';
+import {useRouter} from 'next/router';
 
-export default function Tags({ tags }: TagsProps) {
+export default function Tags({tags}: TagsProps) {
   const [data, setData] = useState<TagCloudData>([]);
   const router = useRouter();
 
   useEffect(() => {
-    const newData: TagCloudData = _.map(tags, (tag) => {
+    const newData: TagCloudData = _.map(tags, tag => {
       return {
         value: tag.name,
         count: tag.count,
@@ -23,7 +23,7 @@ export default function Tags({ tags }: TagsProps) {
     });
 
     setData(newData);
-  }, []);
+  }, [tags]);
 
   function navigateToTagPage(tag: string) {
     router.push(`/cimkek/${tag}`);
@@ -32,17 +32,17 @@ export default function Tags({ tags }: TagsProps) {
   return (
     <>
       <NextSeo
-        title={"Címkék | Menger Intézet"}
+        title={'Címkék | Menger Intézet'}
         openGraph={{
           url: `https://menger.hu/cimkek/`,
           title: `Címkék | Menger Intézet`,
-          type: "article",
+          type: 'article',
           images: [
             {
-              url: "/assets/images/fb-featured.png",
+              url: '/assets/images/fb-featured.png',
               width: 1200,
               height: 630,
-              type: "image/png",
+              type: 'image/png',
             },
           ],
         }}
@@ -56,8 +56,8 @@ export default function Tags({ tags }: TagsProps) {
               tags={data}
               onClick={(tag: TagCloudDataEntry) => navigateToTagPage(tag.value)}
               colorOptions={{
-                hue: "blue",
-                luminosity: "bright",
+                hue: 'blue',
+                luminosity: 'bright',
               }}
             />
           </div>
@@ -67,9 +67,9 @@ export default function Tags({ tags }: TagsProps) {
   );
 }
 
-export async function getStaticProps() {
-  const tags: Array<Tag> = await getAllTags().then((tags) => {
-    return _.filter(tags, (tag) => {
+export async function getServerSideProps() {
+  const tags: Array<Tag> = await getAllTags().then(tags => {
+    return _.filter(tags, tag => {
       return tag.count > 0;
     });
   });
@@ -78,5 +78,5 @@ export async function getStaticProps() {
     tags: tags,
   };
 
-  return { props: props };
+  return {props: props};
 }
